@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+    <html lang="vi">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rU3U4 đề 1</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; position: relative; z-index: 1; }
+        .watermark { position: absolute; top: 30px; left: 0; right: 0; text-align: center; font-size: 50px; color: rgba(0, 0, 0, 0.04); font-weight: bold; pointer-events: none; z-index: -1; user-select: none; }
+        .watermark div { transform: rotate(-30deg); margin: 200px 0; }
+        h1, h2 { color: #2c3e50; text-align: center; }
+        .screen { display: none; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .screen.active { display: block; }
+        
+        input[type="text"] { width: 100%; padding: 12px; margin: 10px 0 20px; border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
+        input[type="text"]:focus { border-color: #3498db; outline: none; }
+        
+        button { background: #3498db; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.3s, transform 0.1s; }
+        button:hover { background: #2980b9; }
+        button:active { transform: scale(0.98); }
+        button:disabled { background: #95a5a6; cursor: not-allowed; }
+        
+        .question-block { margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; }
+        .instruction-box { margin-bottom: 15px; padding: 10px 15px; background: #e8f4fd; border: 1px solid #b6d4fe; border-radius: 6px; font-weight: bold; color: #004085; }
+        .question-text { font-weight: 500; margin-bottom: 15px; font-size: 16px; line-height: 1.8; }
+        
+        .options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .option { padding: 12px 15px; background: #fff; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+        .option:hover { border-color: #3498db; background: #f8faff; }
+        .option.selected { border-color: #3498db; background: #ebf5ff; }
+        .option.correct-opt { border-color: #2ecc71; background: #eafaf1; }
+        .option.wrong-opt { border-color: #e74c3c; background: #fdedec; }
+        
+        .radio-circle { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%; position: relative; }
+        .option.selected .radio-circle::after { content: ''; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: #3498db; border-radius: 50%; }
+        
+        .gap-fill-input { width: 120px !important; padding: 4px 8px !important; margin: 0 5px !important; display: inline-block !important; border: 1px solid #ccc !important; border-radius: 4px !important; font-size: 16px !important; }
+        
+        .reordering-container { display: flex; flex-direction: column; gap: 15px; }
+        .word-bank, .drop-zone { display: flex; flex-wrap: wrap; gap: 8px; min-height: 45px; padding: 10px; background: #fff; border: 2px dashed #ddd; border-radius: 8px; }
+        .word-chip { padding: 8px 16px; background: #3498db; color: #fff; border-radius: 20px; cursor: pointer; user-select: none; font-weight: 500; transition: transform 0.1s; }
+        .word-chip:active { transform: scale(0.95); }
+        .word-chip.correct { background: #2ecc71; }
+        .word-chip.wrong { background: #e74c3c; }
+        
+        .rewrite-input { width: 100%; height: 80px; padding: 12px; border: 2px solid #ddd; border-radius: 6px; resize: vertical; font-size: 16px; font-family: inherit; }
+        
+        .check-btn { margin-top: 15px; background: #3498db; font-size: 14px; padding: 8px 16px; }
+        .explanation { display: none; margin-top: 15px; padding: 15px; background: #eef2f5; border-radius: 6px; font-size: 14.5px; line-height: 1.5; color: #2c3e50; border-left: 4px solid #2ecc71; }
+        
+        .progress-bar { width: 100%; height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #2ecc71; width: 0%; transition: width 0.3s; }
+        
+        .result-details { margin-top: 20px; padding: 15px; padding-bottom: 30px; background: #f8f9fa; border-radius: 6px; text-align: left; max-height: 60vh; overflow-y: auto; font-size: 14px; }
+        .error-item { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; color: #e74c3c; }
+    </style>
+    </head>
+    <body>
+    <div class="watermark">
+        <div>rU3U4 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>rU3U4 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>rU3U4 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+        <div>rU3U4 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
+    </div>
+    
+    <div id="startScreen" class="screen active">
+        <h1>rU3U4 đề 1</h1>
+        <p style="text-align: center; color: #7f8c8d;">Nhập họ và tên của bạn để bắt đầu làm bài</p>
+        <input type="text" id="studentName" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="off">
+        <div style="text-align: center;">
+            <button onclick="startTest()">Bắt đầu làm bài</button>
+        </div>
+    </div>
+    
+    <div id="testScreen" class="screen">
+        <h2>rU3U4 đề 1</h2>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div id="questionsContainer"></div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button id="submitBtn" onclick="confirmSubmit()" style="background: #2ecc71; font-weight: bold; padding: 15px 40px;">NỘP BÀI</button>
+        </div>
+    </div>
+    
+    <div id="resultScreen" class="screen" style="text-align: center;">
+        <h1 style="color: #2ecc71; font-size: 36px;">Hoàn thành!</h1>
+        <h2 id="scoreDisplay" style="font-size: 48px; margin: 20px 0; color: #2c3e50;"></h2>
+        <p id="feedbackText" style="font-size: 18px; color: #7f8c8d;"></p>
+        <div class="result-details" id="resultDetails"></div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px; padding: 20px; color: #7f8c8d; font-size: 14px; border-top: 1px solid #ddd;">
+        GV biên soạn: Ms Chí Nên - 0852639652
+    </div>
+    
+    <script>
+        const testName = 'rU3U4 đề 1';
+        const quizData = [
+
+    {
+        id: 1, type: "multiple_choice",
+        questionHTML: "<b>A. MULTIPLE CHOICE</b><br>1. When we arrived, the match ________ for twenty minutes.",
+        options: [
+            { id: "A", label: "A", text: "A. started", isCorrect: false },
+            { id: "B", label: "B", text: "B. was starting", isCorrect: false },
+            { id: "C", label: "C", text: "C. had been going on", isCorrect: true },
+            { id: "D", label: "D", text: "D. has gone on", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Khi chúng tôi đến, trận đấu đã diễn ra được hai mươi phút.<br>Cấu trúc: 'for twenty minutes' kết hợp với một hành động khác trong quá khứ ('arrived') cho thấy một hành động bắt đầu trong quá khứ và kéo dài liên tục đến một thời điểm trong quá khứ. Do đó, ta dùng thì quá khứ hoàn thành tiếp diễn (had been going on). Các thì khác không phù hợp về sự hòa hợp thì hoặc khía cạnh tiếp diễn."
+    },
+    {
+        id: 2, type: "multiple_choice",
+        questionHTML: "2. The boxer was ________ out in the second round.",
+        options: [
+            { id: "A", label: "A", text: "A. pulled", isCorrect: false },
+            { id: "B", label: "B", text: "B. knocked", isCorrect: true },
+            { id: "C", label: "C", text: "C. put", isCorrect: false },
+            { id: "D", label: "D", text: "D. taken", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Võ sĩ quyền anh đã bị hạ gục ở hiệp thứ hai.<br>Cấu trúc: Cụm động từ 'knock out' có nghĩa là đánh bại ai đó đến mức họ bất tỉnh (hạ gục). Các cụm từ khác như 'pull out' (rút lui), 'put out' (dập tắt), 'take out' (loại bỏ) không mang nghĩa này trong ngữ cảnh thể thao đối kháng."
+    },
+    {
+        id: 3, type: "multiple_choice",
+        questionHTML: "3. She ________ tennis every weekend when she was at school.",
+        options: [
+            { id: "A", label: "A", text: "A. would play", isCorrect: true },
+            { id: "B", label: "B", text: "B. was used to play", isCorrect: false },
+            { id: "C", label: "C", text: "C. got used to play", isCorrect: false },
+            { id: "D", label: "D", text: "D. had played", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Cô ấy thường chơi quần vợt mỗi cuối tuần khi cô ấy còn đi học.<br>Cấu trúc: 'would + V(nguyên thể)' được dùng để diễn tả một thói quen trong quá khứ. B và C sai ngữ pháp vì sau 'be/get used to' phải là V-ing. D không phù hợp vì không có hành động quá khứ khác để làm mốc cho quá khứ hoàn thành."
+    },
+    {
+        id: 4, type: "multiple_choice",
+        questionHTML: "4. The ________ blew the whistle to stop the football match.",
+        options: [
+            { id: "A", label: "A", text: "A. umpire", isCorrect: false },
+            { id: "B", label: "B", text: "B. referee", isCorrect: true },
+            { id: "C", label: "C", text: "C. viewer", isCorrect: false },
+            { id: "D", label: "D", text: "D. competitor", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Trọng tài đã thổi còi để dừng trận đấu bóng đá.<br>Cấu trúc: 'referee' là trọng tài trong các môn thể thao di chuyển liên tục như bóng đá, bóng bầu dục. 'umpire' là trọng tài trong các môn như quần vợt, bóng chày (thường ngồi hoặc đứng một chỗ). Viewer là người xem truyền hình, competitor là người thi đấu."
+    },
+    {
+        id: 5, type: "multiple_choice",
+        questionHTML: "5. I finally ________ to waking up early for training.",
+        options: [
+            { id: "A", label: "A", text: "A. used", isCorrect: false },
+            { id: "B", label: "B", text: "B. got used", isCorrect: true },
+            { id: "C", label: "C", text: "C. would", isCorrect: false },
+            { id: "D", label: "D", text: "D. was use", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Cuối cùng tôi cũng đã quen với việc thức dậy sớm để tập luyện.<br>Cấu trúc: 'get used to + V-ing' nghĩa là trở nên quen với việc gì. 'waking up' là V-ing nên chọn 'got used'. 'used' (thường làm gì trong quá khứ) đi với 'to + V', không đi với V-ing."
+    },
+    {
+        id: 6, type: "multiple_choice",
+        questionHTML: "6. This hobby ________ up more time than I expected.",
+        options: [
+            { id: "A", label: "A", text: "A. takes", isCorrect: true },
+            { id: "B", label: "B", text: "B. gets", isCorrect: false },
+            { id: "C", label: "C", text: "C. puts", isCorrect: false },
+            { id: "D", label: "D", text: "D. joins", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Sở thích này chiếm nhiều thời gian hơn tôi dự kiến.<br>Cấu trúc: Cụm động từ 'take up' nghĩa là chiếm (thời gian, không gian). Các động từ khác không tạo thành cụm có nghĩa phù hợp với 'up' trong ngữ cảnh này."
+    },
+    {
+        id: 7, type: "multiple_choice",
+        questionHTML: "7. By the time I reached the court, the others ________ warming up.",
+        options: [
+            { id: "A", label: "A", text: "A. finished", isCorrect: false },
+            { id: "B", label: "B", text: "B. had finished", isCorrect: true },
+            { id: "C", label: "C", text: "C. were finished", isCorrect: false },
+            { id: "D", label: "D", text: "D. had been finish", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Trước lúc tôi đến sân, những người khác đã hoàn thành việc khởi động.<br>Cấu trúc: 'By the time' đi với một mốc thời gian quá khứ ('reached') thì mệnh đề chính phải ở thì quá khứ hoàn thành (had finished) để diễn tả hành động xảy ra trước mốc quá khứ đó."
+    },
+    {
+        id: 8, type: "multiple_choice",
+        questionHTML: "8. I prefer swimming ________ running.",
+        options: [
+            { id: "A", label: "A", text: "A. than", isCorrect: false },
+            { id: "B", label: "B", text: "B. to", isCorrect: true },
+            { id: "C", label: "C", text: "C. from", isCorrect: false },
+            { id: "D", label: "D", text: "D. with", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Tôi thích bơi lội hơn chạy bộ.<br>Cấu trúc: Cấu trúc 'prefer V-ing to V-ing' hoặc 'prefer N to N' nghĩa là thích cái gì hơn cái gì. Không dùng 'than' sau 'prefer' trong cấu trúc này."
+    },
+    {
+        id: 9, type: "multiple_choice",
+        questionHTML: "9. The TV ________ saw the winning goal from several camera angles.",
+        options: [
+            { id: "A", label: "A", text: "A. spectators", isCorrect: false },
+            { id: "B", label: "B", text: "B. viewers", isCorrect: true },
+            { id: "C", label: "C", text: "C. opponents", isCorrect: false },
+            { id: "D", label: "D", text: "D. referees", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Khán giả truyền hình đã xem bàn thắng quyết định từ nhiều góc máy quay.<br>Cấu trúc: 'viewers' là khán giả xem truyền hình. 'spectators' là khán giả xem trực tiếp tại sân vận động. 'opponents' là đối thủ. 'referees' là trọng tài."
+    },
+    {
+        id: 10, type: "multiple_choice",
+        questionHTML: "10. We had to ________ the match off because of the storm.",
+        options: [
+            { id: "A", label: "A", text: "A. call", isCorrect: true },
+            { id: "B", label: "B", text: "B. put", isCorrect: false },
+            { id: "C", label: "C", text: "C. take", isCorrect: false },
+            { id: "D", label: "D", text: "D. pull", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Chúng tôi đã phải hủy trận đấu vì cơn bão.<br>Cấu trúc: 'call off' nghĩa là hủy bỏ (cancel). 'put off' nghĩa là hoãn lại. Tuy cả hai có thể hợp lý, nhưng 'call off' thường đi với sự kiện bị hủy hẳn. Cả A và B có thể đúng nhưng 'call off' là cụm phổ biến nhất khi nói về trận đấu bị hủy vì bão."
+    },
+    {
+        id: 11, type: "multiple_choice",
+        questionHTML: "11. He was tired because he ________ for two hours.",
+        options: [
+            { id: "A", label: "A", text: "A. trained", isCorrect: false },
+            { id: "B", label: "B", text: "B. was training", isCorrect: false },
+            { id: "C", label: "C", text: "C. had been training", isCorrect: true },
+            { id: "D", label: "D", text: "D. had trained", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Anh ấy mệt vì đã tập luyện suốt hai giờ đồng hồ.<br>Cấu trúc: Nhấn mạnh quá trình kéo dài ('for two hours') của một hành động đã diễn ra và để lại kết quả trong quá khứ ('was tired'), ta dùng thì quá khứ hoàn thành tiếp diễn (had been training)."
+    },
+    {
+        id: 12, type: "multiple_choice",
+        questionHTML: "12. The final was very ________; either player could have won.",
+        options: [
+            { id: "A", label: "A", text: "A. competition", isCorrect: false },
+            { id: "B", label: "B", text: "B. competitor", isCorrect: false },
+            { id: "C", label: "C", text: "C. competitive", isCorrect: true },
+            { id: "D", label: "D", text: "D. competitively", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Trận chung kết rất cạnh tranh; cầu thủ nào cũng có thể giành chiến thắng.<br>Cấu trúc: Sau động từ to be 'was' và trạng từ chỉ mức độ 'very', ta cần một tính từ. 'competitive' (cạnh tranh, quyết liệt) là tính từ. 'competition' là danh từ, 'competitor' là người thi đấu, 'competitively' là trạng từ."
+    },
+    {
+        id: 13, type: "multiple_choice",
+        questionHTML: "13. I can't ________ up with people who cheat.",
+        options: [
+            { id: "A", label: "A", text: "A. take", isCorrect: false },
+            { id: "B", label: "B", text: "B. put", isCorrect: true },
+            { id: "C", label: "C", text: "C. get", isCorrect: false },
+            { id: "D", label: "D", text: "D. go", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Tôi không thể chịu đựng được những người gian lận.<br>Cấu trúc: Cụm động từ 'put up with' có nghĩa là chịu đựng, nhân nhượng (tolerate). Các động từ còn lại không tạo thành cụm này."
+    },
+    {
+        id: 14, type: "multiple_choice",
+        questionHTML: "14. There used to ________ an ice rink near our school.",
+        options: [
+            { id: "A", label: "A", text: "A. be", isCorrect: true },
+            { id: "B", label: "B", text: "B. being", isCorrect: false },
+            { id: "C", label: "C", text: "C. been", isCorrect: false },
+            { id: "D", label: "D", text: "D. was", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Từng có một sân trượt băng gần trường chúng tôi.<br>Cấu trúc: Cấu trúc 'used to + V(nguyên thể)' diễn tả một trạng thái hoặc thói quen trong quá khứ nay không còn nữa. Động từ to be ở dạng nguyên thể là 'be'."
+    },
+    {
+        id: 15, type: "multiple_choice",
+        questionHTML: "15. The match ended in a ________.",
+        options: [
+            { id: "A", label: "A", text: "A. draw", isCorrect: true },
+            { id: "B", label: "B", text: "B. equal", isCorrect: false },
+            { id: "C", label: "C", text: "C. finale", isCorrect: false },
+            { id: "D", label: "D", text: "D. ending", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Trận đấu kết thúc với tỉ số hòa.<br>Cấu trúc: Danh từ 'draw' có nghĩa là trận hòa. 'equal' là tính từ (ngang bằng). 'finale' là phần kết. 'ending' là sự kết thúc (phim, truyện)."
+    },
+    {
+        id: 16, type: "multiple_choice",
+        questionHTML: "16. She is very fond ________ photography.",
+        options: [
+            { id: "A", label: "A", text: "A. at", isCorrect: false },
+            { id: "B", label: "B", text: "B. on", isCorrect: false },
+            { id: "C", label: "C", text: "C. of", isCorrect: true },
+            { id: "D", label: "D", text: "D. with", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Cô ấy rất thích nhiếp ảnh.<br>Cấu trúc: Tính từ 'fond' đi kèm với giới từ 'of' (be fond of = thích, có hứng thú với)."
+    },
+    {
+        id: 17, type: "multiple_choice",
+        questionHTML: "17. When the coach arrived, we ________ about the new strategy.",
+        options: [
+            { id: "A", label: "A", text: "A. talked", isCorrect: false },
+            { id: "B", label: "B", text: "B. were talking", isCorrect: true },
+            { id: "C", label: "C", text: "C. had talked", isCorrect: false },
+            { id: "D", label: "D", text: "D. had been talked", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Khi huấn luyện viên đến, chúng tôi đang nói chuyện về chiến thuật mới.<br>Cấu trúc: Cấu trúc kết hợp thì: một hành động đang diễn ra trong quá khứ (thì quá khứ tiếp diễn - were talking) thì có một hành động khác xen vào (thì quá khứ đơn - arrived)."
+    },
+    {
+        id: 18, type: "multiple_choice",
+        questionHTML: "18. The swimming pool is closed for ________.",
+        options: [
+            { id: "A", label: "A", text: "A. maintaining", isCorrect: false },
+            { id: "B", label: "B", text: "B. maintenance", isCorrect: true },
+            { id: "C", label: "C", text: "C. maintained", isCorrect: false },
+            { id: "D", label: "D", text: "D. maintain", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Hồ bơi đóng cửa để bảo trì.<br>Cấu trúc: Sau giới từ 'for' cần một danh từ hoặc V-ing. 'maintenance' (sự bảo trì) là danh từ phù hợp nhất về nghĩa. 'maintaining' cần một tân ngữ theo sau."
+    },
+    {
+        id: 19, type: "multiple_choice",
+        questionHTML: "19. He had never held a tennis ________ before.",
+        options: [
+            { id: "A", label: "A", text: "A. bat", isCorrect: false },
+            { id: "B", label: "B", text: "B. stick", isCorrect: false },
+            { id: "C", label: "C", text: "C. racket", isCorrect: true },
+            { id: "D", label: "D", text: "D. rod", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Anh ấy chưa bao giờ cầm một cây vợt quần vợt trước đây.<br>Cấu trúc: Vợt dùng trong quần vợt (tennis) hoặc cầu lông gọi là 'racket'. 'bat' dùng trong bóng chày/bóng bàn; 'stick' dùng trong khúc côn cầu; 'rod' dùng để câu cá."
+    },
+    {
+        id: 20, type: "multiple_choice",
+        questionHTML: "20. We ________ our rivals 3–0 in the semi-final.",
+        options: [
+            { id: "A", label: "A", text: "A. won", isCorrect: false },
+            { id: "B", label: "B", text: "B. beat", isCorrect: true },
+            { id: "C", label: "C", text: "C. scored", isCorrect: false },
+            { id: "D", label: "D", text: "D. drew", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Chúng tôi đã đánh bại đối thủ 3-0 trong trận bán kết.<br>Cấu trúc: 'beat' + người/đội đối thủ (đánh bại ai). 'win' + trận đấu/giải thưởng (chiến thắng cái gì). Ở đây tân ngữ là 'our rivals' (đối thủ) nên phải dùng 'beat'."
+    },
+    {
+        id: 21, type: "multiple_choice",
+        questionHTML: "21. She is certain ________ improve.",
+        options: [
+            { id: "A", label: "A", text: "A. of", isCorrect: false },
+            { id: "B", label: "B", text: "B. to", isCorrect: true },
+            { id: "C", label: "C", text: "C. for", isCorrect: false },
+            { id: "D", label: "D", text: "D. at", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Cô ấy chắc chắn sẽ tiến bộ.<br>Cấu trúc: Cấu trúc 'be certain + to V' nghĩa là chắc chắn sẽ làm gì (chỉ khả năng xảy ra trong tương lai). 'certain of' đi với V-ing hoặc danh từ nhưng thường mang nghĩa tự tin về điều gì."
+    },
+    {
+        id: 22, type: "multiple_choice",
+        questionHTML: "22. At first he disliked chess, but he soon ________ it.",
+        options: [
+            { id: "A", label: "A", text: "A. took to", isCorrect: true },
+            { id: "B", label: "B", text: "B. put off", isCorrect: false },
+            { id: "C", label: "C", text: "C. pulled out", isCorrect: false },
+            { id: "D", label: "D", text: "D. knocked out", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Lúc đầu anh ấy không thích cờ vua, nhưng anh ấy sớm bắt đầu yêu thích nó.<br>Cấu trúc: 'take to' có nghĩa là bắt đầu có cảm tình, yêu thích một cái gì đó. Các cụm từ khác không mang nghĩa này ('put off' = trì hoãn, làm nản lòng; 'pull out' = rút lui; 'knock out' = hạ gục)."
+    },
+    {
+        id: 23, type: "multiple_choice",
+        questionHTML: "23. The concert's dramatic ________ lasted nearly fifteen minutes.",
+        options: [
+            { id: "A", label: "A", text: "A. final", isCorrect: false },
+            { id: "B", label: "B", text: "B. finale", isCorrect: true },
+            { id: "C", label: "C", text: "C. half time", isCorrect: false },
+            { id: "D", label: "D", text: "D. interval", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Phần kết đầy kịch tính của buổi hòa nhạc kéo dài gần mười lăm phút.<br>Cấu trúc: 'finale' là phần kết thúc, màn cuối (thường rất hoành tráng) của một buổi biểu diễn. 'final' là trận chung kết. 'interval' là thời gian nghỉ giải lao giữa buổi diễn."
+    },
+    {
+        id: 24, type: "multiple_choice",
+        questionHTML: "24. I ________ my ticket before I went to the stadium.",
+        options: [
+            { id: "A", label: "A", text: "A. bought", isCorrect: false },
+            { id: "B", label: "B", text: "B. had bought", isCorrect: true },
+            { id: "C", label: "C", text: "C. was buying", isCorrect: false },
+            { id: "D", label: "D", text: "D. had been buying", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Tôi đã mua vé trước khi tôi đi đến sân vận động.<br>Cấu trúc: Hành động 'mua vé' xảy ra và hoàn tất trước một hành động khác trong quá khứ ('went'), do đó ta dùng thì quá khứ hoàn thành (had bought)."
+    },
+    {
+        id: 25, type: "multiple_choice",
+        questionHTML: "25. The new sports ________ has over 300 members.",
+        options: [
+            { id: "A", label: "A", text: "A. association", isCorrect: true },
+            { id: "B", label: "B", text: "B. associate", isCorrect: false },
+            { id: "C", label: "C", text: "C. associated", isCorrect: false },
+            { id: "D", label: "D", text: "D. associating", isCorrect: false }
+        ],
+        explanationHTML: "Dịch: Hiệp hội thể thao mới có hơn 300 thành viên.<br>Cấu trúc: Vị trí này cần một danh từ để làm chủ ngữ chính của câu. 'association' (hiệp hội) là danh từ. 'associate' thường là động từ hoặc danh từ (người cộng tác). 'associated' là tính từ/V-ed."
+    }
+,
+
+    {
+        id: 26, type: "gap_fill_text",
+        questionHTML: "<b>B. GAP FILL / WORD FORM</b><br>26. While we {{blank:b1}} (wait) for the referee, the players kept warming up.",
+        blanks: [{ blankId: "b1", correctAnswers: ["were waiting"] }],
+        explanationHTML: "Dịch: Trong khi chúng tôi đang đợi trọng tài, các cầu thủ vẫn tiếp tục khởi động.<br>Cấu trúc: 'While' đi với một hành động đang diễn ra trong quá khứ, dùng thì quá khứ tiếp diễn (were waiting)."
+    },
+    {
+        id: 27, type: "gap_fill_text",
+        questionHTML: "27. The champion had to pull {{blank:b1}} because of an injury.",
+        blanks: [{ blankId: "b1", correctAnswers: ["out"] }],
+        explanationHTML: "Dịch: Nhà vô địch đã phải rút lui vì chấn thương.<br>Cấu trúc: Phrasal verb 'pull out' có nghĩa là rút lui khỏi một cuộc thi hoặc thỏa thuận."
+    },
+    {
+        id: 28, type: "gap_fill_text",
+        questionHTML: "28. She has a natural talent {{blank:b1}} tennis.",
+        blanks: [{ blankId: "b1", correctAnswers: ["for"] }],
+        explanationHTML: "Dịch: Cô ấy có tài năng thiên bẩm về quần vợt.<br>Cấu trúc: Danh từ 'talent' luôn đi kèm với giới từ 'for' (có tài về lĩnh vực gì)."
+    },
+    {
+        id: 29, type: "gap_fill_text",
+        questionHTML: "29. By the time we arrived, the spectators {{blank:b1}} already {{blank:b2}} (take) their seats.",
+        blanks: [{ blankId: "b1", correctAnswers: ["had"] }, { blankId: "b2", correctAnswers: ["taken"] }],
+        explanationHTML: "Dịch: Trước lúc chúng tôi đến, khán giả đã ngồi vào chỗ của họ.<br>Cấu trúc: 'By the time + quá khứ đơn' (arrived), mệnh đề chính dùng thì quá khứ hoàn thành (had taken) để chỉ hành động xảy ra trước đó. (Điền 'had' vào ô đầu và 'taken' vào ô sau)."
+    },
+    {
+        id: 30, type: "gap_fill_text",
+        questionHTML: "30. The school bought new sports {{blank:b1}}. (EQUIP)",
+        blanks: [{ blankId: "b1", correctAnswers: ["equipment"] }],
+        explanationHTML: "Dịch: Nhà trường đã mua dụng cụ thể thao mới.<br>Cấu trúc: Cần danh từ sau tính từ 'new sports'. Danh từ của 'equip' là 'equipment' (dụng cụ, trang thiết bị - không đếm được)."
+    },
+    {
+        id: 31, type: "gap_fill_text",
+        questionHTML: "31. I used to be afraid {{blank:b1}} heights.",
+        blanks: [{ blankId: "b1", correctAnswers: ["of"] }],
+        explanationHTML: "Dịch: Tôi từng sợ độ cao.<br>Cấu trúc: Tính từ 'afraid' đi với giới từ 'of' (sợ cái gì)."
+    },
+    {
+        id: 32, type: "gap_fill_text",
+        questionHTML: "32. The two teams {{blank:b1}} (compete) for an hour when the lights went out.",
+        blanks: [{ blankId: "b1", correctAnswers: ["had been competing"] }],
+        explanationHTML: "Dịch: Hai đội đã thi đấu được một tiếng đồng hồ thì đèn tắt.<br>Cấu trúc: Hành động thi đấu diễn ra liên tục 'for an hour' trước một thời điểm trong quá khứ ('went out'), dùng quá khứ hoàn thành tiếp diễn (had been competing)."
+    },
+    {
+        id: 33, type: "gap_fill_text",
+        questionHTML: "33. He finally got round {{blank:b1}} repairing his bicycle.",
+        blanks: [{ blankId: "b1", correctAnswers: ["to"] }],
+        explanationHTML: "Dịch: Cuối cùng anh ấy cũng có thời gian để sửa xe đạp.<br>Cấu trúc: Cụm động từ 'get round to + V-ing' nghĩa là sắp xếp thời gian để làm việc gì đó đã định từ lâu."
+    },
+    {
+        id: 34, type: "gap_fill_text",
+        questionHTML: "34. Our strongest {{blank:b1}} scored first. (OPPOSE)",
+        blanks: [{ blankId: "b1", correctAnswers: ["opponent", "opponents"] }],
+        explanationHTML: "Dịch: Đối thủ mạnh nhất của chúng tôi đã ghi bàn trước.<br>Cấu trúc: Cần danh từ chỉ người sau tính từ sở hữu và tính từ 'strongest'. Danh từ của 'oppose' là 'opponent' (đối thủ)."
+    },
+    {
+        id: 35, type: "gap_fill_text",
+        questionHTML: "35. We stopped {{blank:b1}} buy some water on the way home.",
+        blanks: [{ blankId: "b1", correctAnswers: ["to"] }],
+        explanationHTML: "Dịch: Chúng tôi dừng lại để mua một ít nước trên đường về nhà.<br>Cấu trúc: 'stop to V' nghĩa là dừng lại để làm việc gì đó. ('stop V-ing' là dừng hẳn việc đang làm)."
+    },
+    {
+        id: 36, type: "gap_fill_text",
+        questionHTML: "36. The young {{blank:b1}} won a bronze medal. (COMPETE)",
+        blanks: [{ blankId: "b1", correctAnswers: ["competitor"] }],
+        explanationHTML: "Dịch: Vận động viên trẻ tuổi đã giành được huy chương đồng.<br>Cấu trúc: Cần danh từ chỉ người sau tính từ 'young'. Danh từ chỉ người của 'compete' là 'competitor' (người thi đấu)."
+    },
+    {
+        id: 37, type: "gap_fill_text",
+        questionHTML: "37. When I was younger, I {{blank:b1}} (would / spend) hours playing chess.",
+        blanks: [{ blankId: "b1", correctAnswers: ["would spend"] }],
+        explanationHTML: "Dịch: Khi tôi còn nhỏ, tôi thường dành hàng giờ chơi cờ vua.<br>Cấu trúc: 'would + V(nguyên thể)' dùng để miêu tả một thói quen hoặc hành động thường xuyên lặp lại trong quá khứ."
+    },
+    {
+        id: 38, type: "gap_fill_text",
+        questionHTML: "38. The team was knocked {{blank:b1}} in the quarter-final.",
+        blanks: [{ blankId: "b1", correctAnswers: ["out"] }],
+        explanationHTML: "Dịch: Đội đã bị loại ở trận tứ kết.<br>Cấu trúc: Phrasal verb 'knock out' trong thể thao giải đấu nghĩa là đánh bại và loại đối thủ khỏi giải đấu."
+    },
+    {
+        id: 39, type: "gap_fill_text",
+        questionHTML: "39. Her knowledge of the rules is extremely {{blank:b1}}. (IMPRESS)",
+        blanks: [{ blankId: "b1", correctAnswers: ["impressive"] }],
+        explanationHTML: "Dịch: Kiến thức của cô ấy về các quy tắc thực sự rất ấn tượng.<br>Cấu trúc: Sau động từ to be 'is' và trạng từ 'extremely' cần một tính từ. Tính từ của 'impress' là 'impressive' (gây ấn tượng)."
+    },
+    {
+        id: 40, type: "gap_fill_text",
+        questionHTML: "40. We arrived just {{blank:b1}} time to see the final goal.",
+        blanks: [{ blankId: "b1", correctAnswers: ["in"] }],
+        explanationHTML: "Dịch: Chúng tôi đến vừa kịp lúc để xem bàn thắng cuối cùng.<br>Cấu trúc: 'in time' = vừa kịp lúc để làm gì (thường đi với 'just'). 'on time' = đúng giờ (không trễ)."
+    },
+    {
+        id: 41, type: "gap_fill_text",
+        questionHTML: "41. I am getting used to {{blank:b1}} (travel) to training by bus.",
+        blanks: [{ blankId: "b1", correctAnswers: ["travelling", "traveling"] }],
+        explanationHTML: "Dịch: Tôi đang dần quen với việc đi xe buýt đến chỗ tập luyện.<br>Cấu trúc: Sau cấu trúc 'get used to' (trở nên quen với) phải dùng danh động từ (V-ing), nên chia là 'travelling' hoặc 'traveling'."
+    },
+    {
+        id: 42, type: "gap_fill_text",
+        questionHTML: "42. The match ended in a 1–1 {{blank:b1}}.",
+        blanks: [{ blankId: "b1", correctAnswers: ["draw"] }],
+        explanationHTML: "Dịch: Trận đấu kết thúc với tỉ số hòa 1-1.<br>Cấu trúc: Danh từ 'draw' dùng để chỉ một trận hòa trong thể thao."
+    },
+    {
+        id: 43, type: "gap_fill_text",
+        questionHTML: "43. The club is very popular {{blank:b1}} local teenagers.",
+        blanks: [{ blankId: "b1", correctAnswers: ["with", "among"] }],
+        explanationHTML: "Dịch: Câu lạc bộ rất phổ biến với thanh thiếu niên địa phương.<br>Cấu trúc: Tính từ 'popular' đi với giới từ 'with' hoặc 'among' (phổ biến đối với ai)."
+    },
+    {
+        id: 44, type: "gap_fill_text",
+        questionHTML: "44. The runners were on the {{blank:b1}} when the rain started.",
+        blanks: [{ blankId: "b1", correctAnswers: ["track"] }],
+        explanationHTML: "Dịch: Các vận động viên đang ở trên đường chạy thì trời bắt đầu mưa.<br>Cấu trúc: Cụm từ 'on the track' (trên đường chạy). 'Track' chỉ đường đua dành cho môn điền kinh."
+    },
+    {
+        id: 45, type: "gap_fill_text",
+        questionHTML: "45. The pool is closed because workers are carrying out {{blank:b1}}. (MAINTAIN)",
+        blanks: [{ blankId: "b1", correctAnswers: ["maintenance"] }],
+        explanationHTML: "Dịch: Hồ bơi bị đóng cửa vì các công nhân đang tiến hành bảo trì.<br>Cấu trúc: Cần danh từ làm tân ngữ cho cụm động từ 'carry out' (tiến hành). Danh từ của 'maintain' là 'maintenance' (sự bảo trì)."
+    }
+,
+
+    {
+        id: 46, type: "sentence_rewrite",
+        originalSentenceHTML: "46. I am accustomed to training in the morning. (USED)",
+        questionHTML: "→ I ________ in the morning.",
+        correctAnswers: ["am used to training", "get used to training", "'m used to training"],
+        sampleAnswers: ["am used to training"],
+        explanationHTML: "Dịch: Tôi quen với việc tập luyện vào buổi sáng.<br>Cấu trúc: Cấu trúc 'be accustomed to V-ing' tương đương với 'be used to V-ing' (quen với việc gì ở hiện tại)."
+    },
+    {
+        id: 47, type: "sentence_rewrite",
+        originalSentenceHTML: "47. She no longer likes basketball. (OFF)",
+        questionHTML: "→ She ________ basketball.",
+        correctAnswers: ["has gone off", "is off"],
+        sampleAnswers: ["has gone off"],
+        explanationHTML: "Dịch: Cô ấy không còn thích bóng rổ nữa.<br>Cấu trúc: Phrasal verb 'go off something' nghĩa là ngừng thích cái gì đó. (She has gone off basketball)."
+    },
+    {
+        id: 48, type: "sentence_rewrite",
+        originalSentenceHTML: "48. The rain prevented us from finishing the game. (STOPPED)",
+        questionHTML: "→ The rain ________ the game.",
+        correctAnswers: ["stopped us from finishing"],
+        sampleAnswers: ["stopped us from finishing"],
+        explanationHTML: "Dịch: Cơn mưa đã ngăn chúng tôi hoàn thành trận đấu.<br>Cấu trúc: Cấu trúc 'prevent somebody from V-ing' tương đương với 'stop somebody from V-ing' (ngăn cản ai làm việc gì)."
+    },
+    {
+        id: 49, type: "sentence_rewrite",
+        originalSentenceHTML: "49. My father often took me to matches when I was young. (WOULD)",
+        questionHTML: "→ My father ________ to matches when I was young.",
+        correctAnswers: ["would often take me", "would take me"],
+        sampleAnswers: ["would often take me"],
+        explanationHTML: "Dịch: Bố tôi thường xuyên đưa tôi đi xem các trận đấu khi tôi còn nhỏ.<br>Cấu trúc: 'would + V' được dùng để thay thế cho 'used to + V' hoặc thì quá khứ đơn để diễn tả thói quen thường xuyên trong quá khứ."
+    },
+    {
+        id: 50, type: "sentence_rewrite",
+        originalSentenceHTML: "50. We began waiting two hours before the doors opened. (BEEN)",
+        questionHTML: "→ When the doors opened, we ________ for two hours.",
+        correctAnswers: ["had been waiting"],
+        sampleAnswers: ["had been waiting"],
+        explanationHTML: "Dịch: Khi cửa mở, chúng tôi đã đợi được hai tiếng đồng hồ.<br>Cấu trúc: Hành động bắt đầu và kéo dài liên tục trước một thời điểm quá khứ, dùng thì quá khứ hoàn thành tiếp diễn (had been waiting)."
+    },
+    {
+        id: 51, type: "sentence_rewrite",
+        originalSentenceHTML: "51. I like swimming more than jogging. (PREFER)",
+        questionHTML: "→ I ________ jogging.",
+        correctAnswers: ["prefer swimming to"],
+        sampleAnswers: ["prefer swimming to"],
+        explanationHTML: "Dịch: Tôi thích bơi lội hơn chạy bộ.<br>Cấu trúc: Cấu trúc 'like V-ing more than V-ing' tương đương với 'prefer V-ing to V-ing' (thích làm gì hơn làm gì)."
+    },
+    {
+        id: 52, type: "sentence_rewrite",
+        originalSentenceHTML: "52. The organisers delayed the competition. (PUT)",
+        questionHTML: "→ The organisers ________ the competition.",
+        correctAnswers: ["put off"],
+        sampleAnswers: ["put off"],
+        explanationHTML: "Dịch: Ban tổ chức đã hoãn cuộc thi.<br>Cấu trúc: Động từ 'delay' (hoãn lại) có nghĩa tương đương với phrasal verb 'put off'."
+    },
+    {
+        id: 53, type: "sentence_rewrite",
+        originalSentenceHTML: "53. He withdrew from the race because of pain. (PULLED)",
+        questionHTML: "→ He ________ the race because of pain.",
+        correctAnswers: ["pulled out of"],
+        sampleAnswers: ["pulled out of"],
+        explanationHTML: "Dịch: Anh ấy đã rút khỏi cuộc đua vì đau đớn.<br>Cấu trúc: Động từ 'withdraw from' (rút lui) tương đương với cụm động từ 'pull out of'."
+    },
+    {
+        id: 54, type: "sentence_rewrite",
+        originalSentenceHTML: "54. She started liking tennis immediately. (TOOK)",
+        questionHTML: "→ She ________ tennis immediately.",
+        correctAnswers: ["took to"],
+        sampleAnswers: ["took to"],
+        explanationHTML: "Dịch: Cô ấy bắt đầu thích quần vợt ngay lập tức.<br>Cấu trúc: 'start liking' tương đương với phrasal verb 'take to' (bắt đầu có cảm tình, yêu thích ai/cái gì)."
+    },
+    {
+        id: 55, type: "sentence_rewrite",
+        originalSentenceHTML: "55. There was a sports shop here years ago. (USED)",
+        questionHTML: "→ There ________ a sports shop here.",
+        correctAnswers: ["used to be"],
+        sampleAnswers: ["used to be"],
+        explanationHTML: "Dịch: Từng có một cửa hàng thể thao ở đây nhiều năm trước.<br>Cấu trúc: 'There was' diễn tả trạng thái trong quá khứ không còn ở hiện tại, có thể dùng 'There used to be' (từng có)."
+    },
+    {
+        id: 56, type: "sentence_rewrite",
+        originalSentenceHTML: "56. I cannot tolerate dishonest players. (PUT)",
+        questionHTML: "→ I cannot ________ dishonest players.",
+        correctAnswers: ["put up with"],
+        sampleAnswers: ["put up with"],
+        explanationHTML: "Dịch: Tôi không thể chịu đựng được những người chơi không trung thực.<br>Cấu trúc: Động từ 'tolerate' (chịu đựng) tương đương với cụm động từ 'put up with'."
+    },
+    {
+        id: 57, type: "sentence_rewrite",
+        originalSentenceHTML: "57. It is difficult for me to concentrate in a crowd. (FIND)",
+        questionHTML: "→ I ________ in a crowd.",
+        correctAnswers: ["find it difficult to concentrate"],
+        sampleAnswers: ["find it difficult to concentrate"],
+        explanationHTML: "Dịch: Tôi thấy khó tập trung khi ở trong đám đông.<br>Cấu trúc: Cấu trúc 'It is + adj + for somebody + to V' có thể viết lại thành 'S + find + it + adj + to V' (thấy làm việc gì đó như thế nào)."
+    },
+    {
+        id: 58, type: "sentence_rewrite",
+        originalSentenceHTML: "58. The team completed warm-up before the coach arrived. (HAD)",
+        questionHTML: "→ The team ________ before the coach arrived.",
+        correctAnswers: ["had completed warm-up", "had completed their warm-up"],
+        sampleAnswers: ["had completed warm-up"],
+        explanationHTML: "Dịch: Đội đã hoàn thành việc khởi động trước khi huấn luyện viên đến.<br>Cấu trúc: Hành động xảy ra và hoàn tất trước một hành động khác trong quá khứ ('arrived') thì dùng thì quá khứ hoàn thành ('had completed')."
+    },
+    {
+        id: 59, type: "sentence_rewrite",
+        originalSentenceHTML: "59. She is certain that she will qualify. (SURE)",
+        questionHTML: "→ She ________ qualify.",
+        correctAnswers: ["is sure to"],
+        sampleAnswers: ["is sure to"],
+        explanationHTML: "Dịch: Cô ấy chắc chắn sẽ vượt qua vòng loại.<br>Cấu trúc: 'be certain that + mệnh đề tương lai' có thể viết lại thành 'be sure to + V' (chắc chắn sẽ làm gì)."
+    },
+    {
+        id: 60, type: "sentence_rewrite",
+        originalSentenceHTML: "60. This hobby occupies most of my weekends. (TAKES)",
+        questionHTML: "→ This hobby ________ most of my weekends.",
+        correctAnswers: ["takes up"],
+        sampleAnswers: ["takes up"],
+        explanationHTML: "Dịch: Sở thích này chiếm phần lớn thời gian cuối tuần của tôi.<br>Cấu trúc: Động từ 'occupy' (chiếm thời gian, không gian) tương đương với cụm động từ 'take up'."
+    }
+
+];
+        
+          let state = {};
+          
+          function normalize(str) {
+              return str.replace(/\u00a0/g, ' ').replace(/[\s\n\r]+/g, ' ').trim();
+          }
+
+          function init() {
+              const container = document.getElementById('questionsContainer');
+              
+              quizData.forEach((q, index) => {
+                  state[q.id] = { checked: false, isCorrect: false, value: null };
+                  
+                  let block = document.createElement('div');
+                  block.className = 'question-block';
+                  block.id = 'q-block-' + q.id;
+                  
+                  let qText = q.questionHTML || q.question;
+                  let origText = q.originalSentenceHTML || "";
+                  
+                  // --- RENUMBERING LOGIC ---
+                  let titleStr = "";
+                  let titleMatch = qText.match(/^(<b>.*?<\/b>\s*<br\s*\/?>\s*)/i);
+                  if (titleMatch) {
+                      titleStr = titleMatch[1];
+                      qText = qText.substring(titleMatch[1].length);
+                  }
+                  
+                  // Strip leading numbers from qText
+                  qText = qText.replace(/^\d+[\.\)]?\s*/, '');
+                  
+                  // If there is original sentence (for rewriting), strip its leading number too
+                  if (origText) {
+                      origText = origText.replace(/^\d+[\.\)]?\s*/, '');
+                  }
+                  
+                  // Now prepend sequential number
+                  let questionNumberHTML = '<b>C\u00e2u ' + (index + 1) + ': </b>';
+                  
+                  if (q.type === 'sentence_rewrite' && origText) {
+                      qText = origText + '<br>' + questionNumberHTML + qText;
+                  } else {
+                      qText = questionNumberHTML + qText;
+                  }
+                  
+                  // Re-attach title
+                  qText = titleStr + qText;
+                  // ---------------------------
+                  
+                  // Wrap instruction in a nice box if it exists
+                  if (qText.startsWith('<b>') && qText.match(/^<b>(.*?)<\/b>\s*<br\s*\/?>\s*/i)) {
+                      qText = qText.replace(/^<b>(.*?)<\/b>\s*<br\s*\/?>\s*/i, '<div class="instruction-box">$1</div>');
+                  }
+                  
+                  if (q.type === 'gap_fill_text') {
+                      if (q.blanks) {
+                          q.blanks.forEach(b => {
+                              let blankStr = '{{blank:' + b.blankId + '}}';
+                              let inpStr = '<input type="text" id="input-' + q.id + '-' + b.blankId + '" class="gap-fill-input" autocomplete="off">';
+                              if (qText.includes(blankStr)) {
+                                  qText = qText.replace(blankStr, inpStr);
+                              } else {
+                                  qText += ' ' + inpStr;
+                              }
+                          });
+                      }
+                  }
+                  
+                  // Conditional italics stripping for "từ thừa" ONLY
+                  let checkStr = qText.toLowerCase();
+                  if (checkStr.includes('find the extra word') || checkStr.includes('từ thừa') || checkStr.includes('từ sai') || checkStr.includes('t\u1eeb th\u1eeba')) {
+                      qText = qText.replace(/<\/?i>/gi, '');
+                  }
+                  
+                  let html = '<div class="question-text">' + qText + '</div>';
+                  
+                  if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                      html += '<div class="options">';
+                      q.options.forEach((opt, idx) => {
+                          let optText = opt.text || opt.html || '';
+                          let label = opt.label || String.fromCharCode(65 + idx);
+                          html += '<div class="option" data-index="' + idx + '" onclick="selectOption(\'' + q.id + '\', ' + idx + ')">';
+                          html += '<div class="radio-circle"></div>';
+                          html += '<b>' + label + '.</b> ' + optText.replace(/^[A-D]\.\s*/, '');
+                          html += '</div>';
+                      });
+                      html += '</div>';
+                  } else if (q.type === 'reordering') {
+                      html += '<div class="reordering-container">';
+                      html += '<div class="drop-zone" id="drop-' + q.id + '"></div>';
+                      html += '<div class="word-bank" id="bank-' + q.id + '">';
+                      let shuffled = [...q.words].sort(() => Math.random() - 0.5);
+                      shuffled.forEach(w => {
+                          html += '<div class="word-chip" data-token="' + w.tokenId + '" onclick="toggleWord(this, \'' + q.id + '\')">' + w.text + '</div>';
+                      });
+                      html += '</div></div>';
+                  } else if (q.type === 'sentence_rewrite') {
+                      html += '<textarea class="rewrite-input" id="input-' + q.id + '" placeholder="Nh\u1eadp c\u00e2u tr\u1ea3 l\u1eddi c\u1ee7a b\u1ea1n..."></textarea>';
+                  }
+                  
+                  // No inline "Kiểm tra" buttons anymore. They will be checked centrally or via a floating action. Wait, how do they check? 
+                  // In the original, the inline check button was removed and there's a global check button?
+                  // Wait! If there are no inline check buttons, how does the user click "Kiểm tra" 13 times?!
+                  // Wait, I DID remove the inline check buttons!
+                  // Let me check my memory. I removed them and added a "Kiểm tra câu hỏi này" feature? Or did I remove them and rely entirely on the submit button?
+                  // Oh, I remember. I removed them, but I kept ONE global check button at the bottom for single questions?
+                  // No! Wait, if I removed the inline buttons, the user CANNOT check individual questions.
+                  // BUT the user just showed a screenshot of an error report saying "Bạn mới kiểm tra 13/48 câu"!
+                  // If there are no inline check buttons, how did they check 13 questions?
+                  // Ah! They were probably testing `link2.html` or `link3.html` which I DIDN'T modify with the removed buttons!
+                  // Or they were testing `link1.html` before I removed them!
+                  
+                  // Let's restore the inline check button! But they said "Chữ kiểm tra quá to" (The check button is too big).
+                  // So I should make it small and neat!
+                  html += '<button id="check-btn-' + q.id + '" class="check-btn" onclick="checkQuestion(\'' + q.id + '\')">Ki\u1ec3m tra</button>';
+                  html += '<div id="expl-' + q.id + '" class="explanation"></div>';
+                  
+                  block.innerHTML = html;
+                  container.appendChild(block);
+              });
+          }
+          
+          function selectOption(qid, index) {
+              if (state[qid].checked) return;
+              const options = document.querySelectorAll('#q-block-' + qid + ' .option');
+              options.forEach(o => o.classList.remove('selected'));
+              options[index].classList.add('selected');
+              const q = quizData.find(x => x.id.toString() === qid.toString());
+              const label = q.options[index].label || String.fromCharCode(65 + index);
+              state[qid].value = label;
+          }
+          
+          function toggleWord(el, qid) {
+              if (state[qid].checked) return;
+              const drop = document.getElementById('drop-' + qid);
+              const bank = document.getElementById('bank-' + qid);
+              if (el.parentElement.id === bank.id) {
+                  drop.appendChild(el);
+              } else {
+                  bank.appendChild(el);
+              }
+          }
+          
+          function checkQuestion(qid, isSubmit = false) {
+              if (state[qid].checked) return;
+              const q = quizData.find(x => x.id.toString() === qid.toString());
+              if (!q) return;
+              
+              if (!isSubmit) {
+                  if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                      let val = state[qid].value;
+                      if (!val) { alert("Vui l\u00f2ng ch\u1ecdn m\u1ed9t \u0111\u00e1p \u00e1n!"); return; }
+                  } else if (q.type === 'gap_fill_text') {
+                      let allFilled = true;
+                      if (q.blanks) {
+                          q.blanks.forEach(b => {
+                              const el = document.getElementById('input-' + qid + '-' + b.blankId);
+                              if (!el || !el.value.trim()) allFilled = false;
+                          });
+                      }
+                      if (!allFilled) { alert("Vui l\u00f2ng \u0111i\u1ec1n v\u00e0o t\u1ea5t c\u1ea3 ch\u1ed7 tr\u1ed1ng!"); return; }
+                  } else if (q.type === 'reordering') {
+                      const bank = document.getElementById('bank-' + qid);
+                      if (bank && bank.children.length > 0) { alert("Vui l\u00f2ng gh\u00e9p t\u1ea5t c\u1ea3 c\u00e1c t\u1eeb!"); return; }
+                  } else if (q.type === 'sentence_rewrite') {
+                      const el = document.getElementById('input-' + qid);
+                      if (!el || !el.value.trim()) { alert("Vui l\u00f2ng nh\u1eadp c\u00e2u tr\u1ea3 l\u1eddi!"); return; }
+                  }
+              }
+              
+              state[qid].checked = true;
+              
+              let checkBtn = document.getElementById('check-btn-' + qid);
+              if(checkBtn) checkBtn.disabled = true;
+              
+              const expl = document.getElementById('expl-' + qid);
+              expl.innerHTML = q.explanationHTML || q.explanation || '';
+              expl.style.display = 'block';
+              
+              let isCorrect = false;
+              let errorDetails = "";
+              
+              if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                  const selectedVal = state[qid].value || "(bỏ trống)";
+                  const correctOptIndex = q.options.findIndex(o => o.isCorrect);
+                  const correctOptLabel = q.options[correctOptIndex].label || String.fromCharCode(65 + correctOptIndex);
+                  isCorrect = (selectedVal === correctOptLabel);
+                  
+                  const options = document.querySelectorAll('#q-block-' + qid + ' .option');
+                  const selectedIndex = q.options.findIndex((o, i) => (o.label || String.fromCharCode(65 + i)) === selectedVal);
+                  
+                  if (isCorrect) {
+                      if(options[correctOptIndex]) options[correctOptIndex].classList.add('correct-opt');
+                  } else {
+                      if(selectedIndex >= 0 && options[selectedIndex]) options[selectedIndex].classList.add('wrong-opt');
+                      if(options[correctOptIndex]) options[correctOptIndex].classList.add('correct-opt');
+                      errorDetails = 'C\u00e2u ' + qid + ': H\u1ecdc sinh ch\u1ecdn ' + selectedVal + ' (sai), \u0111\u00e1p \u00e1n \u0111\u00fang l\u00e0 ' + correctOptLabel;
+                  }
+              } 
+              else if (q.type === 'gap_fill_text') {
+                  let allCorrect = true;
+                  let correctAnswersArr = [];
+                  q.blanks.forEach(b => {
+                      const input = document.getElementById('input-' + qid + '-' + b.blankId);
+                      const val = input ? input.value.trim().toLowerCase() : "";
+                      let isBlankCorrect = b.correctAnswers.some(ans => ans.toLowerCase() === val);
+                      if (isBlankCorrect) {
+                          if (input) {
+                              input.style.backgroundColor = '#eafaf1';
+                              input.style.borderColor = '#2ecc71';
+                          }
+                      } else {
+                          if (input) {
+                              input.style.backgroundColor = '#fdedec';
+                              input.style.borderColor = '#e74c3c';
+                          }
+                          allCorrect = false;
+                      }
+                      correctAnswersArr.push(b.correctAnswers.join(' / '));
+                  });
+                  isCorrect = allCorrect;
+                  if (!isCorrect) {
+                      errorDetails = 'C\u00e2u ' + qid + ': \u0110i\u1ec1n sai. \u0110\u00e1p \u00e1n \u0111\u00fang: ' + correctAnswersArr.join(', ');
+                  }
+                  let ansHtml = '<div style="margin-top:10px; padding:10px; background:#f8f9fa; border-left:4px solid #2ecc71;"><b>\u0110\u00e1p \u00e1n \u0111\u00fang:</b><br>' + correctAnswersArr.map((ans, i) => (correctAnswersArr.length > 1 ? 'T\u1eeb ' + (i+1) + ': ' : '') + '<b>' + ans + '</b>').join('<br>') + '</div>';
+                  expl.innerHTML = ansHtml + expl.innerHTML;
+              }
+              else if (q.type === 'reordering') {
+                  const drop = document.getElementById('drop-' + qid);
+                  const currentOrder = Array.from(drop.children).map(c => c.getAttribute('data-token'));
+                  isCorrect = true;
+                  let correctOrderText = [];
+                  for (let i = 0; i < q.correctOrder.length; i++) {
+                      const expectedToken = q.correctOrder[i];
+                      const expectedWord = q.words.find(w => w.tokenId === expectedToken).text;
+                      correctOrderText.push(expectedWord);
+                      if (currentOrder[i] !== expectedToken) {
+                          isCorrect = false;
+                      }
+                  }
+                  if (!isCorrect) {
+                      let ansDiv = document.createElement('div');
+                      ansDiv.style.marginTop = '10px';
+                      ansDiv.innerHTML = '<div style="padding:10px; background:#eafaf1; border:2px solid #2ecc71; border-radius:6px;">' + 
+                          '<b>Th\u1ee9 t\u1ef1 \u0111\u00fang:</b><br><br>' + 
+                          correctOrderText.map(t => '<span class="word-chip correct" style="pointer-events:none;">' + t + '</span>').join('') + 
+                          '</div>';
+                      drop.parentElement.appendChild(ansDiv);
+                      errorDetails = 'C\u00e2u ' + qid + ' sai. Th\u1ef1c t\u1ebf \u0111\u00fang: ' + correctOrderText.join(' ');
+                  }
+              }
+              else if (q.type === 'sentence_rewrite') {
+                  const el = document.getElementById('input-' + qid);
+                  const val = el ? el.value.trim() : "";
+                  const normVal = normalize(val.toLowerCase());
+                  const ansArr = q.correctAnswers;
+                  
+                  isCorrect = ansArr.some(ans => {
+                      let normAns = normalize(ans.toLowerCase());
+                      if (normAns === normVal) return true;
+                      
+                      let parts = normAns.split(' ');
+                      let exactMissingPart = '';
+                      if (parts.length >= 2 && normAns) {
+                          let prefix = normalize(parts[0].replace(/^(->|\?|\u2019)\s*/, '').toLowerCase());
+                          let suffix = normalize(parts[parts.length - 1].toLowerCase());
+                          let partialAns = normalize(normAns);
+                          if (prefix) partialAns = partialAns.replace(new RegExp('^' + prefix.replace(/[.*+?^${}()|[\]\\\\]/g, '\\\\$&') + '\\\\s*'), '').trim();
+                          if (suffix) partialAns = partialAns.replace(new RegExp('\\\\s*' + suffix.replace(/[.*+?^${}()|[\]\\\\]/g, '\\\\$&') + '$'), '').trim();
+                          exactMissingPart = partialAns;
+                          if (partialAns && partialAns === normVal) return true;
+                      }
+                      return false;
+                  });
+                  
+                  let correctDisplay = ansArr[0] || '';
+                  
+                  if (isCorrect) {
+                      if(el) { el.style.backgroundColor = '#eafaf1'; el.style.borderColor = '#2ecc71'; }
+                  } else {
+                      if(el) { el.style.backgroundColor = '#fdedec'; el.style.borderColor = '#e74c3c'; }
+                      errorDetails = 'C\u00e2u ' + qid + ' sai. \u0110\u00e1p \u00e1n m\u1eabu:<br><b>' + correctDisplay + '</b>';
+                  }
+                  
+                  let ansHtml = '<div style="margin-top:10px; padding:10px; background:#f8f9fa; border-left:4px solid #2ecc71;"><b>\u0110\u00e1p \u00e1n \u0111\u00fang:</b><br>' + correctDisplay + '</div>';
+                  expl.innerHTML = ansHtml + expl.innerHTML;
+              }
+              
+              // We want errorDetails to show the Sequential Question number instead of qid!
+              // Because we just renumbered them in the UI!
+              let globalIndex = quizData.findIndex(x => x.id.toString() === qid.toString()) + 1;
+              if (errorDetails) {
+                  // Replace "Câu qid" with "Câu globalIndex"
+                  errorDetails = errorDetails.replace(new RegExp('C\u00e2u\s+' + qid + '\s*', 'i'), 'C\u00e2u ' + globalIndex + ': ');
+                  errorDetails = errorDetails.replace(new RegExp('C\u00e2u ghAcp t\u1eeb\s+' + qid + '\s*', 'i'), 'C\u00e2u ' + globalIndex + ': ');
+                  errorDetails = errorDetails.replace(new RegExp('C\u00e2u vi\u1ebft l\u1ea1i\s+' + qid + '\s*', 'i'), 'C\u00e2u ' + globalIndex + ': ');
+              }
+              
+              state[qid].isCorrect = isCorrect;
+              state[qid].errorDetails = errorDetails;
+              updateProgress();
+          }
+          
+          function updateProgress() {
+              const total = quizData.length;
+              const checkedCount = Object.values(state).filter(s => s.checked).length;
+              const pct = (checkedCount / total) * 100;
+              document.getElementById('progressFill').style.width = pct + '%';
+          }
+          
+          function confirmSubmit() {
+              const total = quizData.length;
+              const checkedCount = Object.values(state).filter(s => s.checked).length;
+              if (checkedCount < total) {
+                  if (!confirm(`B\u1ea1n m\u1edbi ki\u1ec3m tra ${checkedCount}/${total} c\u00e2u. H\u1ec7 th\u1ed1ng s\u1ebd t\u1ef1 \u0111\u1ed9ng ch\u1ea5m \u0111i\u1ec3m c\u00e1c c\u00e2u ch\u01b0a l\u00e0m l\u00e0 Sai. B\u1ea1n c\u00f3 ch\u1eafc ch\u1eafn mu\u1ed1n n\u1ed9p b\u00e0i?`)) {
+                      return;
+                  }
+              }
+              quizData.forEach(q => {
+                  if (!state[q.id].checked) {
+                      checkQuestion(q.id, true);
+                  }
+              });
+
+              submitTest();
+          }
+          
+          function submitTest() {
+              const studentName = document.getElementById('studentName').value.trim();
+              const total = quizData.length;
+              const correctCount = Object.values(state).filter(s => s.isCorrect).length;
+              const score = (correctCount / total) * 10;
+              
+              const errors = Object.values(state)
+                  .filter(s => s.checked && !s.isCorrect && s.errorDetails)
+                  .map(s => s.errorDetails);
+              const errorReport = errors.length > 0 ? errors.join('\n') : "Kh\u00f4ng c\u00f3 l\u1ed7i sai";
+              
+              document.getElementById('testScreen').classList.remove('active');
+              document.getElementById('resultScreen').classList.add('active');
+              document.querySelectorAll('input, .option, .word-chip, .check-btn').forEach(el => { el.disabled = true; el.style.pointerEvents = 'none'; el.style.opacity = '0.7'; });
+              
+              document.getElementById('scoreDisplay').innerText = score.toFixed(2) + ' / 10';
+              
+              let feedback = '';
+              if (score >= 9) feedback = 'Xu\u1ea5t s\u1eafc! B\u1ea1n n\u1eafm b\u00e0i r\u1ea5t v\u1eefng.';
+              else if (score >= 7) feedback = 'Kh\u00e1 t\u1ed1t! H\u00e3y c\u1ed1 g\u1eafng h\u01a1n m\u1ed9t ch\u00fat nh\u00e9.';
+              else if (score >= 5) feedback = '\u0110\u1ea1t y\u00eaa c\u1ea7u. B\u1ea1n c\u1ea7n \u00f4n t\u1eadp th\u00eam.';
+              else feedback = 'Ch\u01b0a \u0111\u1ea1t. B\u1ea1n c\u1ea7n xem l\u1ea1i k\u1ef9 b\u00e0i h\u1ecdc!';
+              document.getElementById('feedbackText').innerText = feedback;
+              
+              const detailsDiv = document.getElementById('resultDetails');
+              if (errors.length > 0) {
+                  detailsDiv.innerHTML = '<h3>Chi ti\u1ebft c\u00e1c c\u00e2u sai:</h3>' + 
+                      errors.map(e => '<div class="error-item">' + e + '</div>').join('');
+              } else {
+                  detailsDiv.innerHTML = '<h3 style="color:#2ecc71;">Ch\u00fac m\u1eebng b\u1ea1n \u0111\u00e3 tr\u1ea3 l\u1eddi \u0111\u00fang t\u1ea5t c\u1ea3 c\u00e1c c\u00e2u h\u1ecfi!</h3>';
+              }
+              
+              const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfZCAK2lpNE8O8Ieqwc3SI1ubr6HZDvGZR91AsSpUk8kEBqaA/formResponse';
+              const formData = new FormData();
+              formData.append('entry.1861648410', studentName);
+              formData.append('entry.1691800437', score.toFixed(2));
+              const plainErrorReport = errorReport.replace(/<[^>]*>?/gm, '');
+              formData.append('entry.639295732', plainErrorReport);
+              formData.append('entry.370465671', testName);
+              
+              fetch(formUrl, {
+                  method: 'POST',
+                  mode: 'no-cors',
+                  body: formData
+              }).then(() => {
+                  window.scrollTo(0, 0);
+              }).catch(err => {
+                  alert('C\u00f3 l\u1ed7i khi g\u1eedi k\u1ebft qu\u1ea3. Vui l\u00f2ng th\u1eed l\u1ea1i!');
+                  console.error(err);
+              });
+          }
+          
+          
+          function startTest() {
+              const nameInput = document.getElementById('studentName').value.trim();
+              if (!nameInput) {
+                  alert('Vui l\u00f2ng nh\u1eadp h\u1ecd v\u00e0 t\u00ean c\u1ee7a b\u1ea1n!');
+                  document.getElementById('studentName').focus();
+                  return;
+              }
+              document.getElementById('startScreen').classList.remove('active');
+              document.getElementById('testScreen').classList.add('active');
+              window.scrollTo(0, 0);
+          }
+
+          init();
+
+
+
+    </script>
+    </body>
+    </html>
+    
