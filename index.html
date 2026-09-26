@@ -1,61 +1,57 @@
 <!DOCTYPE html>
-    <html lang="vi">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>U3U4 đề 1</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; position: relative; z-index: 1; }
-        .watermark { position: absolute; top: 30px; left: 0; right: 0; text-align: center; font-size: 50px; color: rgba(0, 0, 0, 0.04); font-weight: bold; pointer-events: none; z-index: -1; user-select: none; }
-        .watermark div { transform: rotate(-30deg); margin: 200px 0; }
-        h1, h2 { color: #2c3e50; text-align: center; }
-        .screen { display: none; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .screen.active { display: block; }
-        
-        input[type="text"] { width: 100%; padding: 12px; margin: 10px 0 20px; border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
-        input[type="text"]:focus { border-color: #3498db; outline: none; }
-        
-        button { background: #3498db; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.3s, transform 0.1s; }
-        button:hover { background: #2980b9; }
-        button:active { transform: scale(0.98); }
-        button:disabled { background: #95a5a6; cursor: not-allowed; }
-        
-        .question-block { margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; }
-        .instruction-box { margin-bottom: 15px; padding: 10px 15px; background: #e8f4fd; border: 1px solid #b6d4fe; border-radius: 6px; font-weight: bold; color: #004085; }
-        .question-text { font-weight: 500; margin-bottom: 15px; font-size: 16px; line-height: 1.8; }
-        
-        .options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
-        .option { padding: 12px 15px; background: #fff; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
-        .option:hover { border-color: #3498db; background: #f8faff; }
-        .option.selected { border-color: #3498db; background: #ebf5ff; }
-        .option.correct-opt { border-color: #2ecc71; background: #eafaf1; }
-        .option.wrong-opt { border-color: #e74c3c; background: #fdedec; }
-        
-        .radio-circle { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%; position: relative; }
-        .option.selected .radio-circle::after { content: ''; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: #3498db; border-radius: 50%; }
-        
-        .gap-fill-input { width: 120px !important; padding: 4px 8px !important; margin: 0 5px !important; display: inline-block !important; border: 1px solid #ccc !important; border-radius: 4px !important; font-size: 16px !important; }
-        
-        .reordering-container { display: flex; flex-direction: column; gap: 15px; }
-        .word-bank, .drop-zone { display: flex; flex-wrap: wrap; gap: 8px; min-height: 45px; padding: 10px; background: #fff; border: 2px dashed #ddd; border-radius: 8px; }
-        .word-chip { padding: 8px 16px; background: #3498db; color: #fff; border-radius: 20px; cursor: pointer; user-select: none; font-weight: 500; transition: transform 0.1s; }
-        .word-chip:active { transform: scale(0.95); }
-        .word-chip.correct { background: #2ecc71; }
-        .word-chip.wrong { background: #e74c3c; }
-        
-        .rewrite-input { width: 100%; height: 80px; padding: 12px; border: 2px solid #ddd; border-radius: 6px; resize: vertical; font-size: 16px; font-family: inherit; }
-        
-        .check-btn { margin-top: 15px; background: #3498db; font-size: 14px; padding: 8px 16px; }
-        .explanation { display: none; margin-top: 15px; padding: 15px; background: #eef2f5; border-radius: 6px; font-size: 14.5px; line-height: 1.5; color: #2c3e50; border-left: 4px solid #2ecc71; }
-        
-        .progress-bar { width: 100%; height: 10px; background: #ddd; border-radius: 5px; margin-bottom: 20px; overflow: hidden; }
-        .progress-fill { height: 100%; background: #2ecc71; width: 0%; transition: width 0.3s; }
-        
-        .result-details { margin-top: 20px; padding: 15px; padding-bottom: 30px; background: #f8f9fa; border-radius: 6px; text-align: left; max-height: 60vh; overflow-y: auto; font-size: 14px; }
-        .error-item { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee; color: #e74c3c; }
-    </style>
-    </head>
-    <body>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>U3U4 đề 1</title>
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f0f2f5; position: relative; z-index: 1; overflow-x: hidden; }
+    .watermark { position: absolute; top: 30px; left: 0; right: 0; text-align: center; font-size: 50px; color: rgba(0, 0, 0, 0.04); font-weight: bold; pointer-events: none; z-index: -1; user-select: none; }
+    .watermark div { transform: rotate(-30deg); margin: 200px 0; }
+    @media (max-width: 600px) { .watermark { font-size: 20px; top: 10px; } .watermark div { margin: 90px 0; } }
+    @media (max-width: 400px) { .watermark { font-size: 16px; } .watermark div { margin: 70px 0; } }
+    h1, h2 { color: #2c3e50; text-align: center; }
+    .screen { position: relative; display: none; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .screen.active { display: block; }
+    
+    input[type="text"] { width: 100%; padding: 12px; margin: 10px 0 20px; border: 2px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 16px; transition: border-color 0.3s; }
+    input[type="text"]:focus { border-color: #3498db; outline: none; }
+    
+    button { background: #3498db; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: background 0.3s, transform 0.1s; }
+    button:hover { background: #2980b9; }
+    button:active { transform: scale(0.98); }
+    button:disabled { background: #95a5a6; cursor: not-allowed; }
+    
+    .question-block { margin-bottom: 25px; padding: 15px; background: #f9f9f9; border-left: 4px solid #3498db; border-radius: 0 8px 8px 0; }
+    .instruction-box { margin-bottom: 15px; padding: 10px 15px; background: #e8f4fd; border: 1px solid #b6d4fe; border-radius: 6px; font-weight: bold; color: #004085; }
+    .question-text { font-weight: 500; margin-bottom: 15px; font-size: 16px; line-height: 1.8; }
+    
+    .options { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+    .option { padding: 12px 15px; background: #fff; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+    .option:hover { border-color: #3498db; background: #f8faff; }
+    .option.selected { border-color: #3498db; background: #ebf5ff; }
+    .option.correct-opt { border-color: #2ecc71; background: #eafaf1; }
+    .option.wrong-opt { border-color: #e74c3c; background: #fdedec; }
+    
+    .radio-circle { width: 20px; height: 20px; border: 2px solid #ddd; border-radius: 50%; position: relative; }
+    .option.selected .radio-circle::after { content: ''; position: absolute; top: 4px; left: 4px; width: 12px; height: 12px; background: #3498db; border-radius: 50%; }
+    
+    .gap-fill-input { width: 120px !important; padding: 4px 8px !important; margin: 0 5px !important; display: inline-block !important; border: 1px solid #ccc !important; border-radius: 4px !important; font-size: 16px !important; }
+    
+    .word-bank, .drop-zone { display: flex; flex-wrap: wrap; gap: 8px; min-height: 45px; padding: 10px; background: #fff; border: 2px dashed #ddd; border-radius: 8px; margin-top: 10px;}
+    .word-chip { padding: 8px 16px; background: #3498db; color: #fff; border-radius: 20px; cursor: pointer; user-select: none; font-weight: 500; transition: transform 0.1s; }
+    .word-chip:active { transform: scale(0.95); }
+    
+    .rewrite-input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px; font-family: inherit; }
+    
+    .check-btn { margin-top: 15px; background: #3498db; font-size: 14px; padding: 8px 16px; }
+    .explanation { display: none; margin-top: 15px; padding: 15px; background: #eef2f5; border-radius: 6px; font-size: 14.5px; line-height: 1.5; color: #2c3e50; border-left: 4px solid #2ecc71; }
+    
+    .result-details { margin-top: 20px; padding: 15px; padding-bottom: 30px; background: #f8f9fa; border-radius: 6px; text-align: left; max-height: 60vh; overflow-y: auto; font-size: 14px; border: 1px solid #ddd; }
+    .error-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; color: #333; }
+</style>
+</head>
+<body>
     <div class="watermark">
         <div>U3U4 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
         <div>U3U4 đề 1<br>GV biên soạn: Ms Chí Nên - 0852639652</div>
@@ -66,15 +62,14 @@
     <div id="startScreen" class="screen active">
         <h1>U3U4 đề 1</h1>
         <p style="text-align: center; color: #7f8c8d;">Nhập họ và tên của bạn để bắt đầu làm bài</p>
-        <input type="text" id="studentName" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="off">
+        <input type="text" id="studentName"  autocomplete="off">
         <div style="text-align: center;">
             <button onclick="startTest()">Bắt đầu làm bài</button>
         </div>
     </div>
     
     <div id="testScreen" class="screen">
-        <h2>U3U4 đề 1</h2>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div style="position:absolute; top:15px; left:20px; font-size:13px; color:#7f8c8d;">GV biên soạn: Ms Chí Nên - 0852639652</div><h2>U3U4 đề 1</h2>
         <div id="questionsContainer"></div>
         <div style="text-align: center; margin-top: 30px;">
             <button id="submitBtn" onclick="confirmSubmit()" style="background: #2ecc71; font-weight: bold; padding: 15px 40px;">NỘP BÀI</button>
@@ -83,929 +78,586 @@
     
     <div id="resultScreen" class="screen" style="text-align: center;">
         <h1 style="color: #2ecc71; font-size: 36px;">Hoàn thành!</h1>
-        <h2 id="scoreDisplay" style="font-size: 48px; margin: 20px 0; color: #2c3e50;"></h2>
-        <p id="feedbackText" style="font-size: 18px; color: #7f8c8d;"></p>
+        <div style="font-size: 24px; color: #555;">Điểm của bạn:</div>
+        <h2 id="scoreDisplay" style="font-size: 48px; margin: 10px 0; color: #2c3e50;"></h2>
         <div class="result-details" id="resultDetails"></div>
     </div>
     
-    <div style="text-align: center; margin-top: 50px; padding: 20px; color: #7f8c8d; font-size: 14px; border-top: 1px solid #ddd;">
-        GV biên soạn: Ms Chí Nên - 0852639652
-    </div>
-    
     <script>
-        const testName = 'rU3U4 đề 1';
-        const quizData = [
-
-    {
-        id: 1, type: "multiple_choice",
-        questionHTML: "<b>A. MULTIPLE CHOICE</b><br>1. When we arrived, the match ________ for twenty minutes.",
-        options: [
-            { id: "A", label: "A", text: "A. started", isCorrect: false },
-            { id: "B", label: "B", text: "B. was starting", isCorrect: false },
-            { id: "C", label: "C", text: "C. had been going on", isCorrect: true },
-            { id: "D", label: "D", text: "D. has gone on", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Khi chúng tôi đến, trận đấu đã diễn ra được hai mươi phút.<br>Cấu trúc: 'for twenty minutes' kết hợp với một hành động khác trong quá khứ ('arrived') cho thấy một hành động bắt đầu trong quá khứ và kéo dài liên tục đến một thời điểm trong quá khứ. Do đó, ta dùng thì quá khứ hoàn thành tiếp diễn (had been going on). Các thì khác không phù hợp về sự hòa hợp thì hoặc khía cạnh tiếp diễn."
-    },
-    {
-        id: 2, type: "multiple_choice",
-        questionHTML: "2. The boxer was ________ out in the second round.",
-        options: [
-            { id: "A", label: "A", text: "A. pulled", isCorrect: false },
-            { id: "B", label: "B", text: "B. knocked", isCorrect: true },
-            { id: "C", label: "C", text: "C. put", isCorrect: false },
-            { id: "D", label: "D", text: "D. taken", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Võ sĩ quyền anh đã bị hạ gục ở hiệp thứ hai.<br>Cấu trúc: Cụm động từ 'knock out' có nghĩa là đánh bại ai đó đến mức họ bất tỉnh (hạ gục). Các cụm từ khác như 'pull out' (rút lui), 'put out' (dập tắt), 'take out' (loại bỏ) không mang nghĩa này trong ngữ cảnh thể thao đối kháng."
-    },
-    {
-        id: 3, type: "multiple_choice",
-        questionHTML: "3. She ________ tennis every weekend when she was at school.",
-        options: [
-            { id: "A", label: "A", text: "A. would play", isCorrect: true },
-            { id: "B", label: "B", text: "B. was used to play", isCorrect: false },
-            { id: "C", label: "C", text: "C. got used to play", isCorrect: false },
-            { id: "D", label: "D", text: "D. had played", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Cô ấy thường chơi quần vợt mỗi cuối tuần khi cô ấy còn đi học.<br>Cấu trúc: 'would + V(nguyên thể)' được dùng để diễn tả một thói quen trong quá khứ. B và C sai ngữ pháp vì sau 'be/get used to' phải là V-ing. D không phù hợp vì không có hành động quá khứ khác để làm mốc cho quá khứ hoàn thành."
-    },
-    {
-        id: 4, type: "multiple_choice",
-        questionHTML: "4. The ________ blew the whistle to stop the football match.",
-        options: [
-            { id: "A", label: "A", text: "A. umpire", isCorrect: false },
-            { id: "B", label: "B", text: "B. referee", isCorrect: true },
-            { id: "C", label: "C", text: "C. viewer", isCorrect: false },
-            { id: "D", label: "D", text: "D. competitor", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Trọng tài đã thổi còi để dừng trận đấu bóng đá.<br>Cấu trúc: 'referee' là trọng tài trong các môn thể thao di chuyển liên tục như bóng đá, bóng bầu dục. 'umpire' là trọng tài trong các môn như quần vợt, bóng chày (thường ngồi hoặc đứng một chỗ). Viewer là người xem truyền hình, competitor là người thi đấu."
-    },
-    {
-        id: 5, type: "multiple_choice",
-        questionHTML: "5. I finally ________ to waking up early for training.",
-        options: [
-            { id: "A", label: "A", text: "A. used", isCorrect: false },
-            { id: "B", label: "B", text: "B. got used", isCorrect: true },
-            { id: "C", label: "C", text: "C. would", isCorrect: false },
-            { id: "D", label: "D", text: "D. was use", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Cuối cùng tôi cũng đã quen với việc thức dậy sớm để tập luyện.<br>Cấu trúc: 'get used to + V-ing' nghĩa là trở nên quen với việc gì. 'waking up' là V-ing nên chọn 'got used'. 'used' (thường làm gì trong quá khứ) đi với 'to + V', không đi với V-ing."
-    },
-    {
-        id: 6, type: "multiple_choice",
-        questionHTML: "6. This hobby ________ up more time than I expected.",
-        options: [
-            { id: "A", label: "A", text: "A. takes", isCorrect: true },
-            { id: "B", label: "B", text: "B. gets", isCorrect: false },
-            { id: "C", label: "C", text: "C. puts", isCorrect: false },
-            { id: "D", label: "D", text: "D. joins", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Sở thích này chiếm nhiều thời gian hơn tôi dự kiến.<br>Cấu trúc: Cụm động từ 'take up' nghĩa là chiếm (thời gian, không gian). Các động từ khác không tạo thành cụm có nghĩa phù hợp với 'up' trong ngữ cảnh này."
-    },
-    {
-        id: 7, type: "multiple_choice",
-        questionHTML: "7. By the time I reached the court, the others ________ warming up.",
-        options: [
-            { id: "A", label: "A", text: "A. finished", isCorrect: false },
-            { id: "B", label: "B", text: "B. had finished", isCorrect: true },
-            { id: "C", label: "C", text: "C. were finished", isCorrect: false },
-            { id: "D", label: "D", text: "D. had been finish", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Trước lúc tôi đến sân, những người khác đã hoàn thành việc khởi động.<br>Cấu trúc: 'By the time' đi với một mốc thời gian quá khứ ('reached') thì mệnh đề chính phải ở thì quá khứ hoàn thành (had finished) để diễn tả hành động xảy ra trước mốc quá khứ đó."
-    },
-    {
-        id: 8, type: "multiple_choice",
-        questionHTML: "8. I prefer swimming ________ running.",
-        options: [
-            { id: "A", label: "A", text: "A. than", isCorrect: false },
-            { id: "B", label: "B", text: "B. to", isCorrect: true },
-            { id: "C", label: "C", text: "C. from", isCorrect: false },
-            { id: "D", label: "D", text: "D. with", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Tôi thích bơi lội hơn chạy bộ.<br>Cấu trúc: Cấu trúc 'prefer V-ing to V-ing' hoặc 'prefer N to N' nghĩa là thích cái gì hơn cái gì. Không dùng 'than' sau 'prefer' trong cấu trúc này."
-    },
-    {
-        id: 9, type: "multiple_choice",
-        questionHTML: "9. The TV ________ saw the winning goal from several camera angles.",
-        options: [
-            { id: "A", label: "A", text: "A. spectators", isCorrect: false },
-            { id: "B", label: "B", text: "B. viewers", isCorrect: true },
-            { id: "C", label: "C", text: "C. opponents", isCorrect: false },
-            { id: "D", label: "D", text: "D. referees", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Khán giả truyền hình đã xem bàn thắng quyết định từ nhiều góc máy quay.<br>Cấu trúc: 'viewers' là khán giả xem truyền hình. 'spectators' là khán giả xem trực tiếp tại sân vận động. 'opponents' là đối thủ. 'referees' là trọng tài."
-    },
-    {
-        id: 10, type: "multiple_choice",
-        questionHTML: "10. We had to ________ the match off because of the storm.",
-        options: [
-            { id: "A", label: "A", text: "A. call", isCorrect: true },
-            { id: "B", label: "B", text: "B. put", isCorrect: false },
-            { id: "C", label: "C", text: "C. take", isCorrect: false },
-            { id: "D", label: "D", text: "D. pull", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Chúng tôi đã phải hủy trận đấu vì cơn bão.<br>Cấu trúc: 'call off' nghĩa là hủy bỏ (cancel). 'put off' nghĩa là hoãn lại. Tuy cả hai có thể hợp lý, nhưng 'call off' thường đi với sự kiện bị hủy hẳn. Cả A và B có thể đúng nhưng 'call off' là cụm phổ biến nhất khi nói về trận đấu bị hủy vì bão."
-    },
-    {
-        id: 11, type: "multiple_choice",
-        questionHTML: "11. He was tired because he ________ for two hours.",
-        options: [
-            { id: "A", label: "A", text: "A. trained", isCorrect: false },
-            { id: "B", label: "B", text: "B. was training", isCorrect: false },
-            { id: "C", label: "C", text: "C. had been training", isCorrect: true },
-            { id: "D", label: "D", text: "D. had trained", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Anh ấy mệt vì đã tập luyện suốt hai giờ đồng hồ.<br>Cấu trúc: Nhấn mạnh quá trình kéo dài ('for two hours') của một hành động đã diễn ra và để lại kết quả trong quá khứ ('was tired'), ta dùng thì quá khứ hoàn thành tiếp diễn (had been training)."
-    },
-    {
-        id: 12, type: "multiple_choice",
-        questionHTML: "12. The final was very ________; either player could have won.",
-        options: [
-            { id: "A", label: "A", text: "A. competition", isCorrect: false },
-            { id: "B", label: "B", text: "B. competitor", isCorrect: false },
-            { id: "C", label: "C", text: "C. competitive", isCorrect: true },
-            { id: "D", label: "D", text: "D. competitively", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Trận chung kết rất cạnh tranh; cầu thủ nào cũng có thể giành chiến thắng.<br>Cấu trúc: Sau động từ to be 'was' và trạng từ chỉ mức độ 'very', ta cần một tính từ. 'competitive' (cạnh tranh, quyết liệt) là tính từ. 'competition' là danh từ, 'competitor' là người thi đấu, 'competitively' là trạng từ."
-    },
-    {
-        id: 13, type: "multiple_choice",
-        questionHTML: "13. I can't ________ up with people who cheat.",
-        options: [
-            { id: "A", label: "A", text: "A. take", isCorrect: false },
-            { id: "B", label: "B", text: "B. put", isCorrect: true },
-            { id: "C", label: "C", text: "C. get", isCorrect: false },
-            { id: "D", label: "D", text: "D. go", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Tôi không thể chịu đựng được những người gian lận.<br>Cấu trúc: Cụm động từ 'put up with' có nghĩa là chịu đựng, nhân nhượng (tolerate). Các động từ còn lại không tạo thành cụm này."
-    },
-    {
-        id: 14, type: "multiple_choice",
-        questionHTML: "14. There used to ________ an ice rink near our school.",
-        options: [
-            { id: "A", label: "A", text: "A. be", isCorrect: true },
-            { id: "B", label: "B", text: "B. being", isCorrect: false },
-            { id: "C", label: "C", text: "C. been", isCorrect: false },
-            { id: "D", label: "D", text: "D. was", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Từng có một sân trượt băng gần trường chúng tôi.<br>Cấu trúc: Cấu trúc 'used to + V(nguyên thể)' diễn tả một trạng thái hoặc thói quen trong quá khứ nay không còn nữa. Động từ to be ở dạng nguyên thể là 'be'."
-    },
-    {
-        id: 15, type: "multiple_choice",
-        questionHTML: "15. The match ended in a ________.",
-        options: [
-            { id: "A", label: "A", text: "A. draw", isCorrect: true },
-            { id: "B", label: "B", text: "B. equal", isCorrect: false },
-            { id: "C", label: "C", text: "C. finale", isCorrect: false },
-            { id: "D", label: "D", text: "D. ending", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Trận đấu kết thúc với tỉ số hòa.<br>Cấu trúc: Danh từ 'draw' có nghĩa là trận hòa. 'equal' là tính từ (ngang bằng). 'finale' là phần kết. 'ending' là sự kết thúc (phim, truyện)."
-    },
-    {
-        id: 16, type: "multiple_choice",
-        questionHTML: "16. She is very fond ________ photography.",
-        options: [
-            { id: "A", label: "A", text: "A. at", isCorrect: false },
-            { id: "B", label: "B", text: "B. on", isCorrect: false },
-            { id: "C", label: "C", text: "C. of", isCorrect: true },
-            { id: "D", label: "D", text: "D. with", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Cô ấy rất thích nhiếp ảnh.<br>Cấu trúc: Tính từ 'fond' đi kèm với giới từ 'of' (be fond of = thích, có hứng thú với)."
-    },
-    {
-        id: 17, type: "multiple_choice",
-        questionHTML: "17. When the coach arrived, we ________ about the new strategy.",
-        options: [
-            { id: "A", label: "A", text: "A. talked", isCorrect: false },
-            { id: "B", label: "B", text: "B. were talking", isCorrect: true },
-            { id: "C", label: "C", text: "C. had talked", isCorrect: false },
-            { id: "D", label: "D", text: "D. had been talked", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Khi huấn luyện viên đến, chúng tôi đang nói chuyện về chiến thuật mới.<br>Cấu trúc: Cấu trúc kết hợp thì: một hành động đang diễn ra trong quá khứ (thì quá khứ tiếp diễn - were talking) thì có một hành động khác xen vào (thì quá khứ đơn - arrived)."
-    },
-    {
-        id: 18, type: "multiple_choice",
-        questionHTML: "18. The swimming pool is closed for ________.",
-        options: [
-            { id: "A", label: "A", text: "A. maintaining", isCorrect: false },
-            { id: "B", label: "B", text: "B. maintenance", isCorrect: true },
-            { id: "C", label: "C", text: "C. maintained", isCorrect: false },
-            { id: "D", label: "D", text: "D. maintain", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Hồ bơi đóng cửa để bảo trì.<br>Cấu trúc: Sau giới từ 'for' cần một danh từ hoặc V-ing. 'maintenance' (sự bảo trì) là danh từ phù hợp nhất về nghĩa. 'maintaining' cần một tân ngữ theo sau."
-    },
-    {
-        id: 19, type: "multiple_choice",
-        questionHTML: "19. He had never held a tennis ________ before.",
-        options: [
-            { id: "A", label: "A", text: "A. bat", isCorrect: false },
-            { id: "B", label: "B", text: "B. stick", isCorrect: false },
-            { id: "C", label: "C", text: "C. racket", isCorrect: true },
-            { id: "D", label: "D", text: "D. rod", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Anh ấy chưa bao giờ cầm một cây vợt quần vợt trước đây.<br>Cấu trúc: Vợt dùng trong quần vợt (tennis) hoặc cầu lông gọi là 'racket'. 'bat' dùng trong bóng chày/bóng bàn; 'stick' dùng trong khúc côn cầu; 'rod' dùng để câu cá."
-    },
-    {
-        id: 20, type: "multiple_choice",
-        questionHTML: "20. We ________ our rivals 3–0 in the semi-final.",
-        options: [
-            { id: "A", label: "A", text: "A. won", isCorrect: false },
-            { id: "B", label: "B", text: "B. beat", isCorrect: true },
-            { id: "C", label: "C", text: "C. scored", isCorrect: false },
-            { id: "D", label: "D", text: "D. drew", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Chúng tôi đã đánh bại đối thủ 3-0 trong trận bán kết.<br>Cấu trúc: 'beat' + người/đội đối thủ (đánh bại ai). 'win' + trận đấu/giải thưởng (chiến thắng cái gì). Ở đây tân ngữ là 'our rivals' (đối thủ) nên phải dùng 'beat'."
-    },
-    {
-        id: 21, type: "multiple_choice",
-        questionHTML: "21. She is certain ________ improve.",
-        options: [
-            { id: "A", label: "A", text: "A. of", isCorrect: false },
-            { id: "B", label: "B", text: "B. to", isCorrect: true },
-            { id: "C", label: "C", text: "C. for", isCorrect: false },
-            { id: "D", label: "D", text: "D. at", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Cô ấy chắc chắn sẽ tiến bộ.<br>Cấu trúc: Cấu trúc 'be certain + to V' nghĩa là chắc chắn sẽ làm gì (chỉ khả năng xảy ra trong tương lai). 'certain of' đi với V-ing hoặc danh từ nhưng thường mang nghĩa tự tin về điều gì."
-    },
-    {
-        id: 22, type: "multiple_choice",
-        questionHTML: "22. At first he disliked chess, but he soon ________ it.",
-        options: [
-            { id: "A", label: "A", text: "A. took to", isCorrect: true },
-            { id: "B", label: "B", text: "B. put off", isCorrect: false },
-            { id: "C", label: "C", text: "C. pulled out", isCorrect: false },
-            { id: "D", label: "D", text: "D. knocked out", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Lúc đầu anh ấy không thích cờ vua, nhưng anh ấy sớm bắt đầu yêu thích nó.<br>Cấu trúc: 'take to' có nghĩa là bắt đầu có cảm tình, yêu thích một cái gì đó. Các cụm từ khác không mang nghĩa này ('put off' = trì hoãn, làm nản lòng; 'pull out' = rút lui; 'knock out' = hạ gục)."
-    },
-    {
-        id: 23, type: "multiple_choice",
-        questionHTML: "23. The concert's dramatic ________ lasted nearly fifteen minutes.",
-        options: [
-            { id: "A", label: "A", text: "A. final", isCorrect: false },
-            { id: "B", label: "B", text: "B. finale", isCorrect: true },
-            { id: "C", label: "C", text: "C. half time", isCorrect: false },
-            { id: "D", label: "D", text: "D. interval", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Phần kết đầy kịch tính của buổi hòa nhạc kéo dài gần mười lăm phút.<br>Cấu trúc: 'finale' là phần kết thúc, màn cuối (thường rất hoành tráng) của một buổi biểu diễn. 'final' là trận chung kết. 'interval' là thời gian nghỉ giải lao giữa buổi diễn."
-    },
-    {
-        id: 24, type: "multiple_choice",
-        questionHTML: "24. I ________ my ticket before I went to the stadium.",
-        options: [
-            { id: "A", label: "A", text: "A. bought", isCorrect: false },
-            { id: "B", label: "B", text: "B. had bought", isCorrect: true },
-            { id: "C", label: "C", text: "C. was buying", isCorrect: false },
-            { id: "D", label: "D", text: "D. had been buying", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Tôi đã mua vé trước khi tôi đi đến sân vận động.<br>Cấu trúc: Hành động 'mua vé' xảy ra và hoàn tất trước một hành động khác trong quá khứ ('went'), do đó ta dùng thì quá khứ hoàn thành (had bought)."
-    },
-    {
-        id: 25, type: "multiple_choice",
-        questionHTML: "25. The new sports ________ has over 300 members.",
-        options: [
-            { id: "A", label: "A", text: "A. association", isCorrect: true },
-            { id: "B", label: "B", text: "B. associate", isCorrect: false },
-            { id: "C", label: "C", text: "C. associated", isCorrect: false },
-            { id: "D", label: "D", text: "D. associating", isCorrect: false }
-        ],
-        explanationHTML: "Dịch: Hiệp hội thể thao mới có hơn 300 thành viên.<br>Cấu trúc: Vị trí này cần một danh từ để làm chủ ngữ chính của câu. 'association' (hiệp hội) là danh từ. 'associate' thường là động từ hoặc danh từ (người cộng tác). 'associated' là tính từ/V-ed."
+    const __B64_QUIZ_DATA__ = 'WwoKICAgIHsKICAgICAgICBpZDogMSwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiPGI+QS4gTVVMVElQTEUgQ0hPSUNFPC9iPjxicj4xLiBXaGVuIHdlIGFycml2ZWQsIHRoZSBtYXRjaCBfX19fX19fXyBmb3IgdHdlbnR5IG1pbnV0ZXMuIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIHN0YXJ0ZWQiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIHdhcyBzdGFydGluZyIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gaGFkIGJlZW4gZ29pbmcgb24iLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gaGFzIGdvbmUgb24iLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogS2hpIGNow7puZyB0w7RpIMSR4bq/biwgdHLhuq1uIMSR4bqldSDEkcOjIGRp4buFbiByYSDEkcaw4bujYyBoYWkgbcawxqFpIHBow7p0Ljxicj5D4bqldSB0csO6YzogJ2ZvciB0d2VudHkgbWludXRlcycga+G6v3QgaOG7o3AgduG7m2kgbeG7mXQgaMOgbmggxJHhu5luZyBraMOhYyB0cm9uZyBxdcOhIGto4bupICgnYXJyaXZlZCcpIGNobyB0aOG6pXkgbeG7mXQgaMOgbmggxJHhu5luZyBi4bqvdCDEkeG6p3UgdHJvbmcgcXXDoSBraOG7qSB2w6Aga8OpbyBkw6BpIGxpw6puIHThu6VjIMSR4bq/biBt4buZdCB0aOG7nWkgxJFp4buDbSB0cm9uZyBxdcOhIGto4bupLiBEbyDEkcOzLCB0YSBkw7luZyB0aMOsIHF1w6Ega2jhu6kgaG/DoG4gdGjDoG5oIHRp4bq/cCBkaeG7hW4gKGhhZCBiZWVuIGdvaW5nIG9uKS4gQ8OhYyB0aMOsIGtow6FjIGtow7RuZyBwaMO5IGjhu6NwIHbhu4Egc+G7sSBow7JhIGjhu6NwIHRow6wgaG/hurdjIGtow61hIGPhuqFuaCB0aeG6v3AgZGnhu4VuLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDIsIHR5cGU6ICJtdWx0aXBsZV9jaG9pY2UiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjIuIFRoZSBib3hlciB3YXMgX19fX19fX18gb3V0IGluIHRoZSBzZWNvbmQgcm91bmQuIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIHB1bGxlZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4ga25vY2tlZCIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiBwdXQiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJEIiwgbGFiZWw6ICJEIiwgdGV4dDogIkQuIHRha2VuIiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFbDtSBzxKkgcXV54buBbiBhbmggxJHDoyBi4buLIGjhuqEgZ+G7pWMg4bufIGhp4buHcCB0aOG7qSBoYWkuPGJyPkPhuqV1IHRyw7pjOiBD4bulbSDEkeG7mW5nIHThu6sgJ2tub2NrIG91dCcgY8OzIG5naMSpYSBsw6AgxJHDoW5oIGLhuqFpIGFpIMSRw7MgxJHhur9uIG3hu6ljIGjhu40gYuG6pXQgdOG7iW5oICho4bqhIGfhu6VjKS4gQ8OhYyBj4bulbSB04burIGtow6FjIG5oxrAgJ3B1bGwgb3V0JyAocsO6dCBsdWkpLCAncHV0IG91dCcgKGThuq1wIHThuq90KSwgJ3Rha2Ugb3V0JyAobG/huqFpIGLhu48pIGtow7RuZyBtYW5nIG5naMSpYSBuw6B5IHRyb25nIG5n4buvIGPhuqNuaCB0aOG7gyB0aGFvIMSR4buRaSBraMOhbmcuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMywgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMy4gU2hlIF9fX19fX19fIHRlbm5pcyBldmVyeSB3ZWVrZW5kIHdoZW4gc2hlIHdhcyBhdCBzY2hvb2wuIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIHdvdWxkIHBsYXkiLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gd2FzIHVzZWQgdG8gcGxheSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gZ290IHVzZWQgdG8gcGxheSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gaGFkIHBsYXllZCIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDw7Qg4bqleSB0aMaw4budbmcgY2jGoWkgcXXhuqduIHbhu6N0IG3hu5dpIGN14buRaSB0deG6p24ga2hpIGPDtCDhuqV5IGPDsm4gxJFpIGjhu41jLjxicj5D4bqldSB0csO6YzogJ3dvdWxkICsgVihuZ3V5w6puIHRo4buDKScgxJHGsOG7o2MgZMO5bmcgxJHhu4MgZGnhu4VuIHThuqMgbeG7mXQgdGjDs2kgcXVlbiB0cm9uZyBxdcOhIGto4bupLiBCIHbDoCBDIHNhaSBuZ+G7ryBwaMOhcCB2w6wgc2F1ICdiZS9nZXQgdXNlZCB0bycgcGjhuqNpIGzDoCBWLWluZy4gRCBraMO0bmcgcGjDuSBo4bujcCB2w6wga2jDtG5nIGPDsyBow6BuaCDEkeG7mW5nIHF1w6Ega2jhu6kga2jDoWMgxJHhu4MgbMOgbSBt4buRYyBjaG8gcXXDoSBraOG7qSBob8OgbiB0aMOgbmguIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNCwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiNC4gVGhlIF9fX19fX19fIGJsZXcgdGhlIHdoaXN0bGUgdG8gc3RvcCB0aGUgZm9vdGJhbGwgbWF0Y2guIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIHVtcGlyZSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gcmVmZXJlZSIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiB2aWV3ZXIiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJEIiwgbGFiZWw6ICJEIiwgdGV4dDogIkQuIGNvbXBldGl0b3IiLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVHLhu41uZyB0w6BpIMSRw6MgdGjhu5VpIGPDsmkgxJHhu4MgZOG7q25nIHRy4bqtbiDEkeG6pXUgYsOzbmcgxJHDoS48YnI+Q+G6pXUgdHLDumM6ICdyZWZlcmVlJyBsw6AgdHLhu41uZyB0w6BpIHRyb25nIGPDoWMgbcO0biB0aOG7gyB0aGFvIGRpIGNodXnhu4NuIGxpw6puIHThu6VjIG5oxrAgYsOzbmcgxJHDoSwgYsOzbmcgYuG6p3UgZOG7pWMuICd1bXBpcmUnIGzDoCB0cuG7jW5nIHTDoGkgdHJvbmcgY8OhYyBtw7RuIG5oxrAgcXXhuqduIHbhu6N0LCBiw7NuZyBjaMOgeSAodGjGsOG7nW5nIG5n4buTaSBob+G6t2MgxJHhu6luZyBt4buZdCBjaOG7lykuIFZpZXdlciBsw6AgbmfGsOG7nWkgeGVtIHRydXnhu4FuIGjDrG5oLCBjb21wZXRpdG9yIGzDoCBuZ8aw4budaSB0aGkgxJHhuqV1LiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDUsIHR5cGU6ICJtdWx0aXBsZV9jaG9pY2UiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjUuIEkgZmluYWxseSBfX19fX19fXyB0byB3YWtpbmcgdXAgZWFybHkgZm9yIHRyYWluaW5nLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiB1c2VkIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiBnb3QgdXNlZCIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiB3b3VsZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gd2FzIHVzZSIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDdeG7kWkgY8O5bmcgdMO0aSBjxaluZyDEkcOjIHF1ZW4gduG7m2kgdmnhu4djIHRo4bupYyBk4bqteSBz4bubbSDEkeG7gyB04bqtcCBsdXnhu4duLjxicj5D4bqldSB0csO6YzogJ2dldCB1c2VkIHRvICsgVi1pbmcnIG5naMSpYSBsw6AgdHLhu58gbsOqbiBxdWVuIHbhu5tpIHZp4buHYyBnw6wuICd3YWtpbmcgdXAnIGzDoCBWLWluZyBuw6puIGNo4buNbiAnZ290IHVzZWQnLiAndXNlZCcgKHRoxrDhu51uZyBsw6BtIGfDrCB0cm9uZyBxdcOhIGto4bupKSDEkWkgduG7m2kgJ3RvICsgVicsIGtow7RuZyDEkWkgduG7m2kgVi1pbmcuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNiwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiNi4gVGhpcyBob2JieSBfX19fX19fXyB1cCBtb3JlIHRpbWUgdGhhbiBJIGV4cGVjdGVkLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiB0YWtlcyIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiBnZXRzIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiBwdXRzIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiRCIsIGxhYmVsOiAiRCIsIHRleHQ6ICJELiBqb2lucyIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBT4bufIHRow61jaCBuw6B5IGNoaeG6v20gbmhp4buBdSB0aOG7nWkgZ2lhbiBoxqFuIHTDtGkgZOG7sSBraeG6v24uPGJyPkPhuqV1IHRyw7pjOiBD4bulbSDEkeG7mW5nIHThu6sgJ3Rha2UgdXAnIG5naMSpYSBsw6AgY2hp4bq/bSAodGjhu51pIGdpYW4sIGtow7RuZyBnaWFuKS4gQ8OhYyDEkeG7mW5nIHThu6sga2jDoWMga2jDtG5nIHThuqFvIHRow6BuaCBj4bulbSBjw7MgbmdoxKlhIHBow7kgaOG7o3AgduG7m2kgJ3VwJyB0cm9uZyBuZ+G7ryBj4bqjbmggbsOgeS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA3LCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICI3LiBCeSB0aGUgdGltZSBJIHJlYWNoZWQgdGhlIGNvdXJ0LCB0aGUgb3RoZXJzIF9fX19fX19fIHdhcm1pbmcgdXAuIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIGZpbmlzaGVkIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiBoYWQgZmluaXNoZWQiLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gd2VyZSBmaW5pc2hlZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gaGFkIGJlZW4gZmluaXNoIiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFRyxrDhu5tjIGzDumMgdMO0aSDEkeG6v24gc8Oibiwgbmjhu69uZyBuZ8aw4budaSBraMOhYyDEkcOjIGhvw6BuIHRow6BuaCB2aeG7h2Mga2jhu59pIMSR4buZbmcuPGJyPkPhuqV1IHRyw7pjOiAnQnkgdGhlIHRpbWUnIMSRaSB24bubaSBt4buZdCBt4buRYyB0aOG7nWkgZ2lhbiBxdcOhIGto4bupICgncmVhY2hlZCcpIHRow6wgbeG7h25oIMSR4buBIGNow61uaCBwaOG6o2kg4bufIHRow6wgcXXDoSBraOG7qSBob8OgbiB0aMOgbmggKGhhZCBmaW5pc2hlZCkgxJHhu4MgZGnhu4VuIHThuqMgaMOgbmggxJHhu5luZyB44bqjeSByYSB0csaw4bubYyBt4buRYyBxdcOhIGto4bupIMSRw7MuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogOCwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiOC4gSSBwcmVmZXIgc3dpbW1pbmcgX19fX19fX18gcnVubmluZy4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gdGhhbiIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gdG8iLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gZnJvbSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gd2l0aCIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBUw7RpIHRow61jaCBixqFpIGzhu5lpIGjGoW4gY2jhuqF5IGLhu5kuPGJyPkPhuqV1IHRyw7pjOiBD4bqldSB0csO6YyAncHJlZmVyIFYtaW5nIHRvIFYtaW5nJyBob+G6t2MgJ3ByZWZlciBOIHRvIE4nIG5naMSpYSBsw6AgdGjDrWNoIGPDoWkgZ8OsIGjGoW4gY8OhaSBnw6wuIEtow7RuZyBkw7luZyAndGhhbicgc2F1ICdwcmVmZXInIHRyb25nIGPhuqV1IHRyw7pjIG7DoHkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogOSwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiOS4gVGhlIFRWIF9fX19fX19fIHNhdyB0aGUgd2lubmluZyBnb2FsIGZyb20gc2V2ZXJhbCBjYW1lcmEgYW5nbGVzLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiBzcGVjdGF0b3JzIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiB2aWV3ZXJzIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIG9wcG9uZW50cyIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gcmVmZXJlZXMiLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogS2jDoW4gZ2nhuqMgdHJ1eeG7gW4gaMOsbmggxJHDoyB4ZW0gYsOgbiB0aOG6r25nIHF1eeG6v3QgxJHhu4tuaCB04burIG5oaeG7gXUgZ8OzYyBtw6F5IHF1YXkuPGJyPkPhuqV1IHRyw7pjOiAndmlld2VycycgbMOgIGtow6FuIGdp4bqjIHhlbSB0cnV54buBbiBow6xuaC4gJ3NwZWN0YXRvcnMnIGzDoCBraMOhbiBnaeG6oyB4ZW0gdHLhu7FjIHRp4bq/cCB04bqhaSBzw6JuIHbhuq1uIMSR4buZbmcuICdvcHBvbmVudHMnIGzDoCDEkeG7kWkgdGjhu6cuICdyZWZlcmVlcycgbMOgIHRy4buNbmcgdMOgaS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAxMCwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMTAuIFdlIGhhZCB0byBfX19fX19fXyB0aGUgbWF0Y2ggb2ZmIGJlY2F1c2Ugb2YgdGhlIHN0b3JtLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiBjYWxsIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIHB1dCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gdGFrZSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gcHVsbCIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDaMO6bmcgdMO0aSDEkcOjIHBo4bqjaSBo4buneSB0cuG6rW4gxJHhuqV1IHbDrCBjxqFuIGLDo28uPGJyPkPhuqV1IHRyw7pjOiAnY2FsbCBvZmYnIG5naMSpYSBsw6AgaOG7p3kgYuG7jyAoY2FuY2VsKS4gJ3B1dCBvZmYnIG5naMSpYSBsw6AgaG/Do24gbOG6oWkuIFR1eSBj4bqjIGhhaSBjw7MgdGjhu4MgaOG7o3AgbMO9LCBuaMawbmcgJ2NhbGwgb2ZmJyB0aMaw4budbmcgxJFpIHbhu5tpIHPhu7Ega2nhu4duIGLhu4sgaOG7p3kgaOG6s24uIEPhuqMgQSB2w6AgQiBjw7MgdGjhu4MgxJHDum5nIG5oxrBuZyAnY2FsbCBvZmYnIGzDoCBj4bulbSBwaOG7lSBiaeG6v24gbmjhuqV0IGtoaSBuw7NpIHbhu4EgdHLhuq1uIMSR4bqldSBi4buLIGjhu6d5IHbDrCBiw6NvLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDExLCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIxMS4gSGUgd2FzIHRpcmVkIGJlY2F1c2UgaGUgX19fX19fX18gZm9yIHR3byBob3Vycy4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gdHJhaW5lZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gd2FzIHRyYWluaW5nIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiBoYWQgYmVlbiB0cmFpbmluZyIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiRCIsIGxhYmVsOiAiRCIsIHRleHQ6ICJELiBoYWQgdHJhaW5lZCIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBBbmgg4bqleSBt4buHdCB2w6wgxJHDoyB04bqtcCBsdXnhu4duIHN14buRdCBoYWkgZ2nhu50gxJHhu5NuZyBo4buTLjxicj5D4bqldSB0csO6YzogTmjhuqVuIG3huqFuaCBxdcOhIHRyw6xuaCBrw6lvIGTDoGkgKCdmb3IgdHdvIGhvdXJzJykgY+G7p2EgbeG7mXQgaMOgbmggxJHhu5luZyDEkcOjIGRp4buFbiByYSB2w6AgxJHhu4MgbOG6oWkga+G6v3QgcXXhuqMgdHJvbmcgcXXDoSBraOG7qSAoJ3dhcyB0aXJlZCcpLCB0YSBkw7luZyB0aMOsIHF1w6Ega2jhu6kgaG/DoG4gdGjDoG5oIHRp4bq/cCBkaeG7hW4gKGhhZCBiZWVuIHRyYWluaW5nKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAxMiwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMTIuIFRoZSBmaW5hbCB3YXMgdmVyeSBfX19fX19fXzsgZWl0aGVyIHBsYXllciBjb3VsZCBoYXZlIHdvbi4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gY29tcGV0aXRpb24iLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIGNvbXBldGl0b3IiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIGNvbXBldGl0aXZlIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJEIiwgbGFiZWw6ICJEIiwgdGV4dDogIkQuIGNvbXBldGl0aXZlbHkiLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVHLhuq1uIGNodW5nIGvhur90IHLhuqV0IGPhuqFuaCB0cmFuaDsgY+G6p3UgdGjhu6cgbsOgbyBjxaluZyBjw7MgdGjhu4MgZ2nDoG5oIGNoaeG6v24gdGjhuq9uZy48YnI+Q+G6pXUgdHLDumM6IFNhdSDEkeG7mW5nIHThu6sgdG8gYmUgJ3dhcycgdsOgIHRy4bqhbmcgdOG7qyBjaOG7iSBt4bupYyDEkeG7mSAndmVyeScsIHRhIGPhuqduIG3hu5l0IHTDrW5oIHThu6suICdjb21wZXRpdGl2ZScgKGPhuqFuaCB0cmFuaCwgcXV54bq/dCBsaeG7h3QpIGzDoCB0w61uaCB04burLiAnY29tcGV0aXRpb24nIGzDoCBkYW5oIHThu6ssICdjb21wZXRpdG9yJyBsw6AgbmfGsOG7nWkgdGhpIMSR4bqldSwgJ2NvbXBldGl0aXZlbHknIGzDoCB0cuG6oW5nIHThu6suIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMTMsIHR5cGU6ICJtdWx0aXBsZV9jaG9pY2UiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjEzLiBJIGNhbid0IF9fX19fX19fIHVwIHdpdGggcGVvcGxlIHdobyBjaGVhdC4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gdGFrZSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gcHV0IiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIGdldCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gZ28iLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVMO0aSBraMO0bmcgdGjhu4MgY2jhu4t1IMSR4buxbmcgxJHGsOG7o2Mgbmjhu69uZyBuZ8aw4budaSBnaWFuIGzhuq1uLjxicj5D4bqldSB0csO6YzogQ+G7pW0gxJHhu5luZyB04burICdwdXQgdXAgd2l0aCcgY8OzIG5naMSpYSBsw6AgY2jhu4t1IMSR4buxbmcsIG5ow6JuIG5oxrDhu6NuZyAodG9sZXJhdGUpLiBDw6FjIMSR4buZbmcgdOG7qyBjw7JuIGzhuqFpIGtow7RuZyB04bqhbyB0aMOgbmggY+G7pW0gbsOgeS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAxNCwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMTQuIFRoZXJlIHVzZWQgdG8gX19fX19fX18gYW4gaWNlIHJpbmsgbmVhciBvdXIgc2Nob29sLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiBiZSIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiBiZWluZyIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gYmVlbiIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gd2FzIiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFThu6tuZyBjw7MgbeG7mXQgc8OibiB0csaw4bujdCBixINuZyBn4bqnbiB0csaw4budbmcgY2jDum5nIHTDtGkuPGJyPkPhuqV1IHRyw7pjOiBD4bqldSB0csO6YyAndXNlZCB0byArIFYobmd1ecOqbiB0aOG7gyknIGRp4buFbiB04bqjIG3hu5l0IHRy4bqhbmcgdGjDoWkgaG/hurdjIHRow7NpIHF1ZW4gdHJvbmcgcXXDoSBraOG7qSBuYXkga2jDtG5nIGPDsm4gbuG7r2EuIMSQ4buZbmcgdOG7qyB0byBiZSDhu58gZOG6oW5nIG5ndXnDqm4gdGjhu4MgbMOgICdiZScuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMTUsIHR5cGU6ICJtdWx0aXBsZV9jaG9pY2UiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjE1LiBUaGUgbWF0Y2ggZW5kZWQgaW4gYSBfX19fX19fXy4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gZHJhdyIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiBlcXVhbCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gZmluYWxlIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiRCIsIGxhYmVsOiAiRCIsIHRleHQ6ICJELiBlbmRpbmciLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVHLhuq1uIMSR4bqldSBr4bq/dCB0aMO6YyB24bubaSB04buJIHPhu5EgaMOyYS48YnI+Q+G6pXUgdHLDumM6IERhbmggdOG7qyAnZHJhdycgY8OzIG5naMSpYSBsw6AgdHLhuq1uIGjDsmEuICdlcXVhbCcgbMOgIHTDrW5oIHThu6sgKG5nYW5nIGLhurFuZykuICdmaW5hbGUnIGzDoCBwaOG6p24ga+G6v3QuICdlbmRpbmcnIGzDoCBz4buxIGvhur90IHRow7pjIChwaGltLCB0cnV54buHbikuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMTYsIHR5cGU6ICJtdWx0aXBsZV9jaG9pY2UiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjE2LiBTaGUgaXMgdmVyeSBmb25kIF9fX19fX19fIHBob3RvZ3JhcGh5LiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiBhdCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gb24iLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIG9mIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJEIiwgbGFiZWw6ICJEIiwgdGV4dDogIkQuIHdpdGgiLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQ8O0IOG6pXkgcuG6pXQgdGjDrWNoIG5oaeG6v3Ag4bqjbmguPGJyPkPhuqV1IHRyw7pjOiBUw61uaCB04burICdmb25kJyDEkWkga8OobSB24bubaSBnaeG7m2kgdOG7qyAnb2YnIChiZSBmb25kIG9mID0gdGjDrWNoLCBjw7MgaOG7qW5nIHRow7ogduG7m2kpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDE3LCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIxNy4gV2hlbiB0aGUgY29hY2ggYXJyaXZlZCwgd2UgX19fX19fX18gYWJvdXQgdGhlIG5ldyBzdHJhdGVneS4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gdGFsa2VkIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiB3ZXJlIHRhbGtpbmciLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gaGFkIHRhbGtlZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gaGFkIGJlZW4gdGFsa2VkIiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEtoaSBodeG6pW4gbHV54buHbiB2acOqbiDEkeG6v24sIGNow7puZyB0w7RpIMSRYW5nIG7Ds2kgY2h1eeG7h24gduG7gSBjaGnhur9uIHRodeG6rXQgbeG7m2kuPGJyPkPhuqV1IHRyw7pjOiBD4bqldSB0csO6YyBr4bq/dCBo4bujcCB0aMOsOiBt4buZdCBow6BuaCDEkeG7mW5nIMSRYW5nIGRp4buFbiByYSB0cm9uZyBxdcOhIGto4bupICh0aMOsIHF1w6Ega2jhu6kgdGnhur9wIGRp4buFbiAtIHdlcmUgdGFsa2luZykgdGjDrCBjw7MgbeG7mXQgaMOgbmggxJHhu5luZyBraMOhYyB4ZW4gdsOgbyAodGjDrCBxdcOhIGto4bupIMSRxqFuIC0gYXJyaXZlZCkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMTgsIHR5cGU6ICJtdWx0aXBsZV9jaG9pY2UiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjE4LiBUaGUgc3dpbW1pbmcgcG9vbCBpcyBjbG9zZWQgZm9yIF9fX19fX19fLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiBtYWludGFpbmluZyIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gbWFpbnRlbmFuY2UiLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gbWFpbnRhaW5lZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gbWFpbnRhaW4iLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogSOG7kyBixqFpIMSRw7NuZyBj4butYSDEkeG7gyBi4bqjbyB0csOsLjxicj5D4bqldSB0csO6YzogU2F1IGdp4bubaSB04burICdmb3InIGPhuqduIG3hu5l0IGRhbmggdOG7qyBob+G6t2MgVi1pbmcuICdtYWludGVuYW5jZScgKHPhu7EgYuG6o28gdHLDrCkgbMOgIGRhbmggdOG7qyBwaMO5IGjhu6NwIG5o4bqldCB24buBIG5naMSpYS4gJ21haW50YWluaW5nJyBj4bqnbiBt4buZdCB0w6JuIG5n4buvIHRoZW8gc2F1LiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDE5LCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIxOS4gSGUgaGFkIG5ldmVyIGhlbGQgYSB0ZW5uaXMgX19fX19fX18gYmVmb3JlLiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiBiYXQiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIHN0aWNrIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiByYWNrZXQiLCBpc0NvcnJlY3Q6IHRydWUgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gcm9kIiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEFuaCDhuqV5IGNoxrBhIGJhbyBnaeG7nSBj4bqnbSBt4buZdCBjw6J5IHbhu6N0IHF14bqnbiB24bujdCB0csaw4bubYyDEkcOieS48YnI+Q+G6pXUgdHLDumM6IFbhu6N0IGTDuW5nIHRyb25nIHF14bqnbiB24bujdCAodGVubmlzKSBob+G6t2MgY+G6p3UgbMO0bmcgZ+G7jWkgbMOgICdyYWNrZXQnLiAnYmF0JyBkw7luZyB0cm9uZyBiw7NuZyBjaMOgeS9iw7NuZyBiw6BuOyAnc3RpY2snIGTDuW5nIHRyb25nIGtow7pjIGPDtG4gY+G6p3U7ICdyb2QnIGTDuW5nIMSR4buDIGPDonUgY8OhLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDIwLCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIyMC4gV2UgX19fX19fX18gb3VyIHJpdmFscyAz4oCTMCBpbiB0aGUgc2VtaS1maW5hbC4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gd29uIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiQiIsIGxhYmVsOiAiQiIsIHRleHQ6ICJCLiBiZWF0IiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIHNjb3JlZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gZHJldyIsIGlzQ29ycmVjdDogZmFsc2UgfQogICAgICAgIF0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDaMO6bmcgdMO0aSDEkcOjIMSRw6FuaCBi4bqhaSDEkeG7kWkgdGjhu6cgMy0wIHRyb25nIHRy4bqtbiBiw6FuIGvhur90Ljxicj5D4bqldSB0csO6YzogJ2JlYXQnICsgbmfGsOG7nWkvxJHhu5lpIMSR4buRaSB0aOG7pyAoxJHDoW5oIGLhuqFpIGFpKS4gJ3dpbicgKyB0cuG6rW4gxJHhuqV1L2dp4bqjaSB0aMaw4bufbmcgKGNoaeG6v24gdGjhuq9uZyBjw6FpIGfDrCkuIOG7niDEkcOieSB0w6JuIG5n4buvIGzDoCAnb3VyIHJpdmFscycgKMSR4buRaSB0aOG7pykgbsOqbiBwaOG6o2kgZMO5bmcgJ2JlYXQnLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDIxLCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIyMS4gU2hlIGlzIGNlcnRhaW4gX19fX19fX18gaW1wcm92ZS4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gb2YiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIHRvIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIGZvciIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gYXQiLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQ8O0IOG6pXkgY2jhuq9jIGNo4bqvbiBz4bq9IHRp4bq/biBi4buZLjxicj5D4bqldSB0csO6YzogQ+G6pXUgdHLDumMgJ2JlIGNlcnRhaW4gKyB0byBWJyBuZ2jEqWEgbMOgIGNo4bqvYyBjaOG6r24gc+G6vSBsw6BtIGfDrCAoY2jhu4kga2jhuqMgbsSDbmcgeOG6o3kgcmEgdHJvbmcgdMawxqFuZyBsYWkpLiAnY2VydGFpbiBvZicgxJFpIHbhu5tpIFYtaW5nIGhv4bq3YyBkYW5oIHThu6sgbmjGsG5nIHRoxrDhu51uZyBtYW5nIG5naMSpYSB04buxIHRpbiB24buBIMSRaeG7gXUgZ8OsLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDIyLCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIyMi4gQXQgZmlyc3QgaGUgZGlzbGlrZWQgY2hlc3MsIGJ1dCBoZSBzb29uIF9fX19fX19fIGl0LiIsCiAgICAgICAgb3B0aW9uczogWwogICAgICAgICAgICB7IGlkOiAiQSIsIGxhYmVsOiAiQSIsIHRleHQ6ICJBLiB0b29rIHRvIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIHB1dCBvZmYiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJDIiwgbGFiZWw6ICJDIiwgdGV4dDogIkMuIHB1bGxlZCBvdXQiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJEIiwgbGFiZWw6ICJEIiwgdGV4dDogIkQuIGtub2NrZWQgb3V0IiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEzDumMgxJHhuqd1IGFuaCDhuqV5IGtow7RuZyB0aMOtY2ggY+G7nSB2dWEsIG5oxrBuZyBhbmgg4bqleSBz4bubbSBi4bqvdCDEkeG6p3UgecOqdSB0aMOtY2ggbsOzLjxicj5D4bqldSB0csO6YzogJ3Rha2UgdG8nIGPDsyBuZ2jEqWEgbMOgIGLhuq90IMSR4bqndSBjw7MgY+G6o20gdMOsbmgsIHnDqnUgdGjDrWNoIG3hu5l0IGPDoWkgZ8OsIMSRw7MuIEPDoWMgY+G7pW0gdOG7qyBraMOhYyBraMO0bmcgbWFuZyBuZ2jEqWEgbsOgeSAoJ3B1dCBvZmYnID0gdHLDrCBob8OjbiwgbMOgbSBu4bqjbiBsw7JuZzsgJ3B1bGwgb3V0JyA9IHLDunQgbHVpOyAna25vY2sgb3V0JyA9IGjhuqEgZ+G7pWMpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDIzLCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIyMy4gVGhlIGNvbmNlcnQncyBkcmFtYXRpYyBfX19fX19fXyBsYXN0ZWQgbmVhcmx5IGZpZnRlZW4gbWludXRlcy4iLAogICAgICAgIG9wdGlvbnM6IFsKICAgICAgICAgICAgeyBpZDogIkEiLCBsYWJlbDogIkEiLCB0ZXh0OiAiQS4gZmluYWwiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIGZpbmFsZSIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiBoYWxmIHRpbWUiLCBpc0NvcnJlY3Q6IGZhbHNlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJEIiwgbGFiZWw6ICJEIiwgdGV4dDogIkQuIGludGVydmFsIiwgaXNDb3JyZWN0OiBmYWxzZSB9CiAgICAgICAgXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFBo4bqnbiBr4bq/dCDEkeG6p3kga+G7i2NoIHTDrW5oIGPhu6dhIGJ14buVaSBow7JhIG5o4bqhYyBrw6lvIGTDoGkgZ+G6p24gbcaw4budaSBsxINtIHBow7p0Ljxicj5D4bqldSB0csO6YzogJ2ZpbmFsZScgbMOgIHBo4bqnbiBr4bq/dCB0aMO6YywgbcOgbiBjdeG7kWkgKHRoxrDhu51uZyBy4bqldCBob8OgbmggdHLDoW5nKSBj4bunYSBt4buZdCBideG7lWkgYmnhu4N1IGRp4buFbi4gJ2ZpbmFsJyBsw6AgdHLhuq1uIGNodW5nIGvhur90LiAnaW50ZXJ2YWwnIGzDoCB0aOG7nWkgZ2lhbiBuZ2jhu4kgZ2nhuqNpIGxhbyBnaeG7r2EgYnXhu5VpIGRp4buFbi4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAyNCwgdHlwZTogIm11bHRpcGxlX2Nob2ljZSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMjQuIEkgX19fX19fX18gbXkgdGlja2V0IGJlZm9yZSBJIHdlbnQgdG8gdGhlIHN0YWRpdW0uIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIGJvdWdodCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkIiLCBsYWJlbDogIkIiLCB0ZXh0OiAiQi4gaGFkIGJvdWdodCIsIGlzQ29ycmVjdDogdHJ1ZSB9LAogICAgICAgICAgICB7IGlkOiAiQyIsIGxhYmVsOiAiQyIsIHRleHQ6ICJDLiB3YXMgYnV5aW5nIiwgaXNDb3JyZWN0OiBmYWxzZSB9LAogICAgICAgICAgICB7IGlkOiAiRCIsIGxhYmVsOiAiRCIsIHRleHQ6ICJELiBoYWQgYmVlbiBidXlpbmciLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVMO0aSDEkcOjIG11YSB2w6kgdHLGsOG7m2Mga2hpIHTDtGkgxJFpIMSR4bq/biBzw6JuIHbhuq1uIMSR4buZbmcuPGJyPkPhuqV1IHRyw7pjOiBIw6BuaCDEkeG7mW5nICdtdWEgdsOpJyB44bqjeSByYSB2w6AgaG/DoG4gdOG6pXQgdHLGsOG7m2MgbeG7mXQgaMOgbmggxJHhu5luZyBraMOhYyB0cm9uZyBxdcOhIGto4bupICgnd2VudCcpLCBkbyDEkcOzIHRhIGTDuW5nIHRow6wgcXXDoSBraOG7qSBob8OgbiB0aMOgbmggKGhhZCBib3VnaHQpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDI1LCB0eXBlOiAibXVsdGlwbGVfY2hvaWNlIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIyNS4gVGhlIG5ldyBzcG9ydHMgX19fX19fX18gaGFzIG92ZXIgMzAwIG1lbWJlcnMuIiwKICAgICAgICBvcHRpb25zOiBbCiAgICAgICAgICAgIHsgaWQ6ICJBIiwgbGFiZWw6ICJBIiwgdGV4dDogIkEuIGFzc29jaWF0aW9uIiwgaXNDb3JyZWN0OiB0cnVlIH0sCiAgICAgICAgICAgIHsgaWQ6ICJCIiwgbGFiZWw6ICJCIiwgdGV4dDogIkIuIGFzc29jaWF0ZSIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkMiLCBsYWJlbDogIkMiLCB0ZXh0OiAiQy4gYXNzb2NpYXRlZCIsIGlzQ29ycmVjdDogZmFsc2UgfSwKICAgICAgICAgICAgeyBpZDogIkQiLCBsYWJlbDogIkQiLCB0ZXh0OiAiRC4gYXNzb2NpYXRpbmciLCBpc0NvcnJlY3Q6IGZhbHNlIH0KICAgICAgICBdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogSGnhu4dwIGjhu5lpIHRo4buDIHRoYW8gbeG7m2kgY8OzIGjGoW4gMzAwIHRow6BuaCB2acOqbi48YnI+Q+G6pXUgdHLDumM6IFbhu4sgdHLDrSBuw6B5IGPhuqduIG3hu5l0IGRhbmggdOG7qyDEkeG7gyBsw6BtIGNo4bunIG5n4buvIGNow61uaCBj4bunYSBjw6J1LiAnYXNzb2NpYXRpb24nIChoaeG7h3AgaOG7mWkpIGzDoCBkYW5oIHThu6suICdhc3NvY2lhdGUnIHRoxrDhu51uZyBsw6AgxJHhu5luZyB04burIGhv4bq3YyBkYW5oIHThu6sgKG5nxrDhu51pIGPhu5luZyB0w6FjKS4gJ2Fzc29jaWF0ZWQnIGzDoCB0w61uaCB04burL1YtZWQuIgogICAgfQosCgogICAgewogICAgICAgIGlkOiAyNiwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjxiPkIuIEdBUCBGSUxMIC8gV09SRCBGT1JNPC9iPjxicj4yNi4gV2hpbGUgd2Uge3tibGFuazpiMX19ICh3YWl0KSBmb3IgdGhlIHJlZmVyZWUsIHRoZSBwbGF5ZXJzIGtlcHQgd2FybWluZyB1cC4iLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsid2VyZSB3YWl0aW5nIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBUcm9uZyBraGkgY2jDum5nIHTDtGkgxJFhbmcgxJHhu6NpIHRy4buNbmcgdMOgaSwgY8OhYyBj4bqndSB0aOG7pyB24bqrbiB0aeG6v3AgdOG7pWMga2jhu59pIMSR4buZbmcuPGJyPkPhuqV1IHRyw7pjOiAnV2hpbGUnIMSRaSB24bubaSBt4buZdCBow6BuaCDEkeG7mW5nIMSRYW5nIGRp4buFbiByYSB0cm9uZyBxdcOhIGto4bupLCBkw7luZyB0aMOsIHF1w6Ega2jhu6kgdGnhur9wIGRp4buFbiAod2VyZSB3YWl0aW5nKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAyNywgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjI3LiBUaGUgY2hhbXBpb24gaGFkIHRvIHB1bGwge3tibGFuazpiMX19IGJlY2F1c2Ugb2YgYW4gaW5qdXJ5LiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJvdXQiXSB9XSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IE5ow6AgdsO0IMSR4buLY2ggxJHDoyBwaOG6o2kgcsO6dCBsdWkgdsOsIGNo4bqlbiB0aMawxqFuZy48YnI+Q+G6pXUgdHLDumM6IFBocmFzYWwgdmVyYiAncHVsbCBvdXQnIGPDsyBuZ2jEqWEgbMOgIHLDunQgbHVpIGto4buPaSBt4buZdCBjdeG7mWMgdGhpIGhv4bq3YyB0aOG7j2EgdGh14bqtbi4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAyOCwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjI4LiBTaGUgaGFzIGEgbmF0dXJhbCB0YWxlbnQge3tibGFuazpiMX19IHRlbm5pcy4iLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsiZm9yIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDw7Qg4bqleSBjw7MgdMOgaSBuxINuZyB0aGnDqm4gYuG6qW0gduG7gSBxdeG6p24gduG7o3QuPGJyPkPhuqV1IHRyw7pjOiBEYW5oIHThu6sgJ3RhbGVudCcgbHXDtG4gxJFpIGvDqG0gduG7m2kgZ2nhu5tpIHThu6sgJ2ZvcicgKGPDsyB0w6BpIHbhu4EgbMSpbmggduG7sWMgZ8OsKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAyOSwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjI5LiBCeSB0aGUgdGltZSB3ZSBhcnJpdmVkLCB0aGUgc3BlY3RhdG9ycyB7e2JsYW5rOmIxfX0gYWxyZWFkeSB7e2JsYW5rOmIyfX0gKHRha2UpIHRoZWlyIHNlYXRzLiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJoYWQiXSB9LCB7IGJsYW5rSWQ6ICJiMiIsIGNvcnJlY3RBbnN3ZXJzOiBbInRha2VuIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBUcsaw4bubYyBsw7pjIGNow7puZyB0w7RpIMSR4bq/biwga2jDoW4gZ2nhuqMgxJHDoyBuZ+G7k2kgdsOgbyBjaOG7lyBj4bunYSBo4buNLjxicj5D4bqldSB0csO6YzogJ0J5IHRoZSB0aW1lICsgcXXDoSBraOG7qSDEkcahbicgKGFycml2ZWQpLCBt4buHbmggxJHhu4EgY2jDrW5oIGTDuW5nIHRow6wgcXXDoSBraOG7qSBob8OgbiB0aMOgbmggKGhhZCB0YWtlbikgxJHhu4MgY2jhu4kgaMOgbmggxJHhu5luZyB44bqjeSByYSB0csaw4bubYyDEkcOzLiAoxJBp4buBbiAnaGFkJyB2w6BvIMO0IMSR4bqndSB2w6AgJ3Rha2VuJyB2w6BvIMO0IHNhdSkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzAsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzMC4gVGhlIHNjaG9vbCBib3VnaHQgbmV3IHNwb3J0cyB7e2JsYW5rOmIxfX0uIChFUVVJUCkiLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsiZXF1aXBtZW50Il0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBOaMOgIHRyxrDhu51uZyDEkcOjIG11YSBk4bulbmcgY+G7pSB0aOG7gyB0aGFvIG3hu5tpLjxicj5D4bqldSB0csO6YzogQ+G6p24gZGFuaCB04burIHNhdSB0w61uaCB04burICduZXcgc3BvcnRzJy4gRGFuaCB04burIGPhu6dhICdlcXVpcCcgbMOgICdlcXVpcG1lbnQnIChk4bulbmcgY+G7pSwgdHJhbmcgdGhp4bq/dCBi4buLIC0ga2jDtG5nIMSR4bq/bSDEkcaw4bujYykuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzEsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzMS4gSSB1c2VkIHRvIGJlIGFmcmFpZCB7e2JsYW5rOmIxfX0gaGVpZ2h0cy4iLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsib2YiXSB9XSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFTDtGkgdOG7q25nIHPhu6MgxJHhu5kgY2FvLjxicj5D4bqldSB0csO6YzogVMOtbmggdOG7qyAnYWZyYWlkJyDEkWkgduG7m2kgZ2nhu5tpIHThu6sgJ29mJyAoc+G7oyBjw6FpIGfDrCkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzIsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzMi4gVGhlIHR3byB0ZWFtcyB7e2JsYW5rOmIxfX0gKGNvbXBldGUpIGZvciBhbiBob3VyIHdoZW4gdGhlIGxpZ2h0cyB3ZW50IG91dC4iLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsiaGFkIGJlZW4gY29tcGV0aW5nIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBIYWkgxJHhu5lpIMSRw6MgdGhpIMSR4bqldSDEkcaw4bujYyBt4buZdCB0aeG6v25nIMSR4buTbmcgaOG7kyB0aMOsIMSRw6huIHThuq90Ljxicj5D4bqldSB0csO6YzogSMOgbmggxJHhu5luZyB0aGkgxJHhuqV1IGRp4buFbiByYSBsacOqbiB04bulYyAnZm9yIGFuIGhvdXInIHRyxrDhu5tjIG3hu5l0IHRo4budaSDEkWnhu4NtIHRyb25nIHF1w6Ega2jhu6kgKCd3ZW50IG91dCcpLCBkw7luZyBxdcOhIGto4bupIGhvw6BuIHRow6BuaCB0aeG6v3AgZGnhu4VuIChoYWQgYmVlbiBjb21wZXRpbmcpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDMzLCB0eXBlOiAiZ2FwX2ZpbGxfdGV4dCIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMzMuIEhlIGZpbmFsbHkgZ290IHJvdW5kIHt7Ymxhbms6YjF9fSByZXBhaXJpbmcgaGlzIGJpY3ljbGUuIiwKICAgICAgICBibGFua3M6IFt7IGJsYW5rSWQ6ICJiMSIsIGNvcnJlY3RBbnN3ZXJzOiBbInRvIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDdeG7kWkgY8O5bmcgYW5oIOG6pXkgY8WpbmcgY8OzIHRo4budaSBnaWFuIMSR4buDIHPhu61hIHhlIMSR4bqhcC48YnI+Q+G6pXUgdHLDumM6IEPhu6VtIMSR4buZbmcgdOG7qyAnZ2V0IHJvdW5kIHRvICsgVi1pbmcnIG5naMSpYSBsw6Agc+G6r3AgeOG6v3AgdGjhu51pIGdpYW4gxJHhu4MgbMOgbSB2aeG7h2MgZ8OsIMSRw7MgxJHDoyDEkeG7i25oIHThu6sgbMOidS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiAzNCwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjM0LiBPdXIgc3Ryb25nZXN0IHt7Ymxhbms6YjF9fSBzY29yZWQgZmlyc3QuIChPUFBPU0UpIiwKICAgICAgICBibGFua3M6IFt7IGJsYW5rSWQ6ICJiMSIsIGNvcnJlY3RBbnN3ZXJzOiBbIm9wcG9uZW50IiwgIm9wcG9uZW50cyJdIH1dLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogxJDhu5FpIHRo4bunIG3huqFuaCBuaOG6pXQgY+G7p2EgY2jDum5nIHTDtGkgxJHDoyBnaGkgYsOgbiB0csaw4bubYy48YnI+Q+G6pXUgdHLDumM6IEPhuqduIGRhbmggdOG7qyBjaOG7iSBuZ8aw4budaSBzYXUgdMOtbmggdOG7qyBz4bufIGjhu691IHbDoCB0w61uaCB04burICdzdHJvbmdlc3QnLiBEYW5oIHThu6sgY+G7p2EgJ29wcG9zZScgbMOgICdvcHBvbmVudCcgKMSR4buRaSB0aOG7pykuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzUsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzNS4gV2Ugc3RvcHBlZCB7e2JsYW5rOmIxfX0gYnV5IHNvbWUgd2F0ZXIgb24gdGhlIHdheSBob21lLiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJ0byJdIH1dLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQ2jDum5nIHTDtGkgZOG7q25nIGzhuqFpIMSR4buDIG11YSBt4buZdCDDrXQgbsaw4bubYyB0csOqbiDEkcaw4budbmcgduG7gSBuaMOgLjxicj5D4bqldSB0csO6YzogJ3N0b3AgdG8gVicgbmdoxKlhIGzDoCBk4burbmcgbOG6oWkgxJHhu4MgbMOgbSB2aeG7h2MgZ8OsIMSRw7MuICgnc3RvcCBWLWluZycgbMOgIGThu6tuZyBo4bqzbiB2aeG7h2MgxJFhbmcgbMOgbSkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzYsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzNi4gVGhlIHlvdW5nIHt7Ymxhbms6YjF9fSB3b24gYSBicm9uemUgbWVkYWwuIChDT01QRVRFKSIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJjb21wZXRpdG9yIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBW4bqtbiDEkeG7mW5nIHZpw6puIHRy4bq7IHR14buVaSDEkcOjIGdpw6BuaCDEkcaw4bujYyBodXkgY2jGsMahbmcgxJHhu5NuZy48YnI+Q+G6pXUgdHLDumM6IEPhuqduIGRhbmggdOG7qyBjaOG7iSBuZ8aw4budaSBzYXUgdMOtbmggdOG7qyAneW91bmcnLiBEYW5oIHThu6sgY2jhu4kgbmfGsOG7nWkgY+G7p2EgJ2NvbXBldGUnIGzDoCAnY29tcGV0aXRvcicgKG5nxrDhu51pIHRoaSDEkeG6pXUpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDM3LCB0eXBlOiAiZ2FwX2ZpbGxfdGV4dCIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiMzcuIFdoZW4gSSB3YXMgeW91bmdlciwgSSB7e2JsYW5rOmIxfX0gKHdvdWxkIC8gc3BlbmQpIGhvdXJzIHBsYXlpbmcgY2hlc3MuIiwKICAgICAgICBibGFua3M6IFt7IGJsYW5rSWQ6ICJiMSIsIGNvcnJlY3RBbnN3ZXJzOiBbIndvdWxkIHNwZW5kIl0gfV0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBLaGkgdMO0aSBjw7JuIG5o4buPLCB0w7RpIHRoxrDhu51uZyBkw6BuaCBow6BuZyBnaeG7nSBjaMahaSBj4budIHZ1YS48YnI+Q+G6pXUgdHLDumM6ICd3b3VsZCArIFYobmd1ecOqbiB0aOG7gyknIGTDuW5nIMSR4buDIG1pw6p1IHThuqMgbeG7mXQgdGjDs2kgcXVlbiBob+G6t2MgaMOgbmggxJHhu5luZyB0aMaw4budbmcgeHV5w6puIGzhurdwIGzhuqFpIHRyb25nIHF1w6Ega2jhu6kuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzgsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzOC4gVGhlIHRlYW0gd2FzIGtub2NrZWQge3tibGFuazpiMX19IGluIHRoZSBxdWFydGVyLWZpbmFsLiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJvdXQiXSB9XSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IMSQ4buZaSDEkcOjIGLhu4sgbG/huqFpIOG7nyB0cuG6rW4gdOG7qSBr4bq/dC48YnI+Q+G6pXUgdHLDumM6IFBocmFzYWwgdmVyYiAna25vY2sgb3V0JyB0cm9uZyB0aOG7gyB0aGFvIGdp4bqjaSDEkeG6pXUgbmdoxKlhIGzDoCDEkcOhbmggYuG6oWkgdsOgIGxv4bqhaSDEkeG7kWkgdGjhu6cga2jhu49pIGdp4bqjaSDEkeG6pXUuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogMzksIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICIzOS4gSGVyIGtub3dsZWRnZSBvZiB0aGUgcnVsZXMgaXMgZXh0cmVtZWx5IHt7Ymxhbms6YjF9fS4gKElNUFJFU1MpIiwKICAgICAgICBibGFua3M6IFt7IGJsYW5rSWQ6ICJiMSIsIGNvcnJlY3RBbnN3ZXJzOiBbImltcHJlc3NpdmUiXSB9XSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEtp4bq/biB0aOG7qWMgY+G7p2EgY8O0IOG6pXkgduG7gSBjw6FjIHF1eSB04bqvYyB0aOG7sWMgc+G7sSBy4bqldCDhuqVuIHTGsOG7o25nLjxicj5D4bqldSB0csO6YzogU2F1IMSR4buZbmcgdOG7qyB0byBiZSAnaXMnIHbDoCB0cuG6oW5nIHThu6sgJ2V4dHJlbWVseScgY+G6p24gbeG7mXQgdMOtbmggdOG7qy4gVMOtbmggdOG7qyBj4bunYSAnaW1wcmVzcycgbMOgICdpbXByZXNzaXZlJyAoZ8OieSDhuqVuIHTGsOG7o25nKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA0MCwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjQwLiBXZSBhcnJpdmVkIGp1c3Qge3tibGFuazpiMX19IHRpbWUgdG8gc2VlIHRoZSBmaW5hbCBnb2FsLiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJpbiJdIH1dLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQ2jDum5nIHTDtGkgxJHhur9uIHbhu6thIGvhu4twIGzDumMgxJHhu4MgeGVtIGLDoG4gdGjhuq9uZyBjdeG7kWkgY8O5bmcuPGJyPkPhuqV1IHRyw7pjOiAnaW4gdGltZScgPSB24burYSBr4buLcCBsw7pjIMSR4buDIGzDoG0gZ8OsICh0aMaw4budbmcgxJFpIHbhu5tpICdqdXN0JykuICdvbiB0aW1lJyA9IMSRw7puZyBnaeG7nSAoa2jDtG5nIHRy4buFKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA0MSwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjQxLiBJIGFtIGdldHRpbmcgdXNlZCB0byB7e2JsYW5rOmIxfX0gKHRyYXZlbCkgdG8gdHJhaW5pbmcgYnkgYnVzLiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJ0cmF2ZWxsaW5nIiwgInRyYXZlbGluZyJdIH1dLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVMO0aSDEkWFuZyBk4bqnbiBxdWVuIHbhu5tpIHZp4buHYyDEkWkgeGUgYnXDvXQgxJHhur9uIGNo4buXIHThuq1wIGx1eeG7h24uPGJyPkPhuqV1IHRyw7pjOiBTYXUgY+G6pXUgdHLDumMgJ2dldCB1c2VkIHRvJyAodHLhu58gbsOqbiBxdWVuIHbhu5tpKSBwaOG6o2kgZMO5bmcgZGFuaCDEkeG7mW5nIHThu6sgKFYtaW5nKSwgbsOqbiBjaGlhIGzDoCAndHJhdmVsbGluZycgaG/hurdjICd0cmF2ZWxpbmcnLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDQyLCB0eXBlOiAiZ2FwX2ZpbGxfdGV4dCIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiNDIuIFRoZSBtYXRjaCBlbmRlZCBpbiBhIDHigJMxIHt7Ymxhbms6YjF9fS4iLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsiZHJhdyJdIH1dLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVHLhuq1uIMSR4bqldSBr4bq/dCB0aMO6YyB24bubaSB04buJIHPhu5EgaMOyYSAxLTEuPGJyPkPhuqV1IHRyw7pjOiBEYW5oIHThu6sgJ2RyYXcnIGTDuW5nIMSR4buDIGNo4buJIG3hu5l0IHRy4bqtbiBow7JhIHRyb25nIHRo4buDIHRoYW8uIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNDMsIHR5cGU6ICJnYXBfZmlsbF90ZXh0IiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICI0My4gVGhlIGNsdWIgaXMgdmVyeSBwb3B1bGFyIHt7Ymxhbms6YjF9fSBsb2NhbCB0ZWVuYWdlcnMuIiwKICAgICAgICBibGFua3M6IFt7IGJsYW5rSWQ6ICJiMSIsIGNvcnJlY3RBbnN3ZXJzOiBbIndpdGgiLCAiYW1vbmciXSB9XSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEPDonUgbOG6oWMgYuG7mSBy4bqldCBwaOG7lSBiaeG6v24gduG7m2kgdGhhbmggdGhp4bq/dSBuacOqbiDEkeG7i2EgcGjGsMahbmcuPGJyPkPhuqV1IHRyw7pjOiBUw61uaCB04burICdwb3B1bGFyJyDEkWkgduG7m2kgZ2nhu5tpIHThu6sgJ3dpdGgnIGhv4bq3YyAnYW1vbmcnIChwaOG7lSBiaeG6v24gxJHhu5FpIHbhu5tpIGFpKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA0NCwgdHlwZTogImdhcF9maWxsX3RleHQiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIjQ0LiBUaGUgcnVubmVycyB3ZXJlIG9uIHRoZSB7e2JsYW5rOmIxfX0gd2hlbiB0aGUgcmFpbiBzdGFydGVkLiIsCiAgICAgICAgYmxhbmtzOiBbeyBibGFua0lkOiAiYjEiLCBjb3JyZWN0QW5zd2VyczogWyJ0cmFjayJdIH1dLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQ8OhYyB24bqtbiDEkeG7mW5nIHZpw6puIMSRYW5nIOG7nyB0csOqbiDEkcaw4budbmcgY2jhuqF5IHRow6wgdHLhu51pIGLhuq90IMSR4bqndSBtxrBhLjxicj5D4bqldSB0csO6YzogQ+G7pW0gdOG7qyAnb24gdGhlIHRyYWNrJyAodHLDqm4gxJHGsOG7nW5nIGNo4bqheSkuICdUcmFjaycgY2jhu4kgxJHGsOG7nW5nIMSRdWEgZMOgbmggY2hvIG3DtG4gxJFp4buBbiBraW5oLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDQ1LCB0eXBlOiAiZ2FwX2ZpbGxfdGV4dCIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAiNDUuIFRoZSBwb29sIGlzIGNsb3NlZCBiZWNhdXNlIHdvcmtlcnMgYXJlIGNhcnJ5aW5nIG91dCB7e2JsYW5rOmIxfX0uIChNQUlOVEFJTikiLAogICAgICAgIGJsYW5rczogW3sgYmxhbmtJZDogImIxIiwgY29ycmVjdEFuc3dlcnM6IFsibWFpbnRlbmFuY2UiXSB9XSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEjhu5MgYsahaSBi4buLIMSRw7NuZyBj4butYSB2w6wgY8OhYyBjw7RuZyBuaMOibiDEkWFuZyB0aeG6v24gaMOgbmggYuG6o28gdHLDrC48YnI+Q+G6pXUgdHLDumM6IEPhuqduIGRhbmggdOG7qyBsw6BtIHTDom4gbmfhu68gY2hvIGPhu6VtIMSR4buZbmcgdOG7qyAnY2Fycnkgb3V0JyAodGnhur9uIGjDoG5oKS4gRGFuaCB04burIGPhu6dhICdtYWludGFpbicgbMOgICdtYWludGVuYW5jZScgKHPhu7EgYuG6o28gdHLDrCkuIgogICAgfQosCgogICAgewogICAgICAgIGlkOiA0NiwgdHlwZTogInNlbnRlbmNlX3Jld3JpdGUiLAogICAgICAgIG9yaWdpbmFsU2VudGVuY2VIVE1MOiAiNDYuIEkgYW0gYWNjdXN0b21lZCB0byB0cmFpbmluZyBpbiB0aGUgbW9ybmluZy4gKFVTRUQpIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICLihpIgSSBfX19fX19fXyBpbiB0aGUgbW9ybmluZy4iLAogICAgICAgIGNvcnJlY3RBbnN3ZXJzOiBbImFtIHVzZWQgdG8gdHJhaW5pbmciLCAiZ2V0IHVzZWQgdG8gdHJhaW5pbmciLCAiJ20gdXNlZCB0byB0cmFpbmluZyJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsiYW0gdXNlZCB0byB0cmFpbmluZyJdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVMO0aSBxdWVuIHbhu5tpIHZp4buHYyB04bqtcCBsdXnhu4duIHbDoG8gYnXhu5VpIHPDoW5nLjxicj5D4bqldSB0csO6YzogQ+G6pXUgdHLDumMgJ2JlIGFjY3VzdG9tZWQgdG8gVi1pbmcnIHTGsMahbmcgxJHGsMahbmcgduG7m2kgJ2JlIHVzZWQgdG8gVi1pbmcnIChxdWVuIHbhu5tpIHZp4buHYyBnw6wg4bufIGhp4buHbiB04bqhaSkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNDcsIHR5cGU6ICJzZW50ZW5jZV9yZXdyaXRlIiwKICAgICAgICBvcmlnaW5hbFNlbnRlbmNlSFRNTDogIjQ3LiBTaGUgbm8gbG9uZ2VyIGxpa2VzIGJhc2tldGJhbGwuIChPRkYpIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICLihpIgU2hlIF9fX19fX19fIGJhc2tldGJhbGwuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJoYXMgZ29uZSBvZmYiLCAiaXMgb2ZmIl0sCiAgICAgICAgc2FtcGxlQW5zd2VyczogWyJoYXMgZ29uZSBvZmYiXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEPDtCDhuqV5IGtow7RuZyBjw7JuIHRow61jaCBiw7NuZyBy4buVIG7hu69hLjxicj5D4bqldSB0csO6YzogUGhyYXNhbCB2ZXJiICdnbyBvZmYgc29tZXRoaW5nJyBuZ2jEqWEgbMOgIG5n4burbmcgdGjDrWNoIGPDoWkgZ8OsIMSRw7MuIChTaGUgaGFzIGdvbmUgb2ZmIGJhc2tldGJhbGwpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDQ4LCB0eXBlOiAic2VudGVuY2VfcmV3cml0ZSIsCiAgICAgICAgb3JpZ2luYWxTZW50ZW5jZUhUTUw6ICI0OC4gVGhlIHJhaW4gcHJldmVudGVkIHVzIGZyb20gZmluaXNoaW5nIHRoZSBnYW1lLiAoU1RPUFBFRCkiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIuKGkiBUaGUgcmFpbiBfX19fX19fXyB0aGUgZ2FtZS4iLAogICAgICAgIGNvcnJlY3RBbnN3ZXJzOiBbInN0b3BwZWQgdXMgZnJvbSBmaW5pc2hpbmciXSwKICAgICAgICBzYW1wbGVBbnN3ZXJzOiBbInN0b3BwZWQgdXMgZnJvbSBmaW5pc2hpbmciXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEPGoW4gbcawYSDEkcOjIG5nxINuIGNow7puZyB0w7RpIGhvw6BuIHRow6BuaCB0cuG6rW4gxJHhuqV1Ljxicj5D4bqldSB0csO6YzogQ+G6pXUgdHLDumMgJ3ByZXZlbnQgc29tZWJvZHkgZnJvbSBWLWluZycgdMawxqFuZyDEkcawxqFuZyB24bubaSAnc3RvcCBzb21lYm9keSBmcm9tIFYtaW5nJyAobmfEg24gY+G6o24gYWkgbMOgbSB2aeG7h2MgZ8OsKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA0OSwgdHlwZTogInNlbnRlbmNlX3Jld3JpdGUiLAogICAgICAgIG9yaWdpbmFsU2VudGVuY2VIVE1MOiAiNDkuIE15IGZhdGhlciBvZnRlbiB0b29rIG1lIHRvIG1hdGNoZXMgd2hlbiBJIHdhcyB5b3VuZy4gKFdPVUxEKSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAi4oaSIE15IGZhdGhlciBfX19fX19fXyB0byBtYXRjaGVzIHdoZW4gSSB3YXMgeW91bmcuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJ3b3VsZCBvZnRlbiB0YWtlIG1lIiwgIndvdWxkIHRha2UgbWUiXSwKICAgICAgICBzYW1wbGVBbnN3ZXJzOiBbIndvdWxkIG9mdGVuIHRha2UgbWUiXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IELhu5EgdMO0aSB0aMaw4budbmcgeHV5w6puIMSRxrBhIHTDtGkgxJFpIHhlbSBjw6FjIHRy4bqtbiDEkeG6pXUga2hpIHTDtGkgY8OybiBuaOG7jy48YnI+Q+G6pXUgdHLDumM6ICd3b3VsZCArIFYnIMSRxrDhu6NjIGTDuW5nIMSR4buDIHRoYXkgdGjhur8gY2hvICd1c2VkIHRvICsgVicgaG/hurdjIHRow6wgcXXDoSBraOG7qSDEkcahbiDEkeG7gyBkaeG7hW4gdOG6oyB0aMOzaSBxdWVuIHRoxrDhu51uZyB4dXnDqm4gdHJvbmcgcXXDoSBraOG7qS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA1MCwgdHlwZTogInNlbnRlbmNlX3Jld3JpdGUiLAogICAgICAgIG9yaWdpbmFsU2VudGVuY2VIVE1MOiAiNTAuIFdlIGJlZ2FuIHdhaXRpbmcgdHdvIGhvdXJzIGJlZm9yZSB0aGUgZG9vcnMgb3BlbmVkLiAoQkVFTikiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIuKGkiBXaGVuIHRoZSBkb29ycyBvcGVuZWQsIHdlIF9fX19fX19fIGZvciB0d28gaG91cnMuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJoYWQgYmVlbiB3YWl0aW5nIl0sCiAgICAgICAgc2FtcGxlQW5zd2VyczogWyJoYWQgYmVlbiB3YWl0aW5nIl0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBLaGkgY+G7rWEgbeG7nywgY2jDum5nIHTDtGkgxJHDoyDEkeG7o2kgxJHGsOG7o2MgaGFpIHRp4bq/bmcgxJHhu5NuZyBo4buTLjxicj5D4bqldSB0csO6YzogSMOgbmggxJHhu5luZyBi4bqvdCDEkeG6p3UgdsOgIGvDqW8gZMOgaSBsacOqbiB04bulYyB0csaw4bubYyBt4buZdCB0aOG7nWkgxJFp4buDbSBxdcOhIGto4bupLCBkw7luZyB0aMOsIHF1w6Ega2jhu6kgaG/DoG4gdGjDoG5oIHRp4bq/cCBkaeG7hW4gKGhhZCBiZWVuIHdhaXRpbmcpLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDUxLCB0eXBlOiAic2VudGVuY2VfcmV3cml0ZSIsCiAgICAgICAgb3JpZ2luYWxTZW50ZW5jZUhUTUw6ICI1MS4gSSBsaWtlIHN3aW1taW5nIG1vcmUgdGhhbiBqb2dnaW5nLiAoUFJFRkVSKSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAi4oaSIEkgX19fX19fX18gam9nZ2luZy4iLAogICAgICAgIGNvcnJlY3RBbnN3ZXJzOiBbInByZWZlciBzd2ltbWluZyB0byJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsicHJlZmVyIHN3aW1taW5nIHRvIl0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBUw7RpIHRow61jaCBixqFpIGzhu5lpIGjGoW4gY2jhuqF5IGLhu5kuPGJyPkPhuqV1IHRyw7pjOiBD4bqldSB0csO6YyAnbGlrZSBWLWluZyBtb3JlIHRoYW4gVi1pbmcnIHTGsMahbmcgxJHGsMahbmcgduG7m2kgJ3ByZWZlciBWLWluZyB0byBWLWluZycgKHRow61jaCBsw6BtIGfDrCBoxqFuIGzDoG0gZ8OsKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA1MiwgdHlwZTogInNlbnRlbmNlX3Jld3JpdGUiLAogICAgICAgIG9yaWdpbmFsU2VudGVuY2VIVE1MOiAiNTIuIFRoZSBvcmdhbmlzZXJzIGRlbGF5ZWQgdGhlIGNvbXBldGl0aW9uLiAoUFVUKSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAi4oaSIFRoZSBvcmdhbmlzZXJzIF9fX19fX19fIHRoZSBjb21wZXRpdGlvbi4iLAogICAgICAgIGNvcnJlY3RBbnN3ZXJzOiBbInB1dCBvZmYiXSwKICAgICAgICBzYW1wbGVBbnN3ZXJzOiBbInB1dCBvZmYiXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IEJhbiB04buVIGNo4bupYyDEkcOjIGhvw6NuIGN14buZYyB0aGkuPGJyPkPhuqV1IHRyw7pjOiDEkOG7mW5nIHThu6sgJ2RlbGF5JyAoaG/Do24gbOG6oWkpIGPDsyBuZ2jEqWEgdMawxqFuZyDEkcawxqFuZyB24bubaSBwaHJhc2FsIHZlcmIgJ3B1dCBvZmYnLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDUzLCB0eXBlOiAic2VudGVuY2VfcmV3cml0ZSIsCiAgICAgICAgb3JpZ2luYWxTZW50ZW5jZUhUTUw6ICI1My4gSGUgd2l0aGRyZXcgZnJvbSB0aGUgcmFjZSBiZWNhdXNlIG9mIHBhaW4uIChQVUxMRUQpIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICLihpIgSGUgX19fX19fX18gdGhlIHJhY2UgYmVjYXVzZSBvZiBwYWluLiIsCiAgICAgICAgY29ycmVjdEFuc3dlcnM6IFsicHVsbGVkIG91dCBvZiJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsicHVsbGVkIG91dCBvZiJdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQW5oIOG6pXkgxJHDoyByw7p0IGto4buPaSBjdeG7mWMgxJF1YSB2w6wgxJFhdSDEkeG7m24uPGJyPkPhuqV1IHRyw7pjOiDEkOG7mW5nIHThu6sgJ3dpdGhkcmF3IGZyb20nIChyw7p0IGx1aSkgdMawxqFuZyDEkcawxqFuZyB24bubaSBj4bulbSDEkeG7mW5nIHThu6sgJ3B1bGwgb3V0IG9mJy4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA1NCwgdHlwZTogInNlbnRlbmNlX3Jld3JpdGUiLAogICAgICAgIG9yaWdpbmFsU2VudGVuY2VIVE1MOiAiNTQuIFNoZSBzdGFydGVkIGxpa2luZyB0ZW5uaXMgaW1tZWRpYXRlbHkuIChUT09LKSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAi4oaSIFNoZSBfX19fX19fXyB0ZW5uaXMgaW1tZWRpYXRlbHkuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJ0b29rIHRvIl0sCiAgICAgICAgc2FtcGxlQW5zd2VyczogWyJ0b29rIHRvIl0sCiAgICAgICAgZXhwbGFuYXRpb25IVE1MOiAiROG7i2NoOiBDw7Qg4bqleSBi4bqvdCDEkeG6p3UgdGjDrWNoIHF14bqnbiB24bujdCBuZ2F5IGzhuq1wIHThu6ljLjxicj5D4bqldSB0csO6YzogJ3N0YXJ0IGxpa2luZycgdMawxqFuZyDEkcawxqFuZyB24bubaSBwaHJhc2FsIHZlcmIgJ3Rha2UgdG8nIChi4bqvdCDEkeG6p3UgY8OzIGPhuqNtIHTDrG5oLCB5w6p1IHRow61jaCBhaS9jw6FpIGfDrCkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNTUsIHR5cGU6ICJzZW50ZW5jZV9yZXdyaXRlIiwKICAgICAgICBvcmlnaW5hbFNlbnRlbmNlSFRNTDogIjU1LiBUaGVyZSB3YXMgYSBzcG9ydHMgc2hvcCBoZXJlIHllYXJzIGFnby4gKFVTRUQpIiwKICAgICAgICBxdWVzdGlvbkhUTUw6ICLihpIgVGhlcmUgX19fX19fX18gYSBzcG9ydHMgc2hvcCBoZXJlLiIsCiAgICAgICAgY29ycmVjdEFuc3dlcnM6IFsidXNlZCB0byBiZSJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsidXNlZCB0byBiZSJdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVOG7q25nIGPDsyBt4buZdCBj4butYSBow6BuZyB0aOG7gyB0aGFvIOG7nyDEkcOieSBuaGnhu4F1IG7Eg20gdHLGsOG7m2MuPGJyPkPhuqV1IHRyw7pjOiAnVGhlcmUgd2FzJyBkaeG7hW4gdOG6oyB0cuG6oW5nIHRow6FpIHRyb25nIHF1w6Ega2jhu6kga2jDtG5nIGPDsm4g4bufIGhp4buHbiB04bqhaSwgY8OzIHRo4buDIGTDuW5nICdUaGVyZSB1c2VkIHRvIGJlJyAodOG7q25nIGPDsykuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNTYsIHR5cGU6ICJzZW50ZW5jZV9yZXdyaXRlIiwKICAgICAgICBvcmlnaW5hbFNlbnRlbmNlSFRNTDogIjU2LiBJIGNhbm5vdCB0b2xlcmF0ZSBkaXNob25lc3QgcGxheWVycy4gKFBVVCkiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIuKGkiBJIGNhbm5vdCBfX19fX19fXyBkaXNob25lc3QgcGxheWVycy4iLAogICAgICAgIGNvcnJlY3RBbnN3ZXJzOiBbInB1dCB1cCB3aXRoIl0sCiAgICAgICAgc2FtcGxlQW5zd2VyczogWyJwdXQgdXAgd2l0aCJdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogVMO0aSBraMO0bmcgdGjhu4MgY2jhu4t1IMSR4buxbmcgxJHGsOG7o2Mgbmjhu69uZyBuZ8aw4budaSBjaMahaSBraMO0bmcgdHJ1bmcgdGjhu7FjLjxicj5D4bqldSB0csO6YzogxJDhu5luZyB04burICd0b2xlcmF0ZScgKGNo4buLdSDEkeG7sW5nKSB0xrDGoW5nIMSRxrDGoW5nIHbhu5tpIGPhu6VtIMSR4buZbmcgdOG7qyAncHV0IHVwIHdpdGgnLiIKICAgIH0sCiAgICB7CiAgICAgICAgaWQ6IDU3LCB0eXBlOiAic2VudGVuY2VfcmV3cml0ZSIsCiAgICAgICAgb3JpZ2luYWxTZW50ZW5jZUhUTUw6ICI1Ny4gSXQgaXMgZGlmZmljdWx0IGZvciBtZSB0byBjb25jZW50cmF0ZSBpbiBhIGNyb3dkLiAoRklORCkiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIuKGkiBJIF9fX19fX19fIGluIGEgY3Jvd2QuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJmaW5kIGl0IGRpZmZpY3VsdCB0byBjb25jZW50cmF0ZSJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsiZmluZCBpdCBkaWZmaWN1bHQgdG8gY29uY2VudHJhdGUiXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFTDtGkgdGjhuqV5IGtow7MgdOG6rXAgdHJ1bmcga2hpIOG7nyB0cm9uZyDEkcOhbSDEkcO0bmcuPGJyPkPhuqV1IHRyw7pjOiBD4bqldSB0csO6YyAnSXQgaXMgKyBhZGogKyBmb3Igc29tZWJvZHkgKyB0byBWJyBjw7MgdGjhu4Mgdmnhur90IGzhuqFpIHRow6BuaCAnUyArIGZpbmQgKyBpdCArIGFkaiArIHRvIFYnICh0aOG6pXkgbMOgbSB2aeG7h2MgZ8OsIMSRw7MgbmjGsCB0aOG6vyBuw6BvKS4iCiAgICB9LAogICAgewogICAgICAgIGlkOiA1OCwgdHlwZTogInNlbnRlbmNlX3Jld3JpdGUiLAogICAgICAgIG9yaWdpbmFsU2VudGVuY2VIVE1MOiAiNTguIFRoZSB0ZWFtIGNvbXBsZXRlZCB3YXJtLXVwIGJlZm9yZSB0aGUgY29hY2ggYXJyaXZlZC4gKEhBRCkiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIuKGkiBUaGUgdGVhbSBfX19fX19fXyBiZWZvcmUgdGhlIGNvYWNoIGFycml2ZWQuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJoYWQgY29tcGxldGVkIHdhcm0tdXAiLCAiaGFkIGNvbXBsZXRlZCB0aGVpciB3YXJtLXVwIl0sCiAgICAgICAgc2FtcGxlQW5zd2VyczogWyJoYWQgY29tcGxldGVkIHdhcm0tdXAiXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IMSQ4buZaSDEkcOjIGhvw6BuIHRow6BuaCB2aeG7h2Mga2jhu59pIMSR4buZbmcgdHLGsOG7m2Mga2hpIGh14bqlbiBsdXnhu4duIHZpw6puIMSR4bq/bi48YnI+Q+G6pXUgdHLDumM6IEjDoG5oIMSR4buZbmcgeOG6o3kgcmEgdsOgIGhvw6BuIHThuqV0IHRyxrDhu5tjIG3hu5l0IGjDoG5oIMSR4buZbmcga2jDoWMgdHJvbmcgcXXDoSBraOG7qSAoJ2Fycml2ZWQnKSB0aMOsIGTDuW5nIHRow6wgcXXDoSBraOG7qSBob8OgbiB0aMOgbmggKCdoYWQgY29tcGxldGVkJykuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNTksIHR5cGU6ICJzZW50ZW5jZV9yZXdyaXRlIiwKICAgICAgICBvcmlnaW5hbFNlbnRlbmNlSFRNTDogIjU5LiBTaGUgaXMgY2VydGFpbiB0aGF0IHNoZSB3aWxsIHF1YWxpZnkuIChTVVJFKSIsCiAgICAgICAgcXVlc3Rpb25IVE1MOiAi4oaSIFNoZSBfX19fX19fXyBxdWFsaWZ5LiIsCiAgICAgICAgY29ycmVjdEFuc3dlcnM6IFsiaXMgc3VyZSB0byJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsiaXMgc3VyZSB0byJdLAogICAgICAgIGV4cGxhbmF0aW9uSFRNTDogIkThu4tjaDogQ8O0IOG6pXkgY2jhuq9jIGNo4bqvbiBz4bq9IHbGsOG7o3QgcXVhIHbDsm5nIGxv4bqhaS48YnI+Q+G6pXUgdHLDumM6ICdiZSBjZXJ0YWluIHRoYXQgKyBt4buHbmggxJHhu4EgdMawxqFuZyBsYWknIGPDsyB0aOG7gyB2aeG6v3QgbOG6oWkgdGjDoG5oICdiZSBzdXJlIHRvICsgVicgKGNo4bqvYyBjaOG6r24gc+G6vSBsw6BtIGfDrCkuIgogICAgfSwKICAgIHsKICAgICAgICBpZDogNjAsIHR5cGU6ICJzZW50ZW5jZV9yZXdyaXRlIiwKICAgICAgICBvcmlnaW5hbFNlbnRlbmNlSFRNTDogIjYwLiBUaGlzIGhvYmJ5IG9jY3VwaWVzIG1vc3Qgb2YgbXkgd2Vla2VuZHMuIChUQUtFUykiLAogICAgICAgIHF1ZXN0aW9uSFRNTDogIuKGkiBUaGlzIGhvYmJ5IF9fX19fX19fIG1vc3Qgb2YgbXkgd2Vla2VuZHMuIiwKICAgICAgICBjb3JyZWN0QW5zd2VyczogWyJ0YWtlcyB1cCJdLAogICAgICAgIHNhbXBsZUFuc3dlcnM6IFsidGFrZXMgdXAiXSwKICAgICAgICBleHBsYW5hdGlvbkhUTUw6ICJE4buLY2g6IFPhu58gdGjDrWNoIG7DoHkgY2hp4bq/bSBwaOG6p24gbOG7m24gdGjhu51pIGdpYW4gY3Xhu5FpIHR14bqnbiBj4bunYSB0w7RpLjxicj5D4bqldSB0csO6YzogxJDhu5luZyB04burICdvY2N1cHknIChjaGnhur9tIHRo4budaSBnaWFuLCBraMO0bmcgZ2lhbikgdMawxqFuZyDEkcawxqFuZyB24bubaSBj4bulbSDEkeG7mW5nIHThu6sgJ3Rha2UgdXAnLiIKICAgIH0KCl0=';
+    
+(function(){ 'use strict';
+    const QUIZ = eval('(' + decodeURIComponent(escape(atob(''+__B64_QUIZ_DATA__+''))) + ')');
+    
+    let audioCtx;
+    function initAudio() { if(!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } }
+    function playTone(freq1, freq2, type, duration, vol) {
+        try {
+            initAudio();
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = type;
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.frequency.setValueAtTime(freq1, audioCtx.currentTime);
+            if (freq2) osc.frequency.linearRampToValueAtTime(freq2, audioCtx.currentTime + duration/2);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        } catch(e){}
     }
-,
+    function playSelectSound() { playTone(600, null, 'sine', 0.08, 0.15); }
+    function playCorrectSound() { playTone(800, 1200, 'sine', 0.25, 0.2); }
+    function playWrongSound() { playTone(150, null, 'sawtooth', 0.2, 0.12); }
+    function playSubmitSound() { playTone(500, null, 'triangle', 0.12, 0.15); }
 
-    {
-        id: 26, type: "gap_fill_text",
-        questionHTML: "<b>B. GAP FILL / WORD FORM</b><br>26. While we {{blank:b1}} (wait) for the referee, the players kept warming up.",
-        blanks: [{ blankId: "b1", correctAnswers: ["were waiting"] }],
-        explanationHTML: "Dịch: Trong khi chúng tôi đang đợi trọng tài, các cầu thủ vẫn tiếp tục khởi động.<br>Cấu trúc: 'While' đi với một hành động đang diễn ra trong quá khứ, dùng thì quá khứ tiếp diễn (were waiting)."
-    },
-    {
-        id: 27, type: "gap_fill_text",
-        questionHTML: "27. The champion had to pull {{blank:b1}} because of an injury.",
-        blanks: [{ blankId: "b1", correctAnswers: ["out"] }],
-        explanationHTML: "Dịch: Nhà vô địch đã phải rút lui vì chấn thương.<br>Cấu trúc: Phrasal verb 'pull out' có nghĩa là rút lui khỏi một cuộc thi hoặc thỏa thuận."
-    },
-    {
-        id: 28, type: "gap_fill_text",
-        questionHTML: "28. She has a natural talent {{blank:b1}} tennis.",
-        blanks: [{ blankId: "b1", correctAnswers: ["for"] }],
-        explanationHTML: "Dịch: Cô ấy có tài năng thiên bẩm về quần vợt.<br>Cấu trúc: Danh từ 'talent' luôn đi kèm với giới từ 'for' (có tài về lĩnh vực gì)."
-    },
-    {
-        id: 29, type: "gap_fill_text",
-        questionHTML: "29. By the time we arrived, the spectators {{blank:b1}} already {{blank:b2}} (take) their seats.",
-        blanks: [{ blankId: "b1", correctAnswers: ["had"] }, { blankId: "b2", correctAnswers: ["taken"] }],
-        explanationHTML: "Dịch: Trước lúc chúng tôi đến, khán giả đã ngồi vào chỗ của họ.<br>Cấu trúc: 'By the time + quá khứ đơn' (arrived), mệnh đề chính dùng thì quá khứ hoàn thành (had taken) để chỉ hành động xảy ra trước đó. (Điền 'had' vào ô đầu và 'taken' vào ô sau)."
-    },
-    {
-        id: 30, type: "gap_fill_text",
-        questionHTML: "30. The school bought new sports {{blank:b1}}. (EQUIP)",
-        blanks: [{ blankId: "b1", correctAnswers: ["equipment"] }],
-        explanationHTML: "Dịch: Nhà trường đã mua dụng cụ thể thao mới.<br>Cấu trúc: Cần danh từ sau tính từ 'new sports'. Danh từ của 'equip' là 'equipment' (dụng cụ, trang thiết bị - không đếm được)."
-    },
-    {
-        id: 31, type: "gap_fill_text",
-        questionHTML: "31. I used to be afraid {{blank:b1}} heights.",
-        blanks: [{ blankId: "b1", correctAnswers: ["of"] }],
-        explanationHTML: "Dịch: Tôi từng sợ độ cao.<br>Cấu trúc: Tính từ 'afraid' đi với giới từ 'of' (sợ cái gì)."
-    },
-    {
-        id: 32, type: "gap_fill_text",
-        questionHTML: "32. The two teams {{blank:b1}} (compete) for an hour when the lights went out.",
-        blanks: [{ blankId: "b1", correctAnswers: ["had been competing"] }],
-        explanationHTML: "Dịch: Hai đội đã thi đấu được một tiếng đồng hồ thì đèn tắt.<br>Cấu trúc: Hành động thi đấu diễn ra liên tục 'for an hour' trước một thời điểm trong quá khứ ('went out'), dùng quá khứ hoàn thành tiếp diễn (had been competing)."
-    },
-    {
-        id: 33, type: "gap_fill_text",
-        questionHTML: "33. He finally got round {{blank:b1}} repairing his bicycle.",
-        blanks: [{ blankId: "b1", correctAnswers: ["to"] }],
-        explanationHTML: "Dịch: Cuối cùng anh ấy cũng có thời gian để sửa xe đạp.<br>Cấu trúc: Cụm động từ 'get round to + V-ing' nghĩa là sắp xếp thời gian để làm việc gì đó đã định từ lâu."
-    },
-    {
-        id: 34, type: "gap_fill_text",
-        questionHTML: "34. Our strongest {{blank:b1}} scored first. (OPPOSE)",
-        blanks: [{ blankId: "b1", correctAnswers: ["opponent", "opponents"] }],
-        explanationHTML: "Dịch: Đối thủ mạnh nhất của chúng tôi đã ghi bàn trước.<br>Cấu trúc: Cần danh từ chỉ người sau tính từ sở hữu và tính từ 'strongest'. Danh từ của 'oppose' là 'opponent' (đối thủ)."
-    },
-    {
-        id: 35, type: "gap_fill_text",
-        questionHTML: "35. We stopped {{blank:b1}} buy some water on the way home.",
-        blanks: [{ blankId: "b1", correctAnswers: ["to"] }],
-        explanationHTML: "Dịch: Chúng tôi dừng lại để mua một ít nước trên đường về nhà.<br>Cấu trúc: 'stop to V' nghĩa là dừng lại để làm việc gì đó. ('stop V-ing' là dừng hẳn việc đang làm)."
-    },
-    {
-        id: 36, type: "gap_fill_text",
-        questionHTML: "36. The young {{blank:b1}} won a bronze medal. (COMPETE)",
-        blanks: [{ blankId: "b1", correctAnswers: ["competitor"] }],
-        explanationHTML: "Dịch: Vận động viên trẻ tuổi đã giành được huy chương đồng.<br>Cấu trúc: Cần danh từ chỉ người sau tính từ 'young'. Danh từ chỉ người của 'compete' là 'competitor' (người thi đấu)."
-    },
-    {
-        id: 37, type: "gap_fill_text",
-        questionHTML: "37. When I was younger, I {{blank:b1}} (would / spend) hours playing chess.",
-        blanks: [{ blankId: "b1", correctAnswers: ["would spend"] }],
-        explanationHTML: "Dịch: Khi tôi còn nhỏ, tôi thường dành hàng giờ chơi cờ vua.<br>Cấu trúc: 'would + V(nguyên thể)' dùng để miêu tả một thói quen hoặc hành động thường xuyên lặp lại trong quá khứ."
-    },
-    {
-        id: 38, type: "gap_fill_text",
-        questionHTML: "38. The team was knocked {{blank:b1}} in the quarter-final.",
-        blanks: [{ blankId: "b1", correctAnswers: ["out"] }],
-        explanationHTML: "Dịch: Đội đã bị loại ở trận tứ kết.<br>Cấu trúc: Phrasal verb 'knock out' trong thể thao giải đấu nghĩa là đánh bại và loại đối thủ khỏi giải đấu."
-    },
-    {
-        id: 39, type: "gap_fill_text",
-        questionHTML: "39. Her knowledge of the rules is extremely {{blank:b1}}. (IMPRESS)",
-        blanks: [{ blankId: "b1", correctAnswers: ["impressive"] }],
-        explanationHTML: "Dịch: Kiến thức của cô ấy về các quy tắc thực sự rất ấn tượng.<br>Cấu trúc: Sau động từ to be 'is' và trạng từ 'extremely' cần một tính từ. Tính từ của 'impress' là 'impressive' (gây ấn tượng)."
-    },
-    {
-        id: 40, type: "gap_fill_text",
-        questionHTML: "40. We arrived just {{blank:b1}} time to see the final goal.",
-        blanks: [{ blankId: "b1", correctAnswers: ["in"] }],
-        explanationHTML: "Dịch: Chúng tôi đến vừa kịp lúc để xem bàn thắng cuối cùng.<br>Cấu trúc: 'in time' = vừa kịp lúc để làm gì (thường đi với 'just'). 'on time' = đúng giờ (không trễ)."
-    },
-    {
-        id: 41, type: "gap_fill_text",
-        questionHTML: "41. I am getting used to {{blank:b1}} (travel) to training by bus.",
-        blanks: [{ blankId: "b1", correctAnswers: ["travelling", "traveling"] }],
-        explanationHTML: "Dịch: Tôi đang dần quen với việc đi xe buýt đến chỗ tập luyện.<br>Cấu trúc: Sau cấu trúc 'get used to' (trở nên quen với) phải dùng danh động từ (V-ing), nên chia là 'travelling' hoặc 'traveling'."
-    },
-    {
-        id: 42, type: "gap_fill_text",
-        questionHTML: "42. The match ended in a 1–1 {{blank:b1}}.",
-        blanks: [{ blankId: "b1", correctAnswers: ["draw"] }],
-        explanationHTML: "Dịch: Trận đấu kết thúc với tỉ số hòa 1-1.<br>Cấu trúc: Danh từ 'draw' dùng để chỉ một trận hòa trong thể thao."
-    },
-    {
-        id: 43, type: "gap_fill_text",
-        questionHTML: "43. The club is very popular {{blank:b1}} local teenagers.",
-        blanks: [{ blankId: "b1", correctAnswers: ["with", "among"] }],
-        explanationHTML: "Dịch: Câu lạc bộ rất phổ biến với thanh thiếu niên địa phương.<br>Cấu trúc: Tính từ 'popular' đi với giới từ 'with' hoặc 'among' (phổ biến đối với ai)."
-    },
-    {
-        id: 44, type: "gap_fill_text",
-        questionHTML: "44. The runners were on the {{blank:b1}} when the rain started.",
-        blanks: [{ blankId: "b1", correctAnswers: ["track"] }],
-        explanationHTML: "Dịch: Các vận động viên đang ở trên đường chạy thì trời bắt đầu mưa.<br>Cấu trúc: Cụm từ 'on the track' (trên đường chạy). 'Track' chỉ đường đua dành cho môn điền kinh."
-    },
-    {
-        id: 45, type: "gap_fill_text",
-        questionHTML: "45. The pool is closed because workers are carrying out {{blank:b1}}. (MAINTAIN)",
-        blanks: [{ blankId: "b1", correctAnswers: ["maintenance"] }],
-        explanationHTML: "Dịch: Hồ bơi bị đóng cửa vì các công nhân đang tiến hành bảo trì.<br>Cấu trúc: Cần danh từ làm tân ngữ cho cụm động từ 'carry out' (tiến hành). Danh từ của 'maintain' là 'maintenance' (sự bảo trì)."
-    }
-,
+    const quizContainer = document.getElementById('questionsContainer');
+    const startScreen = document.getElementById('startScreen');
+    const testScreen = document.getElementById('testScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const resultDetails = document.getElementById('resultDetails');
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const studentNameInput = document.getElementById('studentName');
+    
+    let locked = {}; 
+    let submitted = false;
+    let questions = [];
 
-    {
-        id: 46, type: "sentence_rewrite",
-        originalSentenceHTML: "46. I am accustomed to training in the morning. (USED)",
-        questionHTML: "→ I ________ in the morning.",
-        correctAnswers: ["am used to training", "get used to training", "'m used to training"],
-        sampleAnswers: ["am used to training"],
-        explanationHTML: "Dịch: Tôi quen với việc tập luyện vào buổi sáng.<br>Cấu trúc: Cấu trúc 'be accustomed to V-ing' tương đương với 'be used to V-ing' (quen với việc gì ở hiện tại)."
-    },
-    {
-        id: 47, type: "sentence_rewrite",
-        originalSentenceHTML: "47. She no longer likes basketball. (OFF)",
-        questionHTML: "→ She ________ basketball.",
-        correctAnswers: ["has gone off", "is off"],
-        sampleAnswers: ["has gone off"],
-        explanationHTML: "Dịch: Cô ấy không còn thích bóng rổ nữa.<br>Cấu trúc: Phrasal verb 'go off something' nghĩa là ngừng thích cái gì đó. (She has gone off basketball)."
-    },
-    {
-        id: 48, type: "sentence_rewrite",
-        originalSentenceHTML: "48. The rain prevented us from finishing the game. (STOPPED)",
-        questionHTML: "→ The rain ________ the game.",
-        correctAnswers: ["stopped us from finishing"],
-        sampleAnswers: ["stopped us from finishing"],
-        explanationHTML: "Dịch: Cơn mưa đã ngăn chúng tôi hoàn thành trận đấu.<br>Cấu trúc: Cấu trúc 'prevent somebody from V-ing' tương đương với 'stop somebody from V-ing' (ngăn cản ai làm việc gì)."
-    },
-    {
-        id: 49, type: "sentence_rewrite",
-        originalSentenceHTML: "49. My father often took me to matches when I was young. (WOULD)",
-        questionHTML: "→ My father ________ to matches when I was young.",
-        correctAnswers: ["would often take me", "would take me"],
-        sampleAnswers: ["would often take me"],
-        explanationHTML: "Dịch: Bố tôi thường xuyên đưa tôi đi xem các trận đấu khi tôi còn nhỏ.<br>Cấu trúc: 'would + V' được dùng để thay thế cho 'used to + V' hoặc thì quá khứ đơn để diễn tả thói quen thường xuyên trong quá khứ."
-    },
-    {
-        id: 50, type: "sentence_rewrite",
-        originalSentenceHTML: "50. We began waiting two hours before the doors opened. (BEEN)",
-        questionHTML: "→ When the doors opened, we ________ for two hours.",
-        correctAnswers: ["had been waiting"],
-        sampleAnswers: ["had been waiting"],
-        explanationHTML: "Dịch: Khi cửa mở, chúng tôi đã đợi được hai tiếng đồng hồ.<br>Cấu trúc: Hành động bắt đầu và kéo dài liên tục trước một thời điểm quá khứ, dùng thì quá khứ hoàn thành tiếp diễn (had been waiting)."
-    },
-    {
-        id: 51, type: "sentence_rewrite",
-        originalSentenceHTML: "51. I like swimming more than jogging. (PREFER)",
-        questionHTML: "→ I ________ jogging.",
-        correctAnswers: ["prefer swimming to"],
-        sampleAnswers: ["prefer swimming to"],
-        explanationHTML: "Dịch: Tôi thích bơi lội hơn chạy bộ.<br>Cấu trúc: Cấu trúc 'like V-ing more than V-ing' tương đương với 'prefer V-ing to V-ing' (thích làm gì hơn làm gì)."
-    },
-    {
-        id: 52, type: "sentence_rewrite",
-        originalSentenceHTML: "52. The organisers delayed the competition. (PUT)",
-        questionHTML: "→ The organisers ________ the competition.",
-        correctAnswers: ["put off"],
-        sampleAnswers: ["put off"],
-        explanationHTML: "Dịch: Ban tổ chức đã hoãn cuộc thi.<br>Cấu trúc: Động từ 'delay' (hoãn lại) có nghĩa tương đương với phrasal verb 'put off'."
-    },
-    {
-        id: 53, type: "sentence_rewrite",
-        originalSentenceHTML: "53. He withdrew from the race because of pain. (PULLED)",
-        questionHTML: "→ He ________ the race because of pain.",
-        correctAnswers: ["pulled out of"],
-        sampleAnswers: ["pulled out of"],
-        explanationHTML: "Dịch: Anh ấy đã rút khỏi cuộc đua vì đau đớn.<br>Cấu trúc: Động từ 'withdraw from' (rút lui) tương đương với cụm động từ 'pull out of'."
-    },
-    {
-        id: 54, type: "sentence_rewrite",
-        originalSentenceHTML: "54. She started liking tennis immediately. (TOOK)",
-        questionHTML: "→ She ________ tennis immediately.",
-        correctAnswers: ["took to"],
-        sampleAnswers: ["took to"],
-        explanationHTML: "Dịch: Cô ấy bắt đầu thích quần vợt ngay lập tức.<br>Cấu trúc: 'start liking' tương đương với phrasal verb 'take to' (bắt đầu có cảm tình, yêu thích ai/cái gì)."
-    },
-    {
-        id: 55, type: "sentence_rewrite",
-        originalSentenceHTML: "55. There was a sports shop here years ago. (USED)",
-        questionHTML: "→ There ________ a sports shop here.",
-        correctAnswers: ["used to be"],
-        sampleAnswers: ["used to be"],
-        explanationHTML: "Dịch: Từng có một cửa hàng thể thao ở đây nhiều năm trước.<br>Cấu trúc: 'There was' diễn tả trạng thái trong quá khứ không còn ở hiện tại, có thể dùng 'There used to be' (từng có)."
-    },
-    {
-        id: 56, type: "sentence_rewrite",
-        originalSentenceHTML: "56. I cannot tolerate dishonest players. (PUT)",
-        questionHTML: "→ I cannot ________ dishonest players.",
-        correctAnswers: ["put up with"],
-        sampleAnswers: ["put up with"],
-        explanationHTML: "Dịch: Tôi không thể chịu đựng được những người chơi không trung thực.<br>Cấu trúc: Động từ 'tolerate' (chịu đựng) tương đương với cụm động từ 'put up with'."
-    },
-    {
-        id: 57, type: "sentence_rewrite",
-        originalSentenceHTML: "57. It is difficult for me to concentrate in a crowd. (FIND)",
-        questionHTML: "→ I ________ in a crowd.",
-        correctAnswers: ["find it difficult to concentrate"],
-        sampleAnswers: ["find it difficult to concentrate"],
-        explanationHTML: "Dịch: Tôi thấy khó tập trung khi ở trong đám đông.<br>Cấu trúc: Cấu trúc 'It is + adj + for somebody + to V' có thể viết lại thành 'S + find + it + adj + to V' (thấy làm việc gì đó như thế nào)."
-    },
-    {
-        id: 58, type: "sentence_rewrite",
-        originalSentenceHTML: "58. The team completed warm-up before the coach arrived. (HAD)",
-        questionHTML: "→ The team ________ before the coach arrived.",
-        correctAnswers: ["had completed warm-up", "had completed their warm-up"],
-        sampleAnswers: ["had completed warm-up"],
-        explanationHTML: "Dịch: Đội đã hoàn thành việc khởi động trước khi huấn luyện viên đến.<br>Cấu trúc: Hành động xảy ra và hoàn tất trước một hành động khác trong quá khứ ('arrived') thì dùng thì quá khứ hoàn thành ('had completed')."
-    },
-    {
-        id: 59, type: "sentence_rewrite",
-        originalSentenceHTML: "59. She is certain that she will qualify. (SURE)",
-        questionHTML: "→ She ________ qualify.",
-        correctAnswers: ["is sure to"],
-        sampleAnswers: ["is sure to"],
-        explanationHTML: "Dịch: Cô ấy chắc chắn sẽ vượt qua vòng loại.<br>Cấu trúc: 'be certain that + mệnh đề tương lai' có thể viết lại thành 'be sure to + V' (chắc chắn sẽ làm gì)."
-    },
-    {
-        id: 60, type: "sentence_rewrite",
-        originalSentenceHTML: "60. This hobby occupies most of my weekends. (TAKES)",
-        questionHTML: "→ This hobby ________ most of my weekends.",
-        correctAnswers: ["takes up"],
-        sampleAnswers: ["takes up"],
-        explanationHTML: "Dịch: Sở thích này chiếm phần lớn thời gian cuối tuần của tôi.<br>Cấu trúc: Động từ 'occupy' (chiếm thời gian, không gian) tương đương với cụm động từ 'take up'."
+    const norm = s => String(s ?? '')
+      .normalize('NFC')
+      .replace(/[\u200B-\u200D\uFEFF]/g, '')          
+      .replace(/[\u2018\u2019\u201B\u2032\u00B4`]/g, "'") 
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2013\u2014]/g, '-')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\s+/g, ' ')
+      .replace(/\s+([.,!?;:])/g, '$1')
+      .replace(/[.!?,;:]+$/, '')                       
+      .trim().toLowerCase();
+      
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    
+    function isRewriteCorrect(q, val) {
+      let normVal = norm(val);
+      let ansArr = q.correctAnswers || [];
+      return ansArr.some(ans => {
+          let normAns = norm(ans);
+          if (normAns === normVal) return true;
+          /* partial matching removed to prevent antonym bugs */
+          return false;
+      });
     }
 
-];
+    function acceptedSet(q) {
+      const set = new Set();
+      (q.correctAnswers || []).forEach(a => set.add(norm(a)));
+      return set;
+    }
+
+    function adaptQuestion(q, index) {
+        let nq = JSON.parse(JSON.stringify(q));
+        nq.id = (nq.id || nq.id === 0) ? String(nq.id) : String(index + 1);
+        if (nq.question || nq.text || nq.questionText) nq.questionHTML = nq.question || nq.text || nq.questionText || nq.questionHTML;
+        let stripped = false;
+        nq.questionHTML = (nq.questionHTML || '').replace(/(^|<br\s*\/?>|<\/b>|<\/strong>|<\/p>)\s*(?:C[^\s]*\s*\d+[:\.]?\s*|\d+[\.\)]\s*)/i, (match, p1) => {
+            if (!stripped) {
+                stripped = true;
+                return p1 + ' ';
+            }
+            return match;
+        });
+        if (nq.originalSentenceHTML) {
+            nq.originalSentenceHTML = (nq.originalSentenceHTML || '').replace(/(^|<br\s*\/?>|<\/b>|<\/strong>|<\/p>)\s*(?:C[^\s]*\s*\d+[:\.]?\s*|\d+[\.\)]\s*)/i, (match, p1) => {
+                return p1 + ' ';
+            });
+        }
         
-          let state = {};
-          
-          function normalize(str) {
-              return str.replace(/\u00a0/g, ' ').replace(/[\s\n\r]+/g, ' ').trim();
-          }
+        if (nq.type === 'sentence_rewrite') {
+            if (nq.sampleAnswers && !nq.correctAnswers) nq.correctAnswers = nq.sampleAnswers;
+            if (nq.answer && !nq.correctAnswers) nq.correctAnswers = [nq.answer];
+        } else if (nq.type === 'multiple_choice' || nq.type === 'mcq') {
+            let options = [];
+            let correctAnsStr = nq.answer || nq.correctAnswer;
+            (nq.options || []).forEach((opt, idx) => {
+                if (typeof opt === 'string') {
+                    let label = String.fromCharCode(65 + idx);
+                    let html = opt;
+                    let m = opt.match(/^([A-D])\s+(.*)/);
+                    if (m) { label = m[1]; html = m[2]; }
+                    options.push({label, html, isCorrect: (opt === correctAnsStr || (correctAnsStr && correctAnsStr.startsWith(label))) });
+                } else {
+                    options.push(opt);
+                }
+            });
+            options.forEach((opt, idx) => { opt.displayLabel = String.fromCharCode(65 + idx); });
+            nq.options = options;
+        } else if (nq.type === 'gap_fill_text') {
+            if (!nq.blanks) nq.blanks = [];
+            if (nq.questionHTML && nq.questionHTML.includes('<input')) {
+                let blankId = 1;
+                nq.questionHTML = nq.questionHTML.replace(/<input[^>]+data-answer=['"]([^'"]+)['"][^>]*>/g, (match, ans) => {
+                    let bid = 'b' + blankId++;
+                    nq.blanks.push({blankId: bid, correctAnswers: [ans]});
+                    return `{{blank:${bid}}}`;
+                });
+            }
+        }
+        return nq;
+    }
 
-          function init() {
-              const container = document.getElementById('questionsContainer');
-              
-              quizData.forEach((q, index) => {
-                  state[q.id] = { checked: false, isCorrect: false, value: null };
-                  
-                  let block = document.createElement('div');
-                  block.className = 'question-block';
-                  block.id = 'q-block-' + q.id;
-                  
-                  let qText = q.questionHTML || q.question;
-                  let origText = q.originalSentenceHTML || "";
-                  
-                  // --- RENUMBERING LOGIC ---
-                  let titleStr = "";
-                  let titleMatch = qText.match(/^(<b>.*?<\/b>\s*<br\s*\/?>\s*)/i);
-                  if (titleMatch) {
-                      titleStr = titleMatch[1];
-                      qText = qText.substring(titleMatch[1].length);
-                  }
-                  
-                  // Strip leading numbers from qText
-                  qText = qText.replace(/^(<b>.*?<\/b>\s*<br\s*\/?>\s*)\d+[\.\)]?\s*/i, '$1');
-                    qText = qText.replace(/^\d+[\.\)]?\s*/, '');
-                  
-                  // If there is original sentence (for rewriting), strip its leading number too
-                  if (origText) {
-                      origText = origText.replace(/^(<b>.*?<\/b>\s*<br\s*\/?>\s*)\d+[\.\)]?\s*/i, '$1');
-                        origText = origText.replace(/^\d+[\.\)]?\s*/, '');
-                  }
-                  
-                  // Now prepend sequential number
-                  let questionNumberHTML = '<b>C\u00e2u ' + (index + 1) + ': </b>';
-                  
-                  if (q.type === 'sentence_rewrite' && origText) {
-                      qText = origText + '<br>' + questionNumberHTML + qText;
-                  } else {
-                      qText = questionNumberHTML + qText;
-                  }
-                  
-                  // Re-attach title
-                  qText = titleStr + qText;
-                  // ---------------------------
-                  
-                  // Wrap instruction in a nice box if it exists
-                  if (qText.startsWith('<b>') && qText.match(/^<b>(.*?)<\/b>\s*<br\s*\/?>\s*/i)) {
-                      qText = qText.replace(/^<b>(.*?)<\/b>\s*<br\s*\/?>\s*/i, '<div class="instruction-box">$1</div>');
-                  }
-                  
-                  if (q.type === 'gap_fill_text') {
-                      if (q.blanks) {
-                          q.blanks.forEach(b => {
-                              let blankStr = '{{blank:' + b.blankId + '}}';
-                              let inpStr = '<input type="text" id="input-' + q.id + '-' + b.blankId + '" class="gap-fill-input" autocomplete="off">';
-                              if (qText.includes(blankStr)) {
-                                  qText = qText.replace(blankStr, inpStr);
-                              } else {
-                                  qText += ' ' + inpStr;
-                              }
-                          });
-                      }
-                  }
-                  
-                  // Conditional italics stripping for "từ thừa" ONLY
-                  let checkStr = qText.toLowerCase();
-                  if (checkStr.includes('find the extra word') || checkStr.includes('từ thừa') || checkStr.includes('từ sai') || checkStr.includes('t\u1eeb th\u1eeba')) {
-                      qText = qText.replace(/<\/?i>/gi, '');
-                  }
-                  
-                  let html = '<div class="question-text">' + qText + '</div>';
-                  
-                  if (q.type === 'multiple_choice' || q.type === 'mcq') {
-                      html += '<div class="options">';
-                      q.options.forEach((opt, idx) => {
-                          let optText = opt.text || opt.html || '';
-                          let label = opt.label || String.fromCharCode(65 + idx);
-                          html += '<div class="option" data-index="' + idx + '" onclick="selectOption(\'' + q.id + '\', ' + idx + ')">';
-                          html += '<div class="radio-circle"></div>';
-                          html += '<b>' + label + '.</b> ' + optText.replace(/^[A-D]\.\s*/, '');
-                          html += '</div>';
-                      });
-                      html += '</div>';
-                  } else if (q.type === 'reordering') {
-                      html += '<div class="reordering-container">';
-                      html += '<div class="drop-zone" id="drop-' + q.id + '"></div>';
-                      html += '<div class="word-bank" id="bank-' + q.id + '">';
-                      let shuffled = [...q.words].sort(() => Math.random() - 0.5);
-                      shuffled.forEach(w => {
-                          html += '<div class="word-chip" data-token="' + w.tokenId + '" onclick="toggleWord(this, \'' + q.id + '\')">' + w.text + '</div>';
-                      });
-                      html += '</div></div>';
-                  } else if (q.type === 'sentence_rewrite') {
-                      html += '<textarea class="rewrite-input" id="input-' + q.id + '" placeholder="Nh\u1eadp c\u00e2u tr\u1ea3 l\u1eddi c\u1ee7a b\u1ea1n..."></textarea>';
-                  }
-                  
-                  // No inline "Kiểm tra" buttons anymore. They will be checked centrally or via a floating action. Wait, how do they check? 
-                  // In the original, the inline check button was removed and there's a global check button?
-                  // Wait! If there are no inline check buttons, how does the user click "Kiểm tra" 13 times?!
-                  // Wait, I DID remove the inline check buttons!
-                  // Let me check my memory. I removed them and added a "Kiểm tra câu hỏi này" feature? Or did I remove them and rely entirely on the submit button?
-                  // Oh, I remember. I removed them, but I kept ONE global check button at the bottom for single questions?
-                  // No! Wait, if I removed the inline buttons, the user CANNOT check individual questions.
-                  // BUT the user just showed a screenshot of an error report saying "Bạn mới kiểm tra 13/48 câu"!
-                  // If there are no inline check buttons, how did they check 13 questions?
-                  // Ah! They were probably testing `link2.html` or `link3.html` which I DIDN'T modify with the removed buttons!
-                  // Or they were testing `link1.html` before I removed them!
-                  
-                  // Let's restore the inline check button! But they said "Chữ kiểm tra quá to" (The check button is too big).
-                  // So I should make it small and neat!
-                  html += '<button id="check-btn-' + q.id + '" class="check-btn" onclick="checkQuestion(\'' + q.id + '\')">Ki\u1ec3m tra</button>';
-                  html += '<div id="expl-' + q.id + '" class="explanation"></div>';
-                  
-                  block.innerHTML = html;
-                  container.appendChild(block);
-              });
-          }
-          
-          function selectOption(qid, index) {
-              if (state[qid].checked) return;
-              const options = document.querySelectorAll('#q-block-' + qid + ' .option');
-              options.forEach(o => o.classList.remove('selected'));
-              options[index].classList.add('selected');
-              const q = quizData.find(x => x.id.toString() === qid.toString());
-              const label = q.options[index].label || String.fromCharCode(65 + index);
-              state[qid].value = label;
-          }
-          
-          function toggleWord(el, qid) {
-              if (state[qid].checked) return;
-              const drop = document.getElementById('drop-' + qid);
-              const bank = document.getElementById('bank-' + qid);
-              if (el.parentElement.id === bank.id) {
-                  drop.appendChild(el);
-              } else {
-                  bank.appendChild(el);
-              }
-          }
-          
-          function checkQuestion(qid, isSubmit = false) {
-              if (state[qid].checked) return;
-              const q = quizData.find(x => x.id.toString() === qid.toString());
-              if (!q) return;
-              
-              if (!isSubmit) {
-                  if (q.type === 'multiple_choice' || q.type === 'mcq') {
-                      let val = state[qid].value;
-                      if (!val) { alert("Vui l\u00f2ng ch\u1ecdn m\u1ed9t \u0111\u00e1p \u00e1n!"); return; }
-                  } else if (q.type === 'gap_fill_text') {
-                      let allFilled = true;
-                      if (q.blanks) {
-                          q.blanks.forEach(b => {
-                              const el = document.getElementById('input-' + qid + '-' + b.blankId);
-                              if (!el || !el.value.trim()) allFilled = false;
-                          });
-                      }
-                      if (!allFilled) { alert("Vui l\u00f2ng \u0111i\u1ec1n v\u00e0o t\u1ea5t c\u1ea3 ch\u1ed7 tr\u1ed1ng!"); return; }
-                  } else if (q.type === 'reordering') {
-                      const bank = document.getElementById('bank-' + qid);
-                      if (bank && bank.children.length > 0) { alert("Vui l\u00f2ng gh\u00e9p t\u1ea5t c\u1ea3 c\u00e1c t\u1eeb!"); return; }
-                  } else if (q.type === 'sentence_rewrite') {
-                      const el = document.getElementById('input-' + qid);
-                      if (!el || !el.value.trim()) { alert("Vui l\u00f2ng nh\u1eadp c\u00e2u tr\u1ea3 l\u1eddi!"); return; }
-                  }
-              }
-              
-              state[qid].checked = true;
-              
-              let checkBtn = document.getElementById('check-btn-' + qid);
-              if(checkBtn) checkBtn.disabled = true;
-              
-              const expl = document.getElementById('expl-' + qid);
-              expl.innerHTML = q.explanationHTML || q.explanation || '';
-              expl.style.display = 'block';
-              
-              let isCorrect = false;
-              let errorDetails = "";
-              
-              if (q.type === 'multiple_choice' || q.type === 'mcq') {
-                  const selectedVal = state[qid].value || "(bỏ trống)";
-                  const correctOptIndex = q.options.findIndex(o => o.isCorrect);
-                  const correctOptLabel = q.options[correctOptIndex].label || String.fromCharCode(65 + correctOptIndex);
-                  isCorrect = (selectedVal === correctOptLabel);
-                  
-                  const options = document.querySelectorAll('#q-block-' + qid + ' .option');
-                  const selectedIndex = q.options.findIndex((o, i) => (o.label || String.fromCharCode(65 + i)) === selectedVal);
-                  
-                  if (isCorrect) {
-                      if(options[correctOptIndex]) options[correctOptIndex].classList.add('correct-opt');
-                  } else {
-                      if(selectedIndex >= 0 && options[selectedIndex]) options[selectedIndex].classList.add('wrong-opt');
-                      if(options[correctOptIndex]) options[correctOptIndex].classList.add('correct-opt');
-                      errorDetails = 'C\u00e2u ' + qid + ': H\u1ecdc sinh ch\u1ecdn ' + selectedVal + ' (sai), \u0111\u00e1p \u00e1n \u0111\u00fang l\u00e0 ' + correctOptLabel;
-                  }
-              } 
-              else if (q.type === 'gap_fill_text') {
-                  let allCorrect = true;
-                  let correctAnswersArr = [];
-                  q.blanks.forEach(b => {
-                      const input = document.getElementById('input-' + qid + '-' + b.blankId);
-                      const val = input ? input.value.trim().toLowerCase() : "";
-                      let isBlankCorrect = b.correctAnswers.some(ans => ans.toLowerCase() === val);
-                      if (isBlankCorrect) {
-                          if (input) {
-                              input.style.backgroundColor = '#eafaf1';
-                              input.style.borderColor = '#2ecc71';
-                          }
-                      } else {
-                          if (input) {
-                              input.style.backgroundColor = '#fdedec';
-                              input.style.borderColor = '#e74c3c';
-                          }
-                          allCorrect = false;
-                      }
-                      correctAnswersArr.push(b.correctAnswers.join(' / '));
-                  });
-                  isCorrect = allCorrect;
-                  if (!isCorrect) {
-                      errorDetails = 'C\u00e2u ' + qid + ': \u0110i\u1ec1n sai. \u0110\u00e1p \u00e1n \u0111\u00fang: ' + correctAnswersArr.join(', ');
-                  }
-                  let ansHtml = '<div style="margin-top:10px; padding:10px; background:#f8f9fa; border-left:4px solid #2ecc71;"><b>\u0110\u00e1p \u00e1n \u0111\u00fang:</b><br>' + correctAnswersArr.map((ans, i) => (correctAnswersArr.length > 1 ? 'T\u1eeb ' + (i+1) + ': ' : '') + '<b>' + ans + '</b>').join('<br>') + '</div>';
-                  expl.innerHTML = ansHtml + expl.innerHTML;
-              }
-              else if (q.type === 'reordering') {
-                  const drop = document.getElementById('drop-' + qid);
-                  const currentOrder = Array.from(drop.children).map(c => c.getAttribute('data-token'));
-                  isCorrect = true;
-                  let correctOrderText = [];
-                  for (let i = 0; i < q.correctOrder.length; i++) {
-                      const expectedToken = q.correctOrder[i];
-                      const expectedWord = q.words.find(w => w.tokenId === expectedToken).text;
-                      correctOrderText.push(expectedWord);
-                      if (currentOrder[i] !== expectedToken) {
-                          isCorrect = false;
-                      }
-                  }
-                  if (!isCorrect) {
-                      let ansDiv = document.createElement('div');
-                      ansDiv.style.marginTop = '10px';
-                      ansDiv.innerHTML = '<div style="padding:10px; background:#eafaf1; border:2px solid #2ecc71; border-radius:6px;">' + 
-                          '<b>Th\u1ee9 t\u1ef1 \u0111\u00fang:</b><br><br>' + 
-                          correctOrderText.map(t => '<span class="word-chip correct" style="pointer-events:none;">' + t + '</span>').join('') + 
-                          '</div>';
-                      drop.parentElement.appendChild(ansDiv);
-                      errorDetails = 'C\u00e2u ' + qid + ' sai. Th\u1ef1c t\u1ebf \u0111\u00fang: ' + correctOrderText.join(' ');
-                  }
-              }
-              else if (q.type === 'sentence_rewrite') {
-                  const el = document.getElementById('input-' + qid);
-                  const val = el ? el.value.trim() : "";
-                  const normVal = normalize(val.toLowerCase());
-                  const ansArr = q.correctAnswers;
-                  
-                  isCorrect = ansArr.some(ans => {
-                      let normAns = normalize(ans.toLowerCase());
-                      if (normAns === normVal) return true;
-                      
-                      /* partial matching removed to prevent antonym bugs */
-                      return false;
-                  });
-                  
-                  let correctDisplay = ansArr[0] || '';
-                  
-                  if (isCorrect) {
-                      if(el) { el.style.backgroundColor = '#eafaf1'; el.style.borderColor = '#2ecc71'; }
-                  } else {
-                      if(el) { el.style.backgroundColor = '#fdedec'; el.style.borderColor = '#e74c3c'; }
-                      errorDetails = 'C\u00e2u ' + qid + ' sai. \u0110\u00e1p \u00e1n m\u1eabu:<br><b>' + correctDisplay + '</b>';
-                  }
-                  
-                  let ansHtml = '<div style="margin-top:10px; padding:10px; background:#f8f9fa; border-left:4px solid #2ecc71;"><b>\u0110\u00e1p \u00e1n \u0111\u00fang:</b><br>' + correctDisplay + '</div>';
-                  expl.innerHTML = ansHtml + expl.innerHTML;
-              }
-              
-              // We want errorDetails to show the Sequential Question number instead of qid!
-              // Because we just renumbered them in the UI!
-              let globalIndex = quizData.findIndex(x => x.id.toString() === qid.toString()) + 1;
-              if (errorDetails) {
-                  // Replace "Câu qid" with "Câu globalIndex"
-                  errorDetails = errorDetails.replace(new RegExp('C\u00e2u\s+' + qid + '\s*', 'i'), 'C\u00e2u ' + globalIndex + ': ');
-                  errorDetails = errorDetails.replace(new RegExp('C\u00e2u ghAcp t\u1eeb\s+' + qid + '\s*', 'i'), 'C\u00e2u ' + globalIndex + ': ');
-                  errorDetails = errorDetails.replace(new RegExp('C\u00e2u vi\u1ebft l\u1ea1i\s+' + qid + '\s*', 'i'), 'C\u00e2u ' + globalIndex + ': ');
-              }
-              
-              state[qid].isCorrect = isCorrect;
-              state[qid].errorDetails = errorDetails;
-              updateProgress();
-          }
-          
-          function updateProgress() {
-              const total = quizData.length;
-              const checkedCount = Object.values(state).filter(s => s.checked).length;
-              const pct = (checkedCount / total) * 100;
-              document.getElementById('progressFill').style.width = pct + '%';
-          }
-          
-          function confirmSubmit() {
-              const total = quizData.length;
-              const checkedCount = Object.values(state).filter(s => s.checked).length;
-              if (checkedCount < total) {
-                  if (!confirm(`B\u1ea1n m\u1edbi ki\u1ec3m tra ${checkedCount}/${total} c\u00e2u. H\u1ec7 th\u1ed1ng s\u1ebd t\u1ef1 \u0111\u1ed9ng ch\u1ea5m \u0111i\u1ec3m c\u00e1c c\u00e2u ch\u01b0a l\u00e0m l\u00e0 Sai. B\u1ea1n c\u00f3 ch\u1eafc ch\u1eafn mu\u1ed1n n\u1ed9p b\u00e0i?`)) {
-                      return;
-                  }
-              }
-              quizData.forEach(q => {
-                  if (!state[q.id].checked) {
-                      checkQuestion(q.id, true);
-                  }
-              });
+    function init() {
+        let lastTitle = null;
+        questions = QUIZ.map((q, i) => {
+            let nq = adaptQuestion(q, i);
+            if (q.title && q.title !== lastTitle) {
+                nq.showTitle = q.title;
+                lastTitle = q.title;
+            }
+            return nq;
+        });
+        renderQuestions();
+    }
 
-              submitTest();
-          }
-          
-          function submitTest() {
-              const studentName = document.getElementById('studentName').value.trim();
-              const total = quizData.length;
-              const correctCount = Object.values(state).filter(s => s.isCorrect).length;
-              const score = (correctCount / total) * 10;
-              
-              const errors = Object.values(state)
-                  .filter(s => s.checked && !s.isCorrect && s.errorDetails)
-                  .map(s => s.errorDetails);
-              const errorReport = errors.length > 0 ? errors.join('\n') : "Kh\u00f4ng c\u00f3 l\u1ed7i sai";
-              
-              document.getElementById('testScreen').classList.remove('active');
-              document.getElementById('resultScreen').classList.add('active');
-              document.querySelectorAll('input, .option, .word-chip, .check-btn').forEach(el => { el.disabled = true; el.style.pointerEvents = 'none'; el.style.opacity = '0.7'; });
-              
-              document.getElementById('scoreDisplay').innerText = score.toFixed(2) + ' / 10';
-              
-              let feedback = '';
-              if (score >= 9) feedback = 'Xu\u1ea5t s\u1eafc! B\u1ea1n n\u1eafm b\u00e0i r\u1ea5t v\u1eefng.';
-              else if (score >= 7) feedback = 'Kh\u00e1 t\u1ed1t! H\u00e3y c\u1ed1 g\u1eafng h\u01a1n m\u1ed9t ch\u00fat nh\u00e9.';
-              else if (score >= 5) feedback = '\u0110\u1ea1t y\u00eaa c\u1ea7u. B\u1ea1n c\u1ea7n \u00f4n t\u1eadp th\u00eam.';
-              else feedback = 'Ch\u01b0a \u0111\u1ea1t. B\u1ea1n c\u1ea7n xem l\u1ea1i k\u1ef9 b\u00e0i h\u1ecdc!';
-              document.getElementById('feedbackText').innerText = feedback;
-              
-              const detailsDiv = document.getElementById('resultDetails');
-              if (errors.length > 0) {
-                  detailsDiv.innerHTML = '<h3>Chi ti\u1ebft c\u00e1c c\u00e2u sai:</h3>' + 
-                      errors.map(e => '<div class="error-item">' + e + '</div>').join('');
-              } else {
-                  detailsDiv.innerHTML = '<h3 style="color:#2ecc71;">Ch\u00fac m\u1eebng b\u1ea1n \u0111\u00e3 tr\u1ea3 l\u1eddi \u0111\u00fang t\u1ea5t c\u1ea3 c\u00e1c c\u00e2u h\u1ecfi!</h3>';
-              }
-              
-              const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfZCAK2lpNE8O8Ieqwc3SI1ubr6HZDvGZR91AsSpUk8kEBqaA/formResponse';
-              const formData = new FormData();
-              formData.append('entry.1861648410', studentName);
-              formData.append('entry.1691800437', score.toFixed(2));
-              const plainErrorReport = errorReport.replace(/<[^>]*>?/gm, '');
-              formData.append('entry.639295732', plainErrorReport);
-              formData.append('entry.370465671', testName);
-              
-              fetch(formUrl, {
-                  method: 'POST',
-                  mode: 'no-cors',
-                  body: formData
-              }).then(() => {
-                  window.scrollTo(0, 0);
-              }).catch(err => {
-                  alert('C\u00f3 l\u1ed7i khi g\u1eedi k\u1ebft qu\u1ea3. Vui l\u00f2ng th\u1eed l\u1ea1i!');
-                  console.error(err);
-              });
-          }
-          
-          
-          function startTest() {
-              const nameInput = document.getElementById('studentName').value.trim();
-              if (!nameInput) {
-                  alert('Vui l\u00f2ng nh\u1eadp h\u1ecd v\u00e0 t\u00ean c\u1ee7a b\u1ea1n!');
-                  document.getElementById('studentName').focus();
-                  return;
-              }
-              document.getElementById('startScreen').classList.remove('active');
-              document.getElementById('testScreen').classList.add('active');
-              window.scrollTo(0, 0);
-          }
+    window.startTest = function() {
+        let name = studentNameInput.value.trim();
+        if(!name) { alert("Vui lòng nhập họ và tên!"); return; }
+        initAudio();
+        document.getElementById('startScreen').classList.remove('active');
+        document.getElementById('testScreen').classList.add('active');
+    };
 
-          init();
+    function preventNav(e) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+    window.addEventListener('beforeunload', preventNav);
+
+    function renderQuestions() {
+        quizContainer.innerHTML = '';
+        questions.forEach((q, index) => {
+            if (q.showTitle && q.showTitle !== window._lastRenderedTitle) { window._lastRenderedTitle = q.showTitle;
+                let titleDiv = document.createElement('div');
+                titleDiv.className = 'instruction-box';
+                titleDiv.innerHTML = q.showTitle;
+                quizContainer.appendChild(titleDiv);
+            }
+            
+            let div = document.createElement('div');
+            div.className = 'question-block';
+            div.id = 'q-block-' + q.id;
+            
+            let qNumStr = `<strong>Câu ${index + 1}: </strong>`;
+            
+            let html = '';
+            if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                html = `<div class="question-text">${qNumStr} ${q.questionHTML}</div><div class="options">`;
+                q.options.forEach((opt, oIdx) => {
+                    html += `<div class="option" data-qid="${q.id}" data-idx="${oIdx}">
+                        <div class="radio-circle"></div> <b>${esc(opt.displayLabel || opt.label)}.</b> ${opt.html}
+                    </div>`;
+                });
+                html += `</div><div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            } else if (q.type === 'gap_fill_text') {
+                let text = q.questionHTML;
+                q.blanks.forEach(b => {
+                    let searchStr = `{{blank:${b.blankId}}}`;
+                    let inputHtml = `<input type="text" class="gap-fill-input" id="input-${q.id}-${b.blankId}" autocomplete="off" spellcheck="false" maxlength="80"> <span id="gap-res-${q.id}-${b.blankId}"></span>`;
+                    if (text.includes(searchStr)) text = text.replace(searchStr, inputHtml);
+                    else text += ' ' + inputHtml;
+                });
+                html = `<div class="question-text">${qNumStr} ${text}</div>
+                        <div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            } else if (q.type === 'sentence_rewrite') {
+                html = `<div class="question-text">${qNumStr} ${q.originalSentenceHTML ? q.originalSentenceHTML + '<br>' : ''}${q.questionHTML}</div>
+                        <input type="text" class="rewrite-input" id="input-${q.id}" autocomplete="off" spellcheck="false" >
+                        <div id="rw-res-${q.id}"></div>
+                        <div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            } else if (q.type === 'reordering') {
+                html = `<div class="question-text">${qNumStr} ${q.questionHTML}</div>
+                        <div class="word-bank" id="reorder-${q.id}">`;
+                let tokens = [...q.correctOrder]; for(let i = tokens.length - 1; i > 0; i--){const j = Math.floor(Math.random() * (i + 1)); [tokens[i], tokens[j]] = [tokens[j], tokens[i]];}
+                tokens.forEach(tok => { 
+                    let w = (q.words && q.words.find(x => x.tokenId === tok)) || (q.tokens && q.tokens.find(x => x.tokenId === tok));
+                    let text = w ? w.text : tok;
+                    html += `<span class="word-chip" data-qid="${q.id}" data-token="${esc(tok)}">${esc(text)}</span>`; 
+                });
+                html += `</div><div class="drop-zone" id="target-${q.id}"></div>
+                        <div><button class="check-btn" id="check-btn-${q.id}" data-qid="${q.id}">Kiểm tra</button></div>`;
+            }
+            
+            html += `<div class="explanation" id="expl-${q.id}"></div>`;
+            div.innerHTML = html;
+            quizContainer.appendChild(div);
+        });
+
+        document.querySelectorAll('input').forEach(inp => {
+            inp.addEventListener('input', () => { if(inp.value.length === 1) playSelectSound(); });
+        });
+    }
+    
+    quizContainer.addEventListener('click', e => {
+        if (submitted) return;
+        
+        let opt = e.target.closest('.option');
+        if (opt) {
+            let qid = opt.getAttribute('data-qid');
+            if (locked[qid]) return;
+            let qBlock = document.getElementById('q-block-' + qid);
+            qBlock.querySelectorAll('.option').forEach(o => { o.classList.remove('selected'); });
+            opt.classList.add('selected');
+            qBlock.setAttribute('data-selected-idx', opt.getAttribute('data-idx'));
+            playSelectSound();
+        }
+        
+        let chip = e.target.closest('.word-chip');
+        if (chip) {
+            let qid = chip.getAttribute('data-qid');
+            if (locked[qid]) return;
+            let target = document.getElementById('target-' + qid);
+            let source = document.getElementById('reorder-' + qid);
+            if (chip.parentElement.id === 'reorder-' + qid) {
+                target.appendChild(chip);
+            } else {
+                source.appendChild(chip);
+            }
+            playSelectSound();
+        }
+
+        let btn = e.target.closest('.check-btn');
+        if (btn) {
+            let qid = btn.getAttribute('data-qid');
+            if (locked[qid]) return;
+            let q = questions.find(x => x.id === qid);
+            
+            if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                let qBlock = document.getElementById('q-block-' + qid);
+                if (!qBlock.hasAttribute('data-selected-idx')) { alert("Bạn chưa chọn đáp án!"); return; }
+                let idx = parseInt(qBlock.getAttribute('data-selected-idx'));
+                locked[qid] = { idx };
+                let opt = qBlock.querySelector('.option[data-idx="'+idx+'"]');
+                checkMCQ(q, opt, idx);
+                btn.disabled = true;
+            } else if (q.type === 'gap_fill_text') {
+                let ans = {};
+                let empty = true;
+                q.blanks.forEach(b => {
+                    let el = document.getElementById(`input-${q.id}-${b.blankId}`);
+                    let val = el ? el.value.trim() : "";
+                    ans[b.blankId] = val;
+                    if (val) empty = false;
+                });
+                if (empty) { alert("Bạn chưa điền đáp án!"); return; }
+                locked[qid] = { ans };
+                checkGap(q, ans, btn);
+            } else if (q.type === 'sentence_rewrite') {
+                let el = document.getElementById(`input-${q.id}`); let val = el ? el.value.trim() : "";
+                if (!val) { alert("Bạn chưa viết câu trả lời!"); return; }
+                locked[qid] = { val };
+                checkRewrite(q, val, btn);
+            } else if (q.type === 'reordering') {
+                let tz = document.getElementById(`target-${q.id}`);
+                if (tz.children.length === 0) { alert("Bạn chưa ghép từ!"); return; }
+                let order = Array.from(tz.children).map(c => c.getAttribute('data-token'));
+                locked[q.id] = { order };
+                checkReorder(q, order, btn);
+            }
+        }
+    });
+
+    function showExplanation(q) {
+        let ex = document.getElementById('expl-' + q.id);
+        if (q.explanationHTML && ex) {
+            ex.innerHTML = q.explanationHTML.includes('Giải thích:') ? q.explanationHTML : '<strong>Giải thích:</strong><br>' + q.explanationHTML;
+            ex.style.display = 'block';
+        }
+    }
+
+    function checkMCQ(q, optEl, idx) {
+        let isCorrect = q.options[idx].isCorrect;
+        if (isCorrect) {
+            optEl.classList.add('correct-opt');
+            playCorrectSound();
+        } else {
+            optEl.classList.add('wrong-opt');
+            playWrongSound();
+            let correctOpt = q.options.find(o => o.isCorrect);
+            if (correctOpt) {
+                let correctIdx = q.options.indexOf(correctOpt);
+                document.querySelector(`.option[data-qid="${q.id}"][data-idx="${correctIdx}"]`).classList.add('correct-opt');
+            }
+        }
+        document.getElementById('q-block-' + q.id).style.pointerEvents = 'none';
+        showExplanation(q);
+    }
+    
+    function checkGap(q, ans, btn) {
+        let allCorrect = true;
+        q.blanks.forEach(b => {
+            let val = ans[b.blankId];
+            let isCorrect = false;
+            b.correctAnswers.forEach(ca => { if(norm(ca) === norm(val)) isCorrect = true; });
+            let resSpan = document.getElementById(`gap-res-${q.id}-${b.blankId}`);
+            let inputEl = document.getElementById(`input-${q.id}-${b.blankId}`);
+            if (isCorrect) {
+                inputEl.style.backgroundColor = '#eafaf1';
+                inputEl.style.borderColor = '#2ecc71';
+                resSpan.innerHTML = ` <span style="color:#2ecc71;font-weight:bold;">✓ Chính xác!</span>`;
+            } else {
+                allCorrect = false;
+                inputEl.style.backgroundColor = '#fdedec';
+                inputEl.style.borderColor = '#e74c3c';
+                resSpan.innerHTML = ` <span style="color:#2ecc71; font-weight:bold; margin-left: 5px;">${esc(b.correctAnswers[0])}</span>`;
+            }
+        });
+        if (allCorrect) playCorrectSound(); else playWrongSound();
+        document.getElementById('q-block-' + q.id).style.pointerEvents = 'none';
+        btn.disabled = true;
+        showExplanation(q);
+    }
+    
+
+    function getExpectedRewrite(q) {
+        let expected = q.correctAnswers[0];
+        let cleanQh = (q.questionHTML || '').replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
+        let parts = cleanQh.split(/_+/);
+        if (parts.length >= 2) {
+            let prefix = parts[0].replace(/^[\s\u2192\-\>]+/, '').trim();
+            let suffix = parts[1].trim();
+            if (prefix) {
+                let escPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let regex = new RegExp('^' + escPrefix + '(?=\\s|$)\\s*', 'i');
+                if (regex.test(expected)) {
+                    expected = expected.replace(regex, '').trim();
+                }
+            }
+            if (suffix) {
+                let escSuffix = suffix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                let regex2 = new RegExp('\\s*' + escSuffix + '(?=\\s|$|\\W)', 'i');
+                if (regex2.test(expected)) {
+                    expected = expected.replace(regex2, '').trim();
+                } else if (suffix === '.') {
+                    expected = expected.replace(/\.$/, '').trim();
+                }
+            } else {
+                expected = expected.replace(/\.$/, '').trim();
+            }
+        }
+        return expected;
+    }
+
+    function checkRewrite(q, val, btn) {
+        let expected = getExpectedRewrite(q);
+        let uVal = val.trim();
+        if (uVal.endsWith('.') && !expected.endsWith('.')) uVal = uVal.slice(0, -1);
+        let isCorrect = (norm(uVal) === norm(expected)) || acceptedSet(q).has(norm(val));
+        
+        let rwRes = document.getElementById('rw-res-' + q.id);
+        let inputEl = document.getElementById('input-' + q.id);
+        if (isCorrect) {
+            inputEl.style.backgroundColor = '#eafaf1';
+            inputEl.style.borderColor = '#2ecc71';
+            rwRes.innerHTML = `<span style="color:#2ecc71;font-weight:bold;">&#10003; Chính xác!</span>`;
+            playCorrectSound();
+        } else {
+            inputEl.style.backgroundColor = '#fdedec';
+            inputEl.style.borderColor = '#e74c3c';
+            rwRes.innerHTML = `<span style="color:#2ecc71; font-weight:bold; margin-left: 5px;">${esc(expected)}</span>`;
+            playWrongSound();
+        }
+        inputEl.disabled = true;
+        btn.disabled = true;
+        showExplanation(q);
+    }
 
 
+
+
+
+    function checkReorder(q, order, btn) {
+        let isCorrect = order.join(' ') === q.correctOrder.join(' ');
+        let tz = document.getElementById('target-' + q.id);
+        if (isCorrect) {
+            tz.style.backgroundColor = '#eafaf1';
+            tz.style.borderColor = '#2ecc71';
+            playCorrectSound();
+        } else {
+            tz.style.backgroundColor = '#fdedec';
+            tz.style.borderColor = '#e74c3c';
+            let div = document.createElement('div');
+            div.style.marginTop = '10px';
+            div.innerHTML = `<strong style="color:#2ecc71;">Đáp án:</strong> ${esc(q.correctOrder.join(' '))}`;
+            tz.parentNode.insertBefore(div, btn.parentNode);
+            playWrongSound();
+        }
+        document.getElementById('q-block-' + q.id).style.pointerEvents = 'none';
+        btn.disabled = true;
+        showExplanation(q);
+    }
+    
+    window.confirmSubmit = function() {
+        if (!confirm("Bạn có chắc chắn muốn nộp bài?")) return;
+        window.removeEventListener('beforeunload', preventNav);
+        submitted = true;
+        playSubmitSound();
+        
+        let correctCount = 0;
+        let gradableCount = 0;
+        let wrongHTML = '<h3 style="color:#e74c3c;text-align:left;margin-top:0;">DANH SÁCH CÁC CÂU LÀM SAI / CHƯA LÀM</h3>';
+        let hasWrong = false;
+        
+        questions.forEach((q, index) => {
+            let l = locked[q.id];
+            let isGradable = (q.type !== 'short_answer');
+            if (isGradable) gradableCount++;
+            
+            let isCorrect = false;
+            let hsStr = "(Bạn chưa trả lời)";
+            let rightStr = "";
+            
+            if (!l) {
+                let hasValue = false;
+                if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                    let qBlock = document.getElementById('q-block-' + q.id);
+                    if (qBlock && qBlock.hasAttribute('data-selected-idx')) {
+                        let idx = parseInt(qBlock.getAttribute('data-selected-idx'));
+                        locked[q.id] = { idx };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                } else if (q.type === 'gap_fill_text') {
+                    let ans = {};
+                    let empty = true;
+                    q.blanks.forEach(b => {
+                        let el = document.getElementById(`input-${q.id}-${b.blankId}`);
+                        let val = el ? el.value.trim() : "";
+                        ans[b.blankId] = val;
+                        if (val) empty = false;
+                    });
+                    if (!empty) {
+                        locked[q.id] = { ans };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                } else if (q.type === 'sentence_rewrite') {
+                    let el = document.getElementById(`input-${q.id}`); 
+                    let val = el ? el.value.trim() : "";
+                    if (val) {
+                        locked[q.id] = { val };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                } else if (q.type === 'reordering') {
+                    let tz = document.getElementById(`target-${q.id}`);
+                    if (tz && tz.children.length > 0) {
+                        let order = Array.from(tz.children).map(c => c.getAttribute('data-token'));
+                        locked[q.id] = { order };
+                        l = locked[q.id];
+                        hasValue = true;
+                    }
+                }
+
+                if (!hasValue) {
+                    isCorrect = false;
+                    hsStr = "(Bạn chưa trả lời)";
+                    if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                        let co = q.options.find(o => o.isCorrect);
+                        rightStr = co ? `${co.displayLabel || co.label} (${(co.text || co.html).replace(/<[^>]*>?/gm, '')})` : '';
+                    } else if (q.type === 'gap_fill_text') {
+                        rightStr = q.blanks.map(b => b.correctAnswers[0]).join(', ');
+                    } else if (q.type === 'reordering') {
+                        rightStr = q.correctOrder.map(tok => { let w = (q.words && q.words.find(x => x.tokenId === tok)) || (q.tokens && q.tokens.find(x => x.tokenId === tok)); return w ? w.text : tok; }).join(' ');
+                    } else if (q.type === 'sentence_rewrite') {
+                        rightStr = q.correctAnswers[0];
+                    }
+                }
+            }
+            
+            if (l) {
+                if (q.type === 'multiple_choice' || q.type === 'mcq') {
+                    isCorrect = q.options[l.idx].isCorrect;
+                    hsStr = `${q.options[l.idx].displayLabel || q.options[l.idx].label} (${(q.options[l.idx].text || q.options[l.idx].html).replace(/<[^>]*>?/gm, '')})`;
+                    let co = q.options.find(o => o.isCorrect);
+                    rightStr = co ? `${co.displayLabel || co.label} (${(co.text || co.html).replace(/<[^>]*>?/gm, '')})` : '';
+                } else if (q.type === 'gap_fill_text') {
+                    isCorrect = true;
+                    let hsArr = []; let rightArr = [];
+                    q.blanks.forEach(b => {
+                        let v = l.ans[b.blankId];
+                        hsArr.push(v);
+                        rightArr.push(b.correctAnswers[0]);
+                        let c = false;
+                        b.correctAnswers.forEach(ca => { if(norm(ca) === norm(v)) c = true; });
+                        if (!c) isCorrect = false;
+                    });
+                    hsStr = hsArr.join(', ');
+                    rightStr = rightArr.join(', ');
+                } else if (q.type === 'reordering') {
+                    isCorrect = l.order.join(' ') === q.correctOrder.join(' ');
+                    let mapToken = tok => { let w = (q.words && q.words.find(x => x.tokenId === tok)) || (q.tokens && q.tokens.find(x => x.tokenId === tok)); return w ? w.text : tok; };
+                    hsStr = l.order.map(mapToken).join(' ');
+                    rightStr = q.correctOrder.map(mapToken).join(' ');
+                } else if (q.type === 'sentence_rewrite') {
+                    isCorrect = isRewriteCorrect(q, l.val);
+                    hsStr = l.val;
+                    rightStr = q.correctAnswers[0];
+                }
+            }
+            
+            if (isGradable && isCorrect) {
+                correctCount++;
+            } else if (isGradable && !isCorrect) {
+                hasWrong = true;
+                wrongHTML += `<div class="error-item">
+                    <strong>Câu ${index + 1}:</strong> ${q.questionHTML.replace(/\{\{blank:[^\}]+\}\}/g, '___')}<br>
+                    <span style="color:#e74c3c;">Học sinh: <span style="${hsStr.includes('chưa trả lời') ? '' : 'text-decoration:line-through;'}">${esc(hsStr)}</span></span><br>
+                    <span style="color:#2ecc71; font-weight:bold;">Đáp án đúng: ${esc(rightStr)}</span>
+                    <div style="margin-top:5px;font-size:13.5px;color:#333;">${q.explanationHTML ? (q.explanationHTML.includes('Giải thích:') ? q.explanationHTML : '<em>Giải thích:</em><br>' + q.explanationHTML) : ''}</div>
+                </div>`;
+            }
+        });
+        
+        document.getElementById('testScreen').classList.remove('active');
+        resultScreen.classList.add('active');
+        if (gradableCount > 0) {
+            let scale10 = parseFloat(((correctCount / gradableCount) * 10).toFixed(2));
+            scoreDisplay.innerHTML = `${scale10} <span style="font-size:32px; color:#7f8c8d;">/ 10</span><br><span style="font-size:18px; color:#95a5a6; font-weight:normal;">(Đúng ${correctCount}/${gradableCount} câu)</span>`;
+            if (correctCount === gradableCount) {
+                resultDetails.innerHTML = '<h2 style="color:#2ecc71;text-align:center;">TUYỆT VỜI! ĐÚNG 100%</h2>';
+                playCorrectSound();
+            } else {
+                resultDetails.innerHTML = wrongHTML;
+            }
+        } else {
+            scoreDisplay.textContent = "Không chấm điểm";
+            resultDetails.innerHTML = '<p>Bài này không có câu trắc nghiệm được chấm tự động.</p>';
+        }
+        
+        
+        try {
+            const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfZCAK2lpNE8O8Ieqwc3SI1ubr6HZDvGZR91AsSpUk8kEBqaA/formResponse';
+            const formData = new FormData();
+            let studentName = document.getElementById('studentName') ? document.getElementById('studentName').value.trim() : 'Unknown';
+            formData.append('entry.1861648410', studentName);
+            let finalScore = gradableCount > 0 ? (correctCount * 10 / gradableCount).toFixed(2) : 0;
+            formData.append('entry.1691800437', finalScore);
+            const plainErrorReport = hasWrong ? wrongHTML.replace(/<[^>]*>?/gm, '') : 'Perfect';
+            formData.append('entry.639295732', plainErrorReport);
+            let pageTitle = document.title || location.pathname.split('/').pop() || 'Unknown';
+            formData.append('entry.370465671', pageTitle);
+            fetch(formUrl, { method: 'POST', mode: 'no-cors', body: formData }).catch(e => console.error(e));
+        } catch (err) {
+            console.error("Form submit error", err);
+        }
+        
+        document.querySelectorAll('.check-btn').forEach(b => b.disabled = true);
+        document.querySelectorAll('input, .option, .word-chip').forEach(el => { el.disabled = true; el.style.pointerEvents = 'none'; el.style.opacity = '0.7'; });
+
+    };
+
+    window.onload = init;
+})();
 
     </script>
-    </body>
-    </html>
-    
+</body>
+</html>
